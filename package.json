@@ -1,0 +1,18 @@
+{
+  "name": "neways-wordpress-theme",
+  "version": "1.0.0",
+  "description": "Custom WordPress theme with Tailwind CSS",
+  "scripts": {
+    "dev": "tailwindcss -i ./src/main.css -o ./assets/css/neways.css --watch",
+    "build": "tailwindcss -i ./src/main.css -o ./assets/css/neways.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "@tailwindcss/typography": "^0.5.10",
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/aspect-ratio": "^0.4.2"
+  },
+  "keywords": ["wordpress", "theme", "tailwindcss"],
+  "author": "Custom Developer",
+  "license": "GPL-2.0-or-later"
+}
