@@ -23,6 +23,7 @@ $shortcode_files = array(
     'blog-section.php',
     'team-section.php',
     'awards-section.php',
+    'scroll-text.php',
 );
 
 // Load each shortcode file
