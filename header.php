@@ -6,9 +6,10 @@
     <link rel="profile" href="https://gmpg.org/xfn/11">
     
     <!-- Google Fonts -->
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
     
     <?php wp_head(); ?>
 </head>
@@ -27,11 +28,11 @@
                     <?php the_custom_logo(); ?>
                     </div>
                 <?php else : ?>
-                    <h1 class="site-title text-2xl font-bold">
+                    <h3 class="site-title text-2xl font-bold">
                     <a href="<?php echo esc_url(home_url('/')); ?>" class="text-white hover:text-navy-200 transition-colors duration-200">
                      <?php bloginfo('name'); ?>
                     </a>
-                    </h1>
+                    </h3>
                 <?php endif; ?>
             </div>
 

@@ -58,6 +58,23 @@ function neways_theme_scripts() {
 add_action('wp_enqueue_scripts', 'neways_theme_scripts');
 
 /**
+ * Ensure global custom overrides load after all theme/styles
+ */
+function neways_enqueue_custom_style() {
+    $custom_path = get_template_directory() . '/assets/css/custom.css';
+
+    if (file_exists($custom_path)) {
+        wp_enqueue_style(
+            'neways-custom-style',
+            get_template_directory_uri() . '/assets/css/custom.css',
+            array(),
+            filemtime($custom_path)
+        );
+    }
+}
+add_action('wp_enqueue_scripts', 'neways_enqueue_custom_style', 99);
+
+/**
  * Add custom classes to navigation menu
  */
 function neways_theme_nav_menu_css_class($classes, $item, $args) {
