@@ -1,0 +1,143 @@
+[1mdiff --git a/header.php b/header.php[m
+[1mindex 35f1353..b5f4980 100644[m
+[1m--- a/header.php[m
+[1m+++ b/header.php[m
+[36m@@ -1,85 +1,77 @@[m
+[31m-<!DOCTYPE html>[m
+[32m+[m[32m<?php[m
+[32m+[m[32m/**[m
+[32m+[m[32m * The header for our theme[m
+[32m+[m[32m */[m
+[32m+[m[32m?><!DOCTYPE html>[m
+ <html <?php language_attributes(); ?>>[m
+ <head>[m
+     <meta charset="<?php bloginfo('charset'); ?>">[m
+     <meta name="viewport" content="width=device-width, initial-scale=1">[m
+     <link rel="profile" href="https://gmpg.org/xfn/11">[m
+[31m-    [m
+[31m-    <!-- Google Fonts -->[m
+[31m-    [m
+     <link rel="preconnect" href="https://fonts.googleapis.com">[m
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>[m
+     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">[m
+[31m-    [m
+     <?php wp_head(); ?>[m
+ </head>[m
+[31m-[m
+ <body <?php body_class(); ?>>[m
+ <?php wp_body_open(); ?>[m
+[31m-[m
+[32m+[m[32m<?php[m
+[32m+[m[32m// $header_classes = ( is_front_page() || is_home() )[m
+[32m+[m[32m//     ? 'bg-gradient-to-r from-[#07143a]/85 via-[#0c1f4a]/80 to-[#0c1f4a]/60 backdrop-blur-md border-b border-white/10'[m
+[32m+[m[32m//     : 'bg-[#07143a]/95 backdrop-blur-md border-b border-white/10';[m
+[32m+[m[32m?>[m
+ <div id="page" class="site min-h-screen flex flex-col">[m
+[31m-    <header id="masthead" class="site-header <?php echo (is_front_page() || is_home()) ? 'bg-transparent backdrop-blur-sm' : 'bg-slate-700'; ?> fixed shadow-lg top-0 pt-4 w-full z-50">[m
+[31m-        <div class="container-custom">[m
+[31m-            <div class="flex items-center justify-between py-4">[m
+[31m-                <!-- Site Logo/Title -->[m
+[31m-            <div class="site-branding">[m
+[31m-                <?php if (has_custom_logo()) : ?>[m
+[31m-                    <div class="site-logo">[m
+[31m-                    <?php the_custom_logo(); ?>[m
+[31m-                    </div>[m
+[31m-                <?php else : ?>[m
+[31m-                    <h3 class="site-title text-2xl font-bold">[m
+[31m-                    <a href="<?php echo esc_url(home_url('/')); ?>" class="text-white hover:text-navy-200 transition-colors duration-200">[m
+[31m-                     <?php bloginfo('name'); ?>[m
+[31m-                    </a>[m
+[31m-                    </h3>[m
+[31m-                <?php endif; ?>[m
+[32m+[m[32m    <header id="masthead" class="site-header fixed top-0 z-50 w-full bg-transparent transition-colors duration-300" data-header>[m
+[32m+[m[32m        <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-10">[m
+[32m+[m[32m            <div class="flex items-center gap-4">[m
+[32m+[m[32m                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="block">[m
+[32m+[m[32m                    <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo.png' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" class="w-20 h-24 object-contain" />[m
+[32m+[m[32m                </a>[m
+             </div>[m
+ [m
+[31m-[m
+[31m-                <!-- Mobile Menu Button -->[m
+[31m-                <button id="mobile-menu-button" class="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-white hover:text-navy-200 hover:bg-navy-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-navy-400" aria-expanded="false">[m
+[31m-                    <span class="sr-only"><?php esc_html_e('Open main menu', 'neways-theme'); ?></span>[m
+[31m-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">[m
+[31m-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />[m
+[31m-                    </svg>[m
+[31m-                </button>[m
+[31m-[m
+[31m-                <!-- Desktop Navigation -->[m
+[31m-                <nav id="site-navigation" class="main-navigation hidden lg:block">[m
+[31m-                    <?php[m
+[31m-                    wp_nav_menu(array([m
+[32m+[m[32m            <nav id="site-navigation" class="main-navigation hidden flex-1 items-center justify-end gap-8 text-base font-medium text-white lg:flex">[m
+[32m+[m[32m                <?php[m
+[32m+[m[32m                wp_nav_menu([m
+[32m+[m[32m                    array([m
+                         'theme_location' => 'primary',[m
+                         'menu_id'        => 'primary-menu',[m
+[31m-                        'menu_class'     => 'flex space-x-4',[m
+[32m+[m[32m                        'menu_class'     => 'flex items-center gap-8',[m
+                         'container'      => false,[m
+                         'fallback_cb'    => false,[m
+[31m-                        'depth'          => 2, // Allow submenus[m
+[31m-                    ));[m
+[31m-                    ?>[m
+[31m-                </nav>[m
+[31m-[m
+[31m-                <?php // Search icon removed from navbar ?>[m
+[31m-            </div>[m
+[31m-[m
+[31m-            <!-- Mobile Navigation -->[m
+[31m-            <nav id="mobile-navigation" class="mobile-navigation lg:hidden hidden">[m
+[31m-                <div class="px-2 pt-2 pb-3 space-y-1 border-t border-navy-700">[m
+[31m-                    <?php[m
+[31m-                    wp_nav_menu(array([m
+[31m-                        'theme_location' => 'primary',[m
+[31m-                        'menu_id'        => 'mobile-menu',[m
+[31m-                        'menu_class'     => 'space-y-1',[m
+[31m-                        'container'      => false,[m
+[31m-                        'fallback_cb'    => false,[m
+[31m-                        'depth'          => 2, // Allow submenus[m
+[31m-                    ));[m
+[31m-                    ?>[m
+[31m-                </div>[m
+[32m+[m[32m                        'depth'          => 2,[m
+[32m+[m[32m                    )[m
+[32m+[m[32m                );[m
+[32m+[m[32m                ?>[m
+[32m+[m[32m                <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="hidden rounded-full bg-white/15 px-6 py-2 text-sm font-semibold text-white shadow-[0_8px_18px_rgba(5,16,45,0.35)] transition duration-300 hover:bg-white/25 hover:shadow-[0_10px_24px_rgba(5,16,45,0.45)] lg:inline-flex">[m
+[32m+[m[32m                    <?php esc_html_e( 'Contact us', 'neways-theme' ); ?>[m
+[32m+[m[32m                </a>[m
+             </nav>[m
+ [m
+[31m-            <?php // Collapsible search form removed ?>[m
+[32m+[m[32m            <button id="mobile-menu-button" class="inline-flex items-center justify-center rounded-md p-2 text-white transition hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white lg:hidden" aria-expanded="false">[m
+[32m+[m[32m                <span class="sr-only"><?php esc_html_e( 'Open main menu', 'neways-theme' ); ?></span>[m
+[32m+[m[32m                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">[m
+[32m+[m[32m                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />[m
+[32m+[m[32m                </svg>[m
+[32m+[m[32m            </button>[m
+         </div>[m
+[32m+[m
+[32m+[m[32m        <nav id="mobile-navigation" class="mobile-navigation hidden border-t border-white/10 bg-[#07143a]/95 px-4 py-4 text-white lg:hidden">[m
+[32m+[m[32m            <?php[m
+[32m+[m[32m            wp_nav_menu([m
+[32m+[m[32m                array([m
+[32m+[m[32m                    'theme_location' => 'primary',[m
+[32m+[m[32m                    'menu_id'        => 'mobile-menu',[m
+[32m+[m[32m                    'menu_class'     => 'space-y-2 text-base font-medium',[m
+[32m+[m[32m                    'container'      => false,[m
+[32m+[m[32m                    'fallback_cb'    => false,[m
+[32m+[m[32m                    'depth'          => 2,[m
+[32m+[m[32m                )[m
+[32m+[m[32m            );[m
+[32m+[m[32m            ?>[m
+[32m+[m[32m            <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="mt-4 inline-flex w-full justify-center rounded-full bg-white/15 px-5 py-3 text-sm font-semibold text-white transition duration-300 hover:bg-white/25">[m
+[32m+[m[32m                <?php esc_html_e( 'Contact us', 'neways-theme' ); ?>[m
+[32m+[m[32m            </a>[m
+[32m+[m[32m        </nav>[m
+     </header>[m
+ [m
+[31m-    <div id="content" class="site-content flex-grow"><?php // Opening tag closed in footer.php ?>[m
+[32m+[m[32m    <div id="content" class="site-content flex-grow">[m

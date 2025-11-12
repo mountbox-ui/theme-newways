@@ -7,35 +7,90 @@
         @apply font-sans text-gray-900 bg-white dark:bg-gray-900 dark:text-white;
     }
 
-    h1, h2, h3, h4, h5, h6 {
-        @apply font-poppins font-bold;
+    h1 {
+        @apply font-marcellus font-normal text-balance tracking-wider leading-none text-white text-3xl sm:text-5xl md:text-5xl md:leading-none mt-0.5;
+    }
+
+    h2 {
+        @apply font-jakarta font-semibold text-2xl leading-snug sm:text-3xl md:text-4xl md:leading-snug;
+    }
+
+    h3 {
+        @apply font-lato font-semibold text-xl leading-snug sm:text-2xl;
+    }
+
+    h4 {
+        @apply font-jakarta font-semibold text-lg leading-snug sm:text-xl;
+    }
+
+    h5 {
+        @apply font-jakarta font-bold text-2xl leading-snug sm:text-3xl md:text-2xl;
+    }
+
+    h6 {
+        @apply font-manrope font-semibold text-sm leading-5 pb-3 uppercase tracking-widest sm:text-sm;
+    }
+
+    h2 span {
+        @apply font-lora italic font-medium text-2xl sm:text-3xl md:text-4xl;
     }
 }
 
 @layer components {
-    .container-custom {
-        @apply container mx-auto px-4 sm:px-6 lg:px-8;
+    nav a {
+        @apply font-manrope text-white no-underline text-base leading-7 transition-colors duration-300 sm:text-lg font-semibold;
     }
 
-    /* Navigation Styles */
+    nav a:hover {
+        @apply text-[#CDAC79] font-semibold;
+    }
+
     .main-navigation a {
-        @apply text-white hover:text-navy-200 transition-colors duration-200;
+        @apply whitespace-nowrap;
     }
 
-    /* Button Styles */
+    .site-header {
+        @apply transition-colors transition-shadow duration-200 ease-in-out;
+    }
+
+    .site-header.fixed {
+        @apply top-0;
+    }
+
+    body.admin-bar .site-header.fixed {
+        top: 20px;
+    }
+
+    @media (max-width: 782px) {
+        body.admin-bar .site-header.fixed {
+            top: 0;
+        }
+    }
+
+    .site-header.header-solid {
+        @apply bg-[#014854] shadow-[0_8px_16px_rgba(0,0,0,0.15)];
+    }
+
     .btn {
-        @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm transition-colors duration-200;
+        @apply inline-flex items-center border border-transparent font-medium rounded-md shadow-sm transition duration-300 ease-in-out;
     }
 
     .btn-primary {
-        @apply bg-primary-600 text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500;
+        @apply font-manrope justify-center text-white text-sm sm:text-base font-bold rounded-full leading-snug tracking-wide flex items-center gap-3 px-5 py-3 sm:px-6 sm:py-4 transition duration-300 ease-in-out;
     }
 
     .btn-secondary {
-        @apply bg-navy-600 text-white hover:bg-navy-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-navy-500;
+        @apply font-lato text-white text-base sm:text-lg leading-snug tracking-wide flex items-center gap-2 px-6 sm:px-7 py-4 sm:py-5 rounded-md bg-[#016A7C] opacity-90 w-full sm:w-auto min-w-[180px] sm:min-w-[235px] justify-center;
     }
 
-    /* Form Styles */
+    .bg-primary {
+        @apply bg-[#014854];
+    }
+
+    .hero-section-text {
+        @apply text-white/90 font-lato font-normal;
+    }
+
     .form-input {
         @apply mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700;
     }
@@ -44,7 +99,6 @@
         @apply block text-sm font-medium text-gray-700 dark:text-gray-300;
     }
 
-    /* Card Styles */
     .card {
         @apply bg-white dark:bg-gray-800 overflow-hidden shadow-lg rounded-lg;
     }
@@ -53,7 +107,6 @@
         @apply p-6;
     }
 
-    /* Desktop submenu: hidden by default, show on hover */
     @media (min-width: 1024px) {
         .main-navigation li { @apply relative; }
         .main-navigation .sub-menu { @apply absolute left-0 top-full hidden bg-navy-800 text-white rounded-md shadow-lg p-2 space-y-1 min-w-[200px] z-50; }
@@ -61,12 +114,117 @@
         .main-navigation .sub-menu a { @apply block px-4 py-2 rounded-md hover:bg-navy-700; }
     }
 
-    /* Mobile submenu: hidden by default, open when parent has .submenu-open */
     .mobile-navigation .sub-menu { @apply hidden ml-4 space-y-1; }
     .mobile-navigation .submenu-open > .sub-menu { @apply block; }
+
+    .highlighted-news-horizontal {
+        @apply w-full;
+    }
+
+    .highlighted-news-container {
+        @apply flex flex-col gap-4 md:flex-row md:gap-6 md:items-start lg:gap-8;
+    }
+
+    .highlighted-news-image {
+        @apply flex-none w-full md:w-[480px] lg:w-[548px];
+    }
+
+    .highlighted-news-img {
+        @apply w-full h-auto md:w-[480px] md:h-[312px] lg:w-[548px] lg:h-[356px] object-cover border border-[#B0D4E8] rounded block;
+    }
+
+    .highlighted-news-img-placeholder {
+        @apply w-full h-auto md:w-[480px] md:h-[312px] lg:w-[548px] lg:h-[356px] bg-gray-100 flex items-center justify-center border border-[#B0D4E8] rounded text-gray-400;
+    }
+
+    .highlighted-news-content {
+        @apply flex flex-1 flex-col justify-start pt-4 md:pt-0 md:pl-6 lg:pl-8;
+    }
+
+    .highlighted-news-section-label {
+        @apply font-jakarta text-xs sm:text-sm font-bold tracking-widest uppercase text-[#9333EA] mb-3 sm:mb-4;
+    }
+
+    .highlighted-news-title {
+        @apply font-jakarta font-bold text-2xl sm:text-3xl md:text-4xl leading-snug text-black mb-4;
+    }
+
+    .highlighted-news-title a {
+        @apply text-black no-underline transition-colors duration-300;
+    }
+
+    .highlighted-news-title a:hover {
+        @apply text-[#016A7C];
+    }
+
+    .submenu-icon svg {
+        @apply h-3 w-3 transition-transform duration-200;
+    }
+
+    .main-navigation .menu-item-has-children:hover > a .submenu-icon svg {
+        @apply rotate-180;
+    }
+
+    .mobile-navigation .menu-item-has-children > a {
+        @apply flex items-center justify-between;
+    }
+
+    .menu-item-has-children.submenu-open > a .submenu-icon svg {
+        @apply rotate-180;
+    }
+
+    .highlighted-news-date {
+        @apply font-jakarta text-sm sm:text-base font-normal text-[#6b7280] block;
+    }
+
+    .highlighted-news-separator {
+        @apply w-screen h-px bg-gray-200 mx-[calc(-50vw+50%)] my-12 sm:my-16 border-0;
+    }
+
+    .grid > article {
+        @apply bg-white border border-transparent rounded-lg transition duration-300 ease-in-out relative overflow-hidden p-3;
+    }
+
+    .grid > article::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        z-index: 1;
+        border-radius: 8px;
+    }
+
+    .grid > article:hover {
+        @apply border-[#d1d5db] shadow-[0_4px_20px_rgba(0,0,0,0.08)] bg-white/95;
+    }
+
+    .grid > article:hover::before {
+        opacity: 1;
+    }
+
+    .grid > article > * {
+        @apply relative z-10;
+    }
+
+    .grid > article[class*="bg-gradient"] {
+        @apply border border-transparent;
+    }
+
+    .grid > article[class*="bg-gradient"]:hover {
+        @apply border-[#fbbf24] shadow-[0_4px_20px_rgba(0,0,0,0.1)];
+    }
+
+    .grid > article[class*="bg-gradient"]:hover::before {
+        background: rgba(255, 255, 255, 0.5);
+        opacity: 1;
+    }
 }
 
-/* Custom Utilities */
 @layer utilities {
     .text-shadow {
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);

@@ -18,7 +18,7 @@ $shortcode_files = array(
     'image-section.php',
     'text-section.php',
     'events-section.php',
-    'support-center.php',
+    'hero-section.php',
     'news-section.php',
     'blog-section.php',
     'team-section.php',

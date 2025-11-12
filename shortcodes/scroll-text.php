@@ -16,17 +16,22 @@ if ( ! function_exists( 'sw_enqueue_scroll_reveal_assets' ) ) {
 
         $css = <<<'CSS'
 :root{--fade-opacity:0.18;--visible-opacity:1;--char-gap:0.08rem;--font-size:22px}
-.sw-scroll-wrap{max-width:960px;margin:0 auto;min-height:190vh;padding:0 24px;display:flex;justify-content:center;align-items:flex-start;position:relative}
+.sw-scroll-wrap{max-width:1200px;margin:0 auto;min-height:190vh;display:flex;align-items:flex-start;position:relative}
 .sw-scroll-wrap.sw-align-left{justify-content:flex-start}
 .sw-scroll-wrap.sw-align-right{justify-content:flex-end}
-.sw-scroll-inner{position:sticky;top:18vh;display:flex;flex-direction:column;align-items:flex-start;gap:16px;padding:72px 0;width:min(100%,720px)}
-.sw-animated-paragraph{font-size:48px;font-weight:500;background:#fff;padding:28px;border-radius:12px;display:inline-block}
+.sw-scroll-inner{position:sticky;top:18vh;display:flex;flex-direction:column;align-items:flex-start;gap:28px;padding:72px 0;}
+.sw-scroll-heading{display:block;font-family:"Manrope";font-weight:600;font-size:16px;letter-spacing:1.44px;text-transform:uppercase;color:#312F60;padding-bottom:22px}
+.sw-animated-paragraph{font-family:"Manrope";font-size:48px;font-weight:500;line-height:1.12;color:#111827;background:#fff;display:inline-block ; max-width:970px;}
+.sw-scroll-description{font-family:"Manrope";font-size:20px;line-height:30px;color:#4b5563;max-width:970px; padding-top:8px; font-weight: 500; }
 .sw-animated-paragraph .char{display:inline-block;opacity:var(--fade-opacity);transform:translateY(6px);transition:opacity 420ms ease,transform 420ms ease;letter-spacing:var(--char-gap);color:rgba(0,0,0,1);white-space:pre}
 .sw-animated-paragraph .char.visible{opacity:var(--visible-opacity);transform:translateY(0)}
 .sw-animated-paragraph .char.space{width:0.4rem}
 .sw-animated-paragraph .char.always-visible{opacity:var(--visible-opacity)!important;transform:translateY(0)!important}
-.sw-scroll-progress{height:4px;width:100%;background:linear-gradient(90deg,#111 var(--p,0%),rgba(0,0,0,0.08) 0%);border-radius:4px;transition:background 140ms linear}
+.sw-scroll-progress{height:3px;width:100%;background:linear-gradient(90deg,#111 var(--p,0%),rgba(0,0,0,0.08) 0%);border-radius:999px;transition:background 140ms linear;margin-top:8px}
 @media (max-width:520px){:root{--font-size:18px};.sw-scroll-inner{top:14vh;padding:72px 0}}
+@media (max-width:1024px){.sw-scroll-wrap{padding:0 24px;max-width:960px;min-height:170vh}.sw-scroll-inner{top:16vh;padding:64px 0}.sw-animated-paragraph{font-size:42px;line-height:1.18;padding:28px}.sw-scroll-description{max-width:520px;font-size:15px}}
+@media (max-width:768px){.sw-scroll-wrap{padding:0 18px;max-width:100%;min-height:155vh}.sw-scroll-inner{top:14vh;gap:22px;padding:56px 0}.sw-animated-paragraph{font-size:36px;padding:26px;border-radius:16px}.sw-scroll-description{max-width:100%;font-size:14.5px}}
+@media (max-width:520px){.sw-scroll-wrap{padding:0 14px;min-height:140vh}.sw-scroll-inner{top:12vh;padding:48px 0}.sw-animated-paragraph{font-size:30px;padding:22px;border-radius:14px}.sw-scroll-description{font-size:14px}}
 CSS;
         wp_add_inline_style( 'sw-scroll-reveal-inline', $css );
 
@@ -261,6 +266,7 @@ JS;
 
 if ( ! function_exists( 'sw_scroll_reveal_shortcode' ) ) {
     function sw_scroll_reveal_shortcode( $atts = array(), $content = null ) {
+        $raw_atts = $atts;
         $atts = shortcode_atts(
             array(
                 'text'  => '',
@@ -268,6 +274,8 @@ if ( ! function_exists( 'sw_scroll_reveal_shortcode' ) ) {
                 'speed' => 0.85,
                 'class' => '',
                 'align' => 'center',
+                'heading' => '',
+                'description' => '',
             ),
             $atts,
             'scroll_reveal_text'
@@ -282,14 +290,53 @@ if ( ! function_exists( 'sw_scroll_reveal_shortcode' ) ) {
             'i'    => array(),
         );
 
-        if ( ! empty( $content ) ) {
-            $text = wp_kses( trim( $content ), $allowed_tags );
+        $raw_content = (string) $content;
+
+        $embedded_heading = '';
+        if ( preg_match( '/\[scroll_heading\](.*?)\[\/scroll_heading\]/is', $raw_content, $heading_match ) ) {
+            $embedded_heading = wp_strip_all_tags( $heading_match[1] );
+            $raw_content = str_replace( $heading_match[0], '', $raw_content );
+        }
+
+        $embedded_description = '';
+        if ( preg_match( '/\[scroll_description\](.*?)\[\/scroll_description\]/is', $raw_content, $description_match ) ) {
+            $embedded_description = wp_kses_post( $description_match[1] );
+            $raw_content = str_replace( $description_match[0], '', $raw_content );
+        }
+
+        if ( trim( $raw_content ) !== '' ) {
+            $text = wp_kses( trim( $raw_content ), $allowed_tags );
         } else {
             $text = wp_kses( $atts['text'], $allowed_tags );
         }
 
         if ( empty( $text ) ) {
             $text = 'We exist to create a world where every individual receives care that honors their dignity, respects their independence, and enhances their quality of life.';
+        }
+
+        $split_heading = sw_resolve_split_attribute_value( $raw_atts, 'heading' );
+        $split_description = sw_resolve_split_attribute_value( $raw_atts, 'description' );
+
+        $heading_source = $split_heading !== '' ? $split_heading : $atts['heading'];
+        $description_source = $split_description !== '' ? $split_description : $atts['description'];
+
+        $heading_attr = trim( wp_strip_all_tags( html_entity_decode( $heading_source, ENT_QUOTES | ENT_HTML5 ) ) );
+        $heading_attr = str_replace( array( '“', '”', '"', '"', '”', '“', '"' ), '', $heading_attr );
+        $heading_attr = trim( $heading_attr );
+
+        $description_attr = wp_kses_post( html_entity_decode( $description_source, ENT_QUOTES | ENT_HTML5 ) );
+        $description_attr = trim( $description_attr );
+        $description_attr = str_replace( array( '“', '”', '"', '"', '”', '“' ), '', $description_attr );
+
+        $heading = $embedded_heading !== '' ? $embedded_heading : $heading_attr;
+        $description = $embedded_description !== '' ? $embedded_description : $description_attr;
+
+        if ( '' === $heading ) {
+            $heading = 'Our story & why we exist?';
+        }
+
+        if ( '' === $description ) {
+            $description = 'Our purpose is rooted in the belief that compassionate, person-centered care isn’t just a service — it is a fundamental human right. We are committed to building a healthcare ecosystem where families feel supported, professionals feel valued, and those we care for feel truly seen and heard.';
         }
 
         $words = intval( $atts['words'] );
@@ -313,15 +360,91 @@ if ( ! function_exists( 'sw_scroll_reveal_shortcode' ) ) {
             $speed = 1;
         }
 
+        $heading = sw_normalize_punctuation( $heading );
+        $description = sw_normalize_punctuation( $description );
+
         $out  = '<div class="' . esc_attr( trim( $wrap_class_attr . ' ' . $wrap_align_class ) ) . '">';
         $out .= '<div class="sw-scroll-inner">';
-        $out .= '<div class="' . esc_attr( $p_class ) . '" data-words="' . esc_attr( $words ) . '" data-speed="' . esc_attr( $speed ) . '">' . $text . '</div>';
+        $out .= '<span class="sw-scroll-heading">' . esc_html( $heading ) . '</span>';
+        $out .= '<div class="sw-animated-paragraph" data-words="' . esc_attr( $words ) . '" data-speed="' . esc_attr( $speed ) . '">' . $text . '</div>';
         $out .= '<div class="sw-scroll-progress" style="--p:0%"></div>';
+        $out .= '<p class="sw-scroll-description">' . wp_kses_post( $description ) . '</p>';
         $out .= '</div>';
         $out .= '</div>';
 
         return $out;
     }
     add_shortcode( 'scroll_reveal_text', 'sw_scroll_reveal_shortcode' );
+}
+
+if ( ! function_exists( 'sw_resolve_split_attribute_value' ) ) {
+    function sw_resolve_split_attribute_value( $raw_atts, $target ) {
+        if ( empty( $raw_atts ) ) {
+            return '';
+        }
+
+        $known_keys = array(
+            'text',
+            'words',
+            'speed',
+            'class',
+            'align',
+            'heading',
+            'description',
+        );
+
+        $target   = strtolower( $target );
+        $parts    = array();
+        $collect  = false;
+
+        foreach ( $raw_atts as $key => $value ) {
+            $value = is_array( $value ) ? '' : (string) $value;
+
+            $key_lower = is_int( $key ) ? '' : strtolower( $key );
+
+            if ( $key_lower === $target ) {
+                $collect = true;
+            }
+
+            if ( $collect ) {
+                if ( $key_lower !== '' && $key_lower !== $target && in_array( $key_lower, $known_keys, true ) ) {
+                    break;
+                }
+
+                if ( $value !== '' ) {
+                    $parts[] = $value;
+                }
+                continue;
+            }
+        }
+
+        if ( empty( $parts ) ) {
+            return '';
+        }
+
+        $joined = implode( ' ', array_map( 'trim', $parts ) );
+        $joined = trim( $joined );
+
+        if ( $joined === '' ) {
+            return '';
+        }
+
+        $joined = preg_replace( '/^[\s\p{Pf}\p{Pi}"\']+|[\s\p{Pf}\p{Pi}"\']+$/u', '', $joined );
+        return trim( $joined );
+    }
+}
+
+if ( ! function_exists( 'sw_normalize_punctuation' ) ) {
+    function sw_normalize_punctuation( $string ) {
+        $map = array(
+            '“' => '"',
+            '”' => '"',
+            '‘' => "'",
+            '’' => "'",
+            '—' => '—',
+            '–' => '-',
+        );
+        return strtr( $string, $map );
+    }
 }
 ?>

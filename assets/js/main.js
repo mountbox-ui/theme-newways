@@ -2,6 +2,21 @@ document.addEventListener('DOMContentLoaded', function() {
   var mobileMenuButton = document.getElementById('mobile-menu-button');
   var mobileNavigation = document.getElementById('mobile-navigation');
 
+  function injectDropdownIcons(){
+    var selector = '.main-navigation .menu-item-has-children > a, #mobile-navigation .menu-item-has-children > a';
+    var anchors = document.querySelectorAll(selector);
+    anchors.forEach(function(anchor){
+      if(anchor.querySelector('.submenu-icon')) return;
+      anchor.classList.add('flex','items-center','gap-2');
+      var span = document.createElement('span');
+      span.className = 'submenu-icon inline-flex';
+      span.innerHTML = '<svg class="h-3 w-3 transition-transform duration-200" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1.25L5 5.25L9 1.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      anchor.appendChild(span);
+    });
+  }
+
+  injectDropdownIcons();
+
   function setIcon(isOpen) {
     var svg = mobileMenuButton ? mobileMenuButton.querySelector('svg') : null;
     if (!svg) return;
@@ -259,15 +274,15 @@ document.addEventListener("scroll", function () {
     if (window.scrollY > 100) {
       // after scrolling down
     header.classList.remove("bg-transparent");
-      header.classList.add("bg-slate-700");
+      header.classList.add("bg-[#0F172B]");
   } else {
     // at top
-      header.classList.remove("bg-slate-700");
+      header.classList.remove("bg-[#0F172B]");
     header.classList.add("bg-transparent");
     }
   } else {
     // On other pages, always use solid background
     header.classList.remove("bg-transparent");
-    header.classList.add("bg-slate-700");
+    header.classList.add("bg-[#0F172B]");
   }
 });
