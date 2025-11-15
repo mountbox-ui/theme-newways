@@ -37,61 +37,61 @@ function neways_expertise_section_shortcode($atts) {
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
                 <!-- Expertise 1: Dementia care -->
-                <div class="expertise-card bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="expertise-card bg-white rounded-xl  overflow-hidden">
                     <div class="w-full h-48 sm:h-56 lg:h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop" 
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service1.png" 
                              alt="Dementia care" 
                              class="w-full h-full object-cover">
                     </div>
-                    <div class="p-4 sm:p-5 lg:p-6">
-                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Dementia care</h3>
-                        <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
+                    <div class="py-3 sm:py-3">
+                        <h3 class="pb-2 sm:pb-3 text-[#1C1A1D]">Dementia care</h3>
+                        <p class="text-[var(--Body-Text-Color,#757575)] leading-5 sm:leading-6 font-manrope text-base sm:text-lg md:text-lg font-medium">
                             Specialized support for individuals living with dementia and memory-related conditions.
                         </p>
                     </div>
                 </div>
 
                 <!-- Expertise 2: Parkinson's Care -->
-                <div class="expertise-card bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="expertise-card bg-white rounded-xl  overflow-hidden">
                     <div class="w-full h-48 sm:h-56 lg:h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&h=300&fit=crop" 
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service2.jpg" 
                              alt="Parkinson's Care" 
                              class="w-full h-full object-cover">
                     </div>
-                    <div class="p-4 sm:p-5 lg:p-6">
-                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Parkinson's Care</h3>
-                        <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
-                            Expert care tailored to the unique needs of those with Parkinson's disease.
+                    <div class="py-3 sm:py-3">
+                        <h3 class="pb-2 sm:pb-3 text-[#1C1A1D]">Parkinson's Care</h3>
+                        <p class="text-[var(--Body-Text-Color,#757575)] leading-5 sm:leading-6 font-manrope text-base sm:text-lg md:text-lg font-medium">
+                        Expert care tailored to the unique needs of those with Parkinson's disease.
                         </p>
                     </div>
                 </div>
 
                 <!-- Expertise 3: End of Life Care -->
-                <div class="expertise-card bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="expertise-card bg-white rounded-xl  overflow-hidden">
                     <div class="w-full h-48 sm:h-56 lg:h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400&h=300&fit=crop" 
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service3.jpg" 
                              alt="End of Life Care" 
                              class="w-full h-full object-cover">
                     </div>
-                    <div class="p-4 sm:p-5 lg:p-6">
-                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">End of Life Care</h3>
-                        <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
-                            Compassionate palliative and end-of-life support with dignity and respect.
+                    <div class="py-3 sm:py-3">
+                        <h3 class="pb-2 sm:pb-3 text-[#1C1A1D]">End of Life Care</h3>
+                        <p class="text-[var(--Body-Text-Color,#757575)] leading-5 sm:leading-6 font-manrope text-base sm:text-lg md:text-lg font-medium">
+                        Compassionate palliative and end-of-life support with dignity and respect.
                         </p>
                     </div>
                 </div>
 
                 <!-- Expertise 4: Respite care -->
-                <div class="expertise-card bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="expertise-card bg-white rounded-xl  overflow-hidden">
                     <div class="w-full h-48 sm:h-56 lg:h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&h=300&fit=crop" 
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service4.png"  
                              alt="Respite care" 
                              class="w-full h-full object-cover">
                     </div>
-                    <div class="p-4 sm:p-5 lg:p-6">
-                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Respite care</h3>
-                        <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
-                            Temporary care services providing relief and support for family caregivers.
+                    <div class="py-3 sm:py-3">
+                        <h3 class="pb-2 sm:pb-3 text-[#1C1A1D]">Respite care</h3>
+                        <p class="text-[var(--Body-Text-Color,#757575)] leading-5 sm:leading-6 font-manrope text-base sm:text-lg md:text-lg font-medium">
+                        Temporary care services providing relief and support for family caregivers.
                         </p>
                     </div>
                 </div>

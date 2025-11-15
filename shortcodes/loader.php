@@ -28,6 +28,7 @@ $shortcode_files = array(
     'sub-brands-section.php',
     'expertise-section.php',
     'who-we-are-section.php',
+    'counter-section.php',
 );
 
 // Load each shortcode file
