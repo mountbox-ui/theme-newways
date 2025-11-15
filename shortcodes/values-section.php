@@ -1,0 +1,99 @@
+<?php
+/**
+ * Values Section Shortcode
+ * Creates an "Our values" section with four core values displayed in a grid.
+ * 
+ * Usage: [values_section]
+ */
+
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly.
+}
+
+function neways_values_section_shortcode($atts) {
+    $atts = shortcode_atts(array(
+        'title' => 'Our values',
+        'intro' => 'These core values guide everything we do and shape the culture of care we provide',
+        'background' => 'white', // white, gray
+        'class' => ''
+    ), $atts);
+    
+    $bg_class = $atts['background'] === 'gray' ? 'bg-gray-50' : 'bg-white';
+    
+    ob_start();
+    ?>
+    <section class="values-section py-12 sm:py-16 lg:py-20 <?php echo esc_attr($bg_class); ?> <?php echo esc_attr($atts['class']); ?>">
+        <div class="container-custom max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-0 pb-12 sm:pb-16 lg:pb-20">
+            <div class="pb-4 sm:pb-6 lg:pb-8">
+                <h2 class="pb-2.5">
+                    <?php echo esc_html($atts['title']); ?>
+                </h2>
+                <?php if (!empty($atts['intro'])) : ?>
+                    <p class="text-base sm:text-lg lg:text-xl text-[#1E1D37] max-w-full sm:max-w-lg leading-relaxed font-manrope font-medium">
+                        <?php echo esc_html($atts['intro']); ?>
+                    </p>
+                <?php endif; ?>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12 max-w-7xl mx-auto">
+                <!-- Value 1: Compassion -->
+                <div class="value-item px-2 sm:px-4">
+                    <div class="value-icon mb-4 sm:mb-6 flex justify-start">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-auto sm:w-10 md:w-12 lg:w-[44px] lg:h-[39px]" viewBox="0 0 44 39" fill="none" preserveAspectRatio="xMidYMid meet">
+                    <path d="M27.9502 0.368164C30.5121 -0.25544 33.2039 -0.0842779 35.666 0.859375C38.1278 1.80298 40.2436 3.47457 41.7324 5.65039C43.2195 7.82391 44.0106 10.3989 44 13.0322C44 18.5225 40.3862 22.4742 37.4141 25.4463C37.4063 25.4541 37.3985 25.4621 37.3906 25.4697L26.4424 36.0605C25.8983 36.6605 25.2397 37.1461 24.5029 37.4844C23.7293 37.8395 22.8884 38.0259 22.0371 38.0312C21.1859 38.0366 20.3434 37.8609 19.5654 37.5156C18.8208 37.1851 18.1528 36.7054 17.5996 36.1084L6.60938 25.4697C6.60163 25.4622 6.59356 25.4539 6.58594 25.4463C3.70833 22.5687 0.225434 18.7883 0.0107422 13.5439L0 13.0322C9.46909e-05 10.4021 0.797763 7.83322 2.28809 5.66602C3.77844 3.49888 5.89172 1.83485 8.34766 0.893555C10.8034 -0.0476277 13.4871 -0.222224 16.0439 0.393555C18.2867 0.93379 20.3402 2.05987 21.9971 3.64844C23.6505 2.0497 25.7042 0.914874 27.9502 0.368164ZM34.2344 4.59473C32.5311 3.9419 30.6689 3.82351 28.8965 4.25488C27.1242 4.68628 25.5252 5.6473 24.3125 7.00977C24.3016 7.02203 24.2895 7.03488 24.2783 7.04688C23.9866 7.35869 23.6339 7.60733 23.2422 7.77734C22.8993 7.92615 22.5326 8.0121 22.1602 8.03125L22 8.03516C21.5727 8.03516 21.1498 7.94744 20.7578 7.77734C20.3661 7.60733 20.0134 7.35869 19.7217 7.04688C19.7126 7.0372 19.7032 7.02645 19.6943 7.0166C18.4773 5.66235 16.8776 4.7096 15.1074 4.2832C13.3372 3.85683 11.4795 3.97731 9.7793 4.62891C8.07904 5.28057 6.61577 6.4323 5.58398 7.93262C4.55225 9.43295 4.00009 11.2114 4 13.0322L4.00684 13.376C4.14966 16.9003 6.47924 19.6833 9.41406 22.6182L20.4072 33.2598L20.5078 33.3643C20.6967 33.5756 20.9285 33.7443 21.1875 33.8594C21.4468 33.9745 21.728 34.033 22.0117 34.0312C22.2955 34.0295 22.5761 33.968 22.834 33.8496C23.0918 33.7312 23.3215 33.5587 23.5078 33.3447L23.625 33.2207L34.6094 22.5947C37.626 19.5754 40 16.6923 40 13.0322V13.0225C40.0086 11.1984 39.4616 9.41462 38.4316 7.90918C37.4017 6.40382 35.9375 5.24758 34.2344 4.59473Z" fill="#90B38C"/>
+                    </svg>
+                    </div>
+                    <h3 class="pb-2 sm:pb-3 text-[#1C1A1D]">Compassion</h3>
+                    <p class="text-[#4A5565] leading-5 sm:leading-6 font-manrope text-base sm:text-lg md:text-lg font-medium">
+                        We put care and empathy at the heart of everything we do.
+                    </p>
+                </div>
+
+                <!-- Value 2: Trust -->
+                <div class="value-item px-2 sm:px-4">
+                    <div class="value-icon mb-4 sm:mb-6 flex justify-start">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-auto sm:w-9 md:w-10 lg:w-[36px] lg:h-[44px]" viewBox="0 0 36 44" fill="none" preserveAspectRatio="xMidYMid meet">
+                    <path d="M18 0C18.9689 0 19.9079 0.32434 20.6689 0.917969L20.8193 1.04004L20.8359 1.05566C24.115 3.92248 28.6458 6.00098 32 6.00098C33.0609 6.00098 34.078 6.42271 34.8281 7.17285C35.5783 7.923 36 8.94013 36 10.001V24.001C36 29.5292 34.0419 33.7786 30.8926 37.0098C27.7977 40.1851 23.6409 42.2892 19.3379 43.7891C19.3326 43.7909 19.3275 43.7931 19.3223 43.7949C18.466 44.0851 17.5375 44.0746 16.6875 43.7695V43.7715C12.3728 42.2815 8.20995 40.1813 5.11133 37.0078C2.05695 33.8795 0.123755 29.7936 0.00585938 24.5156L0 24.001V10.001C0 8.94013 0.421755 7.92299 1.17188 7.17285C1.92202 6.42271 2.93913 6.00098 4 6.00098L4.31738 5.99512C7.63556 5.86954 12.0049 3.81441 15.1641 1.05469C15.1696 1.04987 15.1751 1.0448 15.1807 1.04004C15.9665 0.368643 16.9664 0 18 0ZM18 4C17.9205 4 17.8433 4.02738 17.7822 4.07812C14.0835 7.30437 8.64172 10.001 4 10.001V24.001L4.00488 24.417C4.0977 28.6754 5.61779 31.8011 7.97363 34.2139C10.3046 36.6011 13.533 38.3678 17.2441 39.7246L17.9932 39.9902L18.0371 40.0059C22.0473 38.6064 25.5455 36.7639 28.0273 34.2178C30.458 31.724 32 28.4727 32 24.001V10.001C27.3612 10.001 21.9412 7.3276 18.2207 4.08105C18.1592 4.02862 18.0808 4 18 4Z" fill="#90B38C"/>
+                    </svg>
+                    </div>
+                    <h3 class="pb-2 sm:pb-3 text-[#1C1A1D]">Trust</h3>
+                    <p class="text-[#4A5565] leading-5 sm:leading-6 font-manrope text-base sm:text-lg md:text-lg font-medium">
+                        Building lasting relationships through reliability and transparency.
+                    </p>
+                </div>
+
+                <!-- Value 3: Excellence -->
+                <div class="value-item px-2 sm:px-4">
+                    <div class="value-icon mb-4 sm:mb-6 flex justify-start">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-auto sm:w-10 md:w-12 lg:w-[44px] lg:h-[44px]" viewBox="0 0 44 44" fill="none" preserveAspectRatio="xMidYMid meet">
+                    <path d="M22 0C34.1503 0 44 9.84974 44 22C44 34.1503 34.1503 44 22 44C9.84974 44 0 34.1503 0 22C0 9.84974 9.84974 0 22 0ZM22 4C12.0589 4 4 12.0589 4 22C4 31.9411 12.0589 40 22 40C31.9411 40 40 31.9411 40 22C40 12.0589 31.9411 4 22 4ZM22 8C29.732 8 36 14.268 36 22C36 29.732 29.732 36 22 36C14.268 36 8 29.732 8 22C8 14.268 14.268 8 22 8ZM22 12C16.4772 12 12 16.4772 12 22C12 27.5228 16.4772 32 22 32C27.5228 32 32 27.5228 32 22C32 16.4772 27.5228 12 22 12ZM22 16C25.3137 16 28 18.6863 28 22C28 25.3137 25.3137 28 22 28C18.6863 28 16 25.3137 16 22C16 18.6863 18.6863 16 22 16ZM22 20C20.8954 20 20 20.8954 20 22C20 23.1046 20.8954 24 22 24C23.1046 24 24 23.1046 24 22C24 20.8954 23.1046 20 22 20Z" fill="#90B38C"/>
+                    </svg>
+                    </div>
+                    <h3 class="pb-2 sm:pb-3 text-[#1C1A1D]">Excellence</h3>
+                    <p class="text-[#4A5565] leading-5 sm:leading-6 font-manrope text-base sm:text-lg md:text-lg font-medium">
+                        Committed to the highest standards of care and service delivery.
+                    </p>
+                </div>
+
+                <!-- Value 4: Dignity -->
+                <div class="value-item px-2 sm:px-4">
+                    <div class="value-icon mb-4 sm:mb-6 flex justify-start">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-auto sm:w-10 md:w-12 lg:w-[44px] lg:h-[40px]" viewBox="0 0 44 40" fill="none" preserveAspectRatio="xMidYMid meet">
+                    <path d="M22 24C24.6522 24 27.1959 25.0533 29.0713 26.9287C30.9467 28.8041 32 31.3478 32 34V38C32 39.1046 31.1046 40 30 40C28.8954 40 28 39.1046 28 38V34C28 32.4087 27.3674 30.883 26.2422 29.7578C25.1874 28.703 23.7807 28.0815 22.2979 28.0078L22 28H10C8.4087 28 6.88303 28.6326 5.75781 29.7578C4.63259 30.883 4 32.4087 4 34V38C4 39.1046 3.10457 40 2 40C0.895431 40 0 39.1046 0 38V34C0 31.3478 1.05335 28.8041 2.92871 26.9287C4.80407 25.0533 7.34783 24 10 24H22ZM34.0635 25.7598C34.3396 24.6903 35.4305 24.0471 36.5 24.3232C38.6453 24.8771 40.5459 26.1278 41.9033 27.8789C43.2607 29.63 43.9983 31.7824 44 33.998V38C43.9999 39.1045 43.1045 40 42 40C40.8955 40 40.0001 39.1045 40 38V34.001C39.9989 32.6718 39.5565 31.3806 38.7422 30.3301C37.9277 29.2794 36.7872 28.5286 35.5 28.1963C34.4305 27.9201 33.7873 26.8293 34.0635 25.7598ZM16 0C21.5228 0 26 4.47715 26 10C26 15.5228 21.5228 20 16 20C10.4772 20 6 15.5228 6 10C6 4.47715 10.4772 0 16 0ZM28.0645 1.75391C28.3417 0.684779 29.4328 0.0431343 30.502 0.320312C32.6463 0.876257 34.5457 2.12793 35.9014 3.87988C37.2571 5.63187 37.9922 7.78474 37.9922 10C37.9922 12.2152 37.2571 14.3682 35.9014 16.1201C34.5457 17.872 32.6463 19.1238 30.502 19.6797C29.4329 19.9568 28.3418 19.3151 28.0645 18.2461C27.7873 17.1769 28.4288 16.0848 29.498 15.8076C30.7846 15.4741 31.9239 14.723 32.7373 13.6719C33.5507 12.6207 33.9922 11.3291 33.9922 10C33.9922 8.67083 33.5507 7.37932 32.7373 6.32812C31.9239 5.27695 30.7847 4.52496 29.498 4.19141C28.4289 3.91415 27.7873 2.82308 28.0645 1.75391ZM16 4C12.6863 4 10 6.68629 10 10C10 13.3137 12.6863 16 16 16C19.3137 16 22 13.3137 22 10C22 6.68629 19.3137 4 16 4Z" fill="#90B38C"/>
+                    </svg>
+                    </div>
+                    <h3 class="pb-2 sm:pb-3 text-[#1C1A1D]">Dignity</h3>
+                    <p class="text-[#4A5565] leading-5 sm:leading-6 font-manrope text-base sm:text-lg md:text-lg font-medium">
+                        Respecting and honoring the individuality of every person we serve.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <?php
+    return ob_get_clean();
+}
+
+// Register the shortcode
+add_shortcode('values_section', 'neways_values_section_shortcode');
+

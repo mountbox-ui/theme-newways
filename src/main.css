@@ -12,11 +12,11 @@
     }
 
     h2 {
-        @apply font-jakarta font-semibold text-2xl leading-snug sm:text-3xl md:text-4xl md:leading-snug;
+        @apply font-marcellus font-normal text-2xl leading-snug sm:text-3xl md:text-4xl md:leading-snug;
     }
 
     h3 {
-        @apply font-lato font-semibold text-xl leading-snug sm:text-2xl;
+        @apply font-manrope font-bold  leading-snug text-lg sm:text-xl md:text-xl;
     }
 
     h4 {

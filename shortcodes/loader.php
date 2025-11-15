@@ -24,6 +24,10 @@ $shortcode_files = array(
     'team-section.php',
     'awards-section.php',
     'scroll-text.php',
+    'values-section.php',
+    'sub-brands-section.php',
+    'expertise-section.php',
+    'who-we-are-section.php',
 );
 
 // Load each shortcode file
