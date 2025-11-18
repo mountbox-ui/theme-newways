@@ -23,7 +23,7 @@ function neways_expertise_section_shortcode($atts) {
     ob_start();
     ?>
     <section class="expertise-section py-12 sm:py-16 lg:py-20 <?php echo esc_attr($bg_class); ?> <?php echo esc_attr($atts['class']); ?>">
-        <div class="container-custom max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-0 pb-12 sm:pb-16 lg:pb-20">
+        <div class="container-custom max-w-[1200px] mx-auto py-12 sm:py-16 lg:py-12">
             <div class="pb-4 sm:pb-6 lg:pb-8 text-left">
                 <h2 class="pb-2.5">
                     <?php echo esc_html($atts['title']); ?>

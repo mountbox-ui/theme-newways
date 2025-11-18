@@ -34,10 +34,14 @@ function neways_awards_shortcode($atts) {
     // Get awards - try multiple methods
     $awards = get_field('awards', $post_id);
     
-    // If no awards from repeater, try individual fields
-    if (empty($awards)) {
+    // Make sure $awards is an array (ACF can return false/null)
+    if (!is_array($awards)) {
         $awards = array();
-        for ($i = 1; $i <= 3; $i++) {
+    }
+    
+    // If no awards from repeater, try individual fields (fallback)
+    if (empty($awards)) {
+        for ($i = 1; $i <= 10; $i++) {
             $award_field = get_field('award' . $i, $post_id);
             if (!empty($award_field)) {
                 $awards[] = $award_field;
@@ -52,17 +56,17 @@ function neways_awards_shortcode($atts) {
     }
     
     ?>
-    <div class="awards-page awards-shortcode">
-        <div class="awards-container">
+    <section class="bg-[#FAF8F4] py-8 sm:py-12 lg:py-16 awards-section-responsive">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <?php if ($atts['show_title'] === 'yes'): ?>
-                <!-- Page Header -->
-                <div class="awards-header">
-                    <h1 class="awards-title"><?php echo get_the_title($post_id); ?></h1>
+                <div class="text-center mb-8 sm:mb-10">
+                    <h1 class="text-2xl sm:text-3xl font-bold text-[#273A29] m-0"><?php echo get_the_title($post_id); ?></h1>
                 </div>
             <?php endif; ?>
 
-            <!-- Awards Grid -->
-            <div class="awards-grid">
+            <h4 class="text-center text-[#273A29]/70 text-sm sm:text-base md:text-[20px] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-6 sm:mb-[24px] px-2 break-words">AWARDS/RECOGNITIONS/ PARTNERSHIPS</h4>
+
+            <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-6 sm:gap-x-8 sm:gap-y-8 md:gap-x-14 md:gap-y-10">
                 <?php
                 if (!empty($awards) && is_array($awards)):
                     $award_index = 0;
@@ -82,9 +86,26 @@ function neways_awards_shortcode($atts) {
                                 $award_image = $award;
                                 $award_title = isset($award['title']) ? $award['title'] : 'Award ' . ($award_index + 1);
                             } 
-                            // Check if this is an award with image subfield
+                            // Check if this is an award with image subfield (repeater structure)
                             elseif (isset($award['award_image'])) {
-                                $award_image = $award['award_image'];
+                                // Handle different ACF return formats: array, ID, or URL
+                                $award_image_raw = $award['award_image'];
+                                
+                                // If it's an image ID, get the full image array
+                                if (is_numeric($award_image_raw)) {
+                                    $award_image = acf_get_attachment($award_image_raw);
+                                } 
+                                // If it's already an array
+                                elseif (is_array($award_image_raw)) {
+                                    $award_image = $award_image_raw;
+                                }
+                                // If it's a URL string
+                                elseif (filter_var($award_image_raw, FILTER_VALIDATE_URL)) {
+                                    $award_image = $award_image_raw;
+                                } else {
+                                    $award_image = null;
+                                }
+                                
                                 $award_title = isset($award['award_title']) ? $award['award_title'] : 'Award ' . ($award_index + 1);
                                 $award_organization = isset($award['award_organization']) ? $award['award_organization'] : '';
                                 $award_year = isset($award['award_year']) ? $award['award_year'] : '';
@@ -98,8 +119,10 @@ function neways_awards_shortcode($atts) {
                             }
                         }
                         
-                        // Skip if no image found
+                        // Skip if no image found - but log it for debugging
                         if (empty($award_image)) {
+                            // Debug: uncomment to see which awards are being skipped
+                            // error_log('Award ' . ($award_index + 1) . ' skipped - no image found. Award data: ' . print_r($award, true));
                             $award_index++;
                             continue;
                         }
@@ -133,12 +156,17 @@ function neways_awards_shortcode($atts) {
                             $award_image_width = round($award_image_height * $aspect_ratio);
                         }
                         
-                        // Display image directly without any div containers
+                        // Display image - responsive height calculation
+                        // On mobile (< 412px), reduce height to 60% of desktop size
+                        $mobile_height = round($award_image_height * 0.6);
+                        if ($mobile_height < 40) {
+                            $mobile_height = 40; // Minimum height
+                        }
                         if (!empty($img_url)): ?>
                             <img src="<?php echo esc_url($img_url); ?>" 
                                  alt="<?php echo esc_attr($img_alt); ?>" 
-                                 class="award-image" 
-                                 style="height: <?php echo esc_attr($award_image_height); ?>px; width: <?php echo esc_attr($award_image_width); ?>px; object-fit: contain; margin: 10px;">
+                                 class="award-image-responsive opacity-70 hover:opacity-100 grayscale hover:grayscale-0 transition w-auto max-w-full object-contain" 
+                                 style="--mobile-h: <?php echo esc_attr($mobile_height); ?>px; --desktop-h: <?php echo esc_attr($award_image_height); ?>px; height: var(--mobile-h); width: auto;">
                         <?php endif;
                         
                         $award_index++;
@@ -160,142 +188,20 @@ function neways_awards_shortcode($atts) {
             </div>
 
         </div>
-    </div>
-
+    </section>
+    
     <style>
-    .awards-page {
-        min-height: 100vh;
-        background: #ffffff;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        padding: 40px 20px;
-    }
-
-    /* When used as shortcode, reduce min-height */
-    .awards-shortcode {
-        min-height: auto;
-    }
-
-    .awards-container {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    /* Header Styles */
-    .awards-header {
-        text-align: center;
-        margin-bottom: 60px;
-    }
-
-    .awards-title {
-        font-size: 3rem;
-        font-weight: 700;
-        color: #2d5016;
-        margin: 0 0 20px 0;
-        line-height: 1.2;
-    }
-
-
-    /* Awards Grid */
-    .awards-grid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-        margin-bottom: 60px;
-        padding: 20px;
-    }
-
-    .award-image {
-        transition: transform 0.3s ease;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .award-image:hover {
-        transform: scale(1.05);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    }
-
-    /* No Awards State */
-    .no-awards {
-        grid-column: 1 / -1;
-        text-align: center;
-        padding: 80px 20px;
-        color: #666;
-    }
-
-    .no-awards-icon {
-        width: 80px;
-        height: 80px;
-        color: #ddd;
-        margin: 0 auto 20px auto;
-    }
-
-    .no-awards-icon svg {
-        width: 100%;
-        height: 100%;
-    }
-
-    .no-awards h3 {
-        font-size: 1.5rem;
-        margin: 0 0 10px 0;
-        color: #333;
-    }
-
-    .no-awards p {
-        font-size: 1rem;
-        margin: 0;
-    }
-
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .awards-page {
-            padding: 20px 15px;
+    /* Responsive awards images - mobile under 412px uses smaller height */
+    @media (max-width: 411px) {
+        .awards-section-responsive .award-image-responsive {
+            height: var(--mobile-h) !important;
         }
-        
-        .awards-title {
-            font-size: 2.25rem;
-        }
-        
-        .awards-grid {
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-        
-        .award-item {
-            height: auto; /* Allow flexible height on mobile */
-            min-height: 350px;
-        }
-        
-        .award-image-container {
-            height: 180px;
-        }
-        
-        .award-content {
-            padding: 20px;
-        }
-        
     }
-
-    @media (max-width: 480px) {
-        .awards-title {
-            font-size: 2rem;
+    
+    @media (min-width: 412px) {
+        .awards-section-responsive .award-image-responsive {
+            height: var(--desktop-h) !important;
         }
-        
-        .award-item {
-            min-height: 320px;
-        }
-        
-        .award-image-container {
-            height: 160px;
-        }
-        
-        .award-content {
-            padding: 16px;
-        }
-        
     }
     </style>
     <?php

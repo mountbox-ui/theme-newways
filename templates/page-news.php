@@ -146,10 +146,10 @@ if ($specific_news_id && $specific_news_id > 0) {
             </article>
         <?php else : ?>
             <?php
-        // Get only the news marked as "highlighted" using the radio button
+        // Get only the news marked as "highlighted" using the radio button (show only 1)
         $highlighted_args = array(
             'post_type' => 'news',
-            'posts_per_page' => 3, // Show up to 3 highlighted news
+            'posts_per_page' => 1, // Show only 1 highlighted news
             'orderby' => 'date',
             'order' => 'DESC',
             'meta_query' => array(
@@ -161,45 +161,47 @@ if ($specific_news_id && $specific_news_id > 0) {
             )
         );
         
-        $latest_news = new WP_Query($highlighted_args);
+        $highlighted_news = new WP_Query($highlighted_args);
         ?>
 
-        <!-- Highlights Section - Always Show -->
-        <section class="mb-12 bg-green-50 dark:bg-gray-800 rounded-lg p-10">
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                <?php esc_html_e('Highlights', 'neways'); ?>
-            </h2>
-            <?php if ($latest_news->have_posts()) : ?>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <?php while ($latest_news->have_posts()) : $latest_news->the_post();
-                    $news_date = get_the_date('Y-m-d', get_the_ID());
-                    neways_render_news_card(get_the_ID(), $news_date);
-                endwhile; ?>
-            </div>
-            <?php else : ?>
-                <div class="text-center py-12">
-                    <div class="inline-flex items-center justify-center w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded-full mb-4">
-                        <svg class="w-8 h-8 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                        <?php esc_html_e('No Highlighted News', 'neways'); ?>
-                    </h3>
-                    <p class="text-gray-600 dark:text-gray-400 max-w-md mx-auto">
-                        <?php esc_html_e('No news items have been selected for highlighting yet. Check back later for featured content.', 'neways'); ?>
-                    </p>
-                    <?php if (current_user_can('edit_posts')) : ?>
-                        <p class="mt-4">
-                            <a href="<?php echo admin_url('edit.php?post_type=news'); ?>" class="inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 text-sm">
-                                <?php esc_html_e('Manage News Highlights', 'neways'); ?>
-                            </a>
-                        </p>
+        <!-- Highlighted News Section - Two Column Layout -->
+        <?php if ($highlighted_news->have_posts()) : 
+            $highlighted_news->the_post();
+            $highlighted_id = get_the_ID();
+        ?>
+        <section class="mb-12">
+            <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
+                <!-- Large Image on Left -->
+                <div class="w-full lg:w-1/2">
+                    <?php if (has_post_thumbnail($highlighted_id)) : ?>
+                        <a href="<?php echo get_permalink($highlighted_id); ?>">
+                            <?php echo get_the_post_thumbnail($highlighted_id, 'large', array('class' => 'w-full h-80 rounded-lg object-cover')); ?>
+                        </a>
+                    <?php else : ?>
+                        <div class="w-full aspect-[4/3] rounded-lg bg-gray-100 flex items-center justify-center">
+                            <span class="text-gray-400 text-sm">No Image</span>
+                        </div>
                     <?php endif; ?>
                 </div>
-            <?php endif; ?>
+                
+                <!-- Content on Right -->
+                <div class="w-full lg:w-1/2 flex flex-col justify-center">
+                    <div class="mb-4">
+                        <span class="text-xs uppercase tracking-wider font-semibold" style="color: #242163;">HIGHLIGHTED NEWS</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-900 mb-4">
+                        <a href="<?php echo get_permalink($highlighted_id); ?>" class="hover:text-gray-600 transition-colors">
+                            <?php echo get_the_title($highlighted_id); ?>
+                        </a>
+                    </h2>
+                    <time datetime="<?php echo esc_attr(get_the_date('c', $highlighted_id)); ?>" class="text-gray-500 text-base">
+                        <?php echo esc_html(get_the_date('F j, Y', $highlighted_id)); ?>
+                    </time>
+                </div>
+            </div>
         </section>
         <?php wp_reset_postdata(); ?>
+        <?php endif; ?>
 
 
         <?php
@@ -208,13 +210,8 @@ if ($specific_news_id && $specific_news_id > 0) {
         
         // Get highlighted post IDs to exclude them from Explore News
         $highlighted_post_ids = array();
-        $highlighted_query = new WP_Query($highlighted_args);
-        if ($highlighted_query->have_posts()) {
-            while ($highlighted_query->have_posts()) {
-                $highlighted_query->the_post();
-                $highlighted_post_ids[] = get_the_ID();
-            }
-            wp_reset_postdata();
+        if (isset($highlighted_id) && $highlighted_id > 0) {
+            $highlighted_post_ids[] = $highlighted_id;
         }
         
         $explore_args = array(
@@ -256,7 +253,7 @@ if ($specific_news_id && $specific_news_id > 0) {
         <?php endif; wp_reset_postdata(); ?>
 
 
-        <?php if (!$latest_news->have_posts() && !$older_news->have_posts()) : ?>
+        <?php if (!$highlighted_news->have_posts() && !$older_news->have_posts()) : ?>
         <div class="text-center py-12">
             <p class="text-gray-600 dark:text-gray-400"><?php esc_html_e('No news found.', 'neways'); ?></p>
             <p class="mt-4">

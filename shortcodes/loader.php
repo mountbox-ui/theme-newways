@@ -26,6 +26,8 @@ $shortcode_files = array(
     'scroll-text.php',
     'values-section.php',
     'sub-brands-section.php',
+    'services-section.php',
+    'testimonials-section.php',
     'expertise-section.php',
     'who-we-are-section.php',
     'counter-section.php',

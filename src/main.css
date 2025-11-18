@@ -24,7 +24,7 @@
     }
 
     h5 {
-        @apply font-jakarta font-bold text-2xl leading-snug sm:text-3xl md:text-2xl;
+        @apply font-manrope font-bold text-2xl leading-snug sm:text-3xl md:text-2xl;
     }
 
     h6 {
