@@ -74,7 +74,7 @@ function neways_testimonials_section_shortcode($atts) {
 
     ob_start();
     ?>
-    <section class="testimonials-section h-[700px] <?php echo esc_attr($atts['class']); ?>" style="background: <?php echo esc_attr($atts['background']); ?>;">
+    <section class="testimonials-section lg:h-[700px] md:h-[500px] h-[400px] <?php echo esc_attr($atts['class']); ?>" style="background: <?php echo esc_attr($atts['background']); ?>;">
         <div class="max-w-7xl mx-auto px-6 py-16 lg:py-24">
             <div class="grid gap-12 lg:grid-cols-2 items-start">
                 <!-- Left Section: Quote Icon + Text -->

@@ -757,13 +757,12 @@ body {
   color: rgb(17 24 39 / var(--tw-text-opacity, 1));
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    --tw-bg-opacity: 1;
-    background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
-    --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-  }
+/* Force all dark mode styles to match light mode */
+
+.dark,
+    [class*="dark:"] {
+  color: inherit !important;
+  background-color: inherit !important;
 }
 
 h1 {
@@ -1936,15 +1935,6 @@ body.admin-bar .site-header.fixed {
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .form-input {
-    --tw-border-opacity: 1;
-    border-color: rgb(55 65 81 / var(--tw-border-opacity, 1));
-    --tw-bg-opacity: 1;
-    background-color: rgb(31 41 55 / var(--tw-bg-opacity, 1));
-  }
-}
-
 .form-label {
   display: block;
   font-size: 0.875rem;
@@ -1952,13 +1942,6 @@ body.admin-bar .site-header.fixed {
   font-weight: 500;
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity, 1));
-}
-
-@media (prefers-color-scheme: dark) {
-  .form-label {
-    --tw-text-opacity: 1;
-    color: rgb(209 213 219 / var(--tw-text-opacity, 1));
-  }
 }
 
 .card {
@@ -1969,13 +1952,6 @@ body.admin-bar .site-header.fixed {
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-@media (prefers-color-scheme: dark) {
-  .card {
-    --tw-bg-opacity: 1;
-    background-color: rgb(31 41 55 / var(--tw-bg-opacity, 1));
-  }
 }
 
 @media (min-width: 1024px) {
@@ -2160,10 +2136,6 @@ body.admin-bar .site-header.fixed {
 
 .relative {
   position: relative;
-}
-
-.sticky {
-  position: sticky;
 }
 
 .inset-0 {
@@ -2478,16 +2450,16 @@ body.admin-bar .site-header.fixed {
   height: 20rem;
 }
 
+.h-\[400px\] {
+  height: 400px;
+}
+
 .h-auto {
   height: auto;
 }
 
 .h-full {
   height: 100%;
-}
-
-.h-\[700px\] {
-  height: 700px;
 }
 
 .min-h-screen {
@@ -2868,10 +2840,6 @@ body.admin-bar .site-header.fixed {
   border-radius: 1rem;
 }
 
-.rounded-\[20px\] {
-  border-radius: 20px;
-}
-
 .rounded-full {
   border-radius: 9999px;
 }
@@ -2976,11 +2944,6 @@ body.admin-bar .site-header.fixed {
 
 .bg-\[\#07143a\]\/95 {
   background-color: rgb(7 20 58 / 0.95);
-}
-
-.bg-\[\#0F172B\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(15 23 43 / var(--tw-bg-opacity, 1));
 }
 
 .bg-\[\#453E60\] {
@@ -3755,12 +3718,6 @@ body.admin-bar .site-header.fixed {
   opacity: 0.7;
 }
 
-.shadow-\[0_30px_60px_rgba\(15\2c 23\2c 42\2c 0\.08\)\] {
-  --tw-shadow: 0 30px 60px rgba(15,23,42,0.08);
-  --tw-shadow-colored: 0 30px 60px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
 .shadow-\[0_40px_80px_rgba\(5\2c 13\2c 42\2c 0\.35\)\] {
   --tw-shadow: 0 40px 80px rgba(5,13,42,0.35);
   --tw-shadow-colored: 0 40px 80px var(--tw-shadow-color);
@@ -3891,6 +3848,59 @@ body.admin-bar .site-header.fixed {
 
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Global override: Force all dark mode styles to match light mode */
+
+/* This ensures the website looks identical in both light and dark themes */
+
+@media (prefers-color-scheme: dark) {
+  *,
+    *::before,
+    *::after {
+    /* Override all dark mode background colors */
+    --tw-bg-opacity: 1 !important;
+  }
+
+  /* Force all backgrounds to white */
+
+  body,
+    .dark,
+    [class*="dark:bg-"],
+    [class*="dark:text-"] {
+    background-color: white !important;
+    color: inherit !important;
+  }
+
+  /* Override text colors in dark mode */
+
+  .dark\:bg-gray-900,
+    .dark\:bg-gray-800,
+    .dark\:bg-gray-700 {
+    background-color: white !important;
+  }
+
+  .dark\:text-white,
+    .dark\:text-gray-300,
+    .dark\:text-gray-400 {
+    color: inherit !important;
+  }
+
+  /* Override border colors */
+
+  .dark\:border-gray-700,
+    .dark\:border-gray-600 {
+    border-color: inherit !important;
+  }
+}
+
+/* Additional override for any dark mode classes */
+
+.dark *,
+[class*="dark:"] * {
+  background-color: inherit !important;
+  color: inherit !important;
+  border-color: inherit !important;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -4397,6 +4407,10 @@ body.admin-bar .site-header.fixed {
     margin-top: 0px;
   }
 
+  .md\:h-\[500px\] {
+    height: 500px;
+  }
+
   .md\:w-10 {
     width: 2.5rem;
   }
@@ -4568,6 +4582,10 @@ body.admin-bar .site-header.fixed {
 
   .lg\:h-\[44px\] {
     height: 44px;
+  }
+
+  .lg\:h-\[700px\] {
+    height: 700px;
   }
 
   .lg\:h-full {
