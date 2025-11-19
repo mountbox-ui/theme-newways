@@ -74,7 +74,7 @@ function neways_testimonials_section_shortcode($atts) {
 
     ob_start();
     ?>
-    <section class="testimonials-section <?php echo esc_attr($atts['class']); ?>" style="background: <?php echo esc_attr($atts['background']); ?>;">
+    <section class="testimonials-section h-[700px] <?php echo esc_attr($atts['class']); ?>" style="background: <?php echo esc_attr($atts['background']); ?>;">
         <div class="max-w-7xl mx-auto px-6 py-16 lg:py-24">
             <div class="grid gap-12 lg:grid-cols-2 items-start">
                 <!-- Left Section: Quote Icon + Text -->
@@ -109,7 +109,7 @@ function neways_testimonials_section_shortcode($atts) {
                 <div class="relative flex flex-col gap-6 lg:min-h-[420px]">
                     <?php foreach ($testimonials as $index => $item) : ?>
                         <?php
-                        $card_classes = 'bg-white rounded-[20px] shadow-[0_30px_60px_rgba(15,23,42,0.08)] p-6 sm:p-7 flex flex-col gap-2 transition-transform duration-200 mx-auto lg:mx-0 w-full max-w-md';
+                        $card_classes = 'bg-white rounded-lg shadow-[0 10px 20px 0 rgba(41, 41, 42, 0.07)] p-6 sm:p-7 flex flex-col gap-2 transition-transform duration-200 mx-auto lg:mx-0 w-full max-w-md';
 
                         // Support custom layout classes and per-card positioning
                         if (!empty($item['layout_class'])) {

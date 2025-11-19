@@ -23,7 +23,7 @@ function neways_services_section_shortcode($atts) {
     $bg_style = '';
     if ($atts['background'] === 'gradient') {
         // Light purple background as per design
-        $bg_style = 'background: #F5F3FF;'; // Light purple background
+        $bg_style = 'background: #F7F5FE;'; // Light purple background
     } elseif ($atts['background'] === 'gray') {
         $bg_class = 'bg-gray-50';
     } else {

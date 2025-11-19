@@ -46,7 +46,7 @@ function neways_sub_brands_section_shortcode($atts) {
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-10">
                 <!-- Sub-brand 1: Neways at Home -->
-                <div class="sub-brand-card bg-[#F8DDE2] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10 shadow-md flex flex-col lg:flex-row items-start lg:items-center gap-4 sm:gap-6 lg:gap-10">
+                <div class="sub-brand-card bg-[#F8DDE2] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10  flex flex-col lg:flex-row items-start lg:items-center gap-4 sm:gap-6 lg:gap-10">
                     <div class="flex-1 w-full">
                         <h3 class="pb-2 sm:pb-3 text-[#1C1A1D] ">Neways at Home</h3>
                         <p class="text-[#4A5565] leading-5 sm:leading-6 font-manrope text-base sm:text-lg md:text-lg font-bold">Home & Domiciliary Care Services</p>
@@ -93,7 +93,7 @@ function neways_sub_brands_section_shortcode($atts) {
                 </div>
 
                 <!-- Sub-brand 2: Neways Residential -->
-                <div class="sub-brand-card bg-[#DEECE0] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10 shadow-md flex flex-col lg:flex-row items-start lg:items-center gap-4 sm:gap-6 lg:gap-10">
+                <div class="sub-brand-card bg-[#DEECE0] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10  flex flex-col lg:flex-row items-start lg:items-center gap-4 sm:gap-6 lg:gap-10">
                     <div class="flex-1 w-full">
                         <h3 class="pb-2 sm:pb-3 text-[#1C1A1D] ">Neways Residential</h3>
                         <p class="text-[#4A5565] leading-5 sm:leading-6 font-manrope text-base sm:text-lg md:text-lg font-bold">Care Homes & Nursing Care</p>
@@ -145,7 +145,7 @@ function neways_sub_brands_section_shortcode($atts) {
                 </div>
 
                 <!-- Sub-brand 3: Neways Recruitment -->
-                <div class="sub-brand-card bg-[#D4E7E5] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10 shadow-md flex flex-col lg:flex-row items-start lg:items-center gap-4 sm:gap-6 lg:gap-10">
+                <div class="sub-brand-card bg-[#D4E7E5] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10  flex flex-col lg:flex-row items-start lg:items-center gap-4 sm:gap-6 lg:gap-10">
                     <div class="flex-1 w-full">
                         <h3 class="pb-2 sm:pb-3 text-[#1C1A1D] ">Neways Recruitment</h3>
                         <p class="text-[#4A5565] leading-5 sm:leading-6 font-manrope text-base sm:text-lg md:text-lg font-bold"> Healthcare Staffing Solutions</p>
@@ -197,7 +197,7 @@ function neways_sub_brands_section_shortcode($atts) {
 
                 <!-- Sub-brand 4: Neways Consulting -->
                 
-                <div class="sub-brand-card bg-[#C7D6EE] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10 shadow-md flex flex-col lg:flex-row items-start lg:items-center gap-4 sm:gap-6 lg:gap-10">
+                <div class="sub-brand-card bg-[#C7D6EE] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10  flex flex-col lg:flex-row items-start lg:items-center gap-4 sm:gap-6 lg:gap-10">
                     <div class="flex-1 w-full">
                         <h3 class="pb-2 sm:pb-3 text-[#1C1A1D] ">Neways Consulting</h3>
                         <p class="text-[#4A5565] leading-5 sm:leading-6 font-manrope text-base sm:text-lg md:text-lg font-bold"> Strategic Consulting for Health & Care</p>

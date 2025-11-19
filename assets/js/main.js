@@ -258,31 +258,41 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+// Header hide on scroll - hide header when scrolling, only show at top of page
+let lastScrollTop = 0;
+let ticking = false;
 
 document.addEventListener("scroll", function () {
-  const header = document.getElementById("masthead");
-  
-  if (!header) return;
+  if (!ticking) {
+    window.requestAnimationFrame(function() {
+      const header = document.getElementById("masthead");
+      
+      if (!header) {
+        ticking = false;
+        return;
+      }
 
-  // Check if we're on the home page
-  const isHomePage = window.location.pathname === '/' || 
-                     window.location.pathname === '/home' || 
-                     document.body.classList.contains('home');
-
-  if (isHomePage) {
-    // Only apply transparent effect on home page
-    if (window.scrollY > 100) {
-      // after scrolling down
-    header.classList.remove("bg-transparent");
-      header.classList.add("bg-[#0F172B]");
-  } else {
-    // at top
-      header.classList.remove("bg-[#0F172B]");
-    header.classList.add("bg-transparent");
-    }
-  } else {
-    // On other pages, always use solid background
-    header.classList.remove("bg-transparent");
-    header.classList.add("bg-[#0F172B]");
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // Only show header at the very top of the page
+      if (scrollTop <= 0) {
+        header.style.transform = 'translateY(0)';
+        header.style.transition = 'transform 0.3s ease-in-out';
+        lastScrollTop = 0;
+        ticking = false;
+        return;
+      }
+      
+      // Hide header when scrolling (both up and down)
+      if (scrollTop > 50) {
+        header.style.transform = 'translateY(-100%)';
+        header.style.transition = 'transform 0.3s ease-in-out';
+      }
+      
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+      ticking = false;
+    });
+    
+    ticking = true;
   }
 });
