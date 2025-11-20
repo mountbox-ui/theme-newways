@@ -20,31 +20,29 @@ if (!function_exists('hero_section_shortcode')) {
         $default_bg = get_template_directory_uri() . '/assets/images/hero-bg.jpg';
         $background = !empty($atts['bg']) ? esc_url($atts['bg']) : $default_bg;
 
-        $overlay_color = sanitize_hex_color($atts['overlay_color']);
-        if (!$overlay_color) {
-            $overlay_color = '#0a1735';
-        }
+        // $overlay_color = sanitize_hex_color($atts['overlay_color']);
+        // if (!$overlay_color) {
+        //     $overlay_color = '#0a1735';
+        // }
 
-        $overlay_opacity = floatval($atts['overlay_opacity']);
-        if ($overlay_opacity < 0 || $overlay_opacity > 1) {
-            $overlay_opacity = 0.55;
-        }
+        // $overlay_opacity = floatval($atts['overlay_opacity']);
+        // if ($overlay_opacity < 0 || $overlay_opacity > 1) {
+        //     $overlay_opacity = 0.55;
+        // }
 
-        $gradient_enabled = filter_var($atts['gradient'], FILTER_VALIDATE_BOOLEAN);
+        // $gradient_enabled = filter_var($atts['gradient'], FILTER_VALIDATE_BOOLEAN);
 
         ob_start();
         ?>
-        <div id="hero-section" class="<?php echo esc_attr($atts['class']); ?>">
-            <div class="relative isolate overflow-hidden text-white shadow-[0_40px_80px_rgba(5,13,42,0.35)]">
+        <div id="hero-section" class="<?php echo esc_attr($atts['class']); ?> max-h-[625px] mb-[80px]">
+            <div class="relative isolate overflow-hidden text-white">
                 <div
                     class="absolute inset-0 bg-cover bg-center"
                     <?php echo $background ? 'style="background-image:url(\'' . esc_url($background) . '\');"' : ''; ?>
                 ></div>
 
-                <div class="absolute inset-0" style="background-color: <?php echo esc_attr($overlay_color); ?>; opacity: <?php echo esc_attr($overlay_opacity); ?>;"></div>
-
-                <div class="relative z-10 mx-auto flex w-full max-w-[1220px] items-center px-6 py-16 sm:px-1 sm:py-24 lg:px-1">
-                    <div class="hero-section__content w-full max-w-[420px] text-left">
+                <div class="relative z-10 mx-auto flex w-full max-w-[1220px] items-center px-6 pt-16 sm:px-1 sm:pt-24 pb-8 sm:pb-12 md:pb-8 lg:px-1">
+                    <div class="hero-section__content w-full max-w-[500px] text-left">
                         <?php echo do_shortcode($content); ?>
                     </div>
                 </div>
@@ -104,7 +102,7 @@ if (!function_exists('hero_section_paragraph_shortcode')) {
             'hero_paragraph'
         );
 
-        return '<p class="hero-section__description font-manrope font-medium pb-9 text-lg leading-[1.75] text-white/80 md:text-lg sm:text-base sm:leading-[1.9]">'
+        return '<p class="hero-section__description font-manrope font-medium pb-9 text-lg leading-6 text-[rgba(255,255,255,0.74)] md:text-lg sm:text-base sm:leading-[1.9]">'
             . esc_html($atts['text']) . '</p>';
     }
     add_shortcode('hero_paragraph', 'hero_section_paragraph_shortcode');
@@ -127,7 +125,7 @@ if (!function_exists('hero_section_buttons_shortcode')) {
             return '';
         }
 
-        $button = '<a href="' . esc_url($atts['primary_url']) . '" class="hero-section__cta inline-flex items-center justify-center rounded-full btn-primary text-[#242163] bg-[#FFB64D] hover:shadow-[0_25px_45px_rgba(10,22,55,0.45)]">'
+        $button = '<a href="' . esc_url($atts['primary_url']) . '" class="hero-section__cta inline-flex items-center justify-center rounded-full btn-primary text-black bg-[#FFB64D] shadow-[0_4px_4px_0_rgba(0,0,0,0.25),0_67px_80px_0_rgba(55,52,169,0.07),0_43.426px_46.852px_0_rgba(55,52,169,0.05),0_25.807px_25.481px_0_rgba(55,52,169,0.04),0_13.4px_13px_0_rgba(55,52,169,0.04),0_5.459px_6.519px_0_rgba(55,52,169,0.03),0_1.241px_3.148px_0_rgba(55,52,169,0.02) transition duration-700 ease-in-out]">'
             . esc_html($atts['primary_text']) . '</a>';
 
         return '<div class="mt-4 flex flex-wrap items-center gap-4">' . $button . '</div>';

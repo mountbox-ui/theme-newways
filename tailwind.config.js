@@ -36,12 +36,12 @@ module.exports = {
         }
       },
       fontFamily: {
-        'inter': ['Inter', 'sans-serif'],
-        'jakarta': ['"Plus Jakarta Sans"', 'sans-serif'],
-        'lato': ['Lato', 'sans-serif'],
-        'manrope': ['Manrope', 'sans-serif'],
-        'marcellus': ['Marcellus', 'serif'],
-        'lora': ['Lora', 'serif'],
+        'inter': ["Inter", 'sans-serif'],
+        'jakarta': ["Plus Jakarta Sans", 'sans-serif'],
+        'lato': ["Lato", 'sans-serif'],
+        'manrope': ["Manrope", 'sans-serif'],
+        'marcellus': ["Marcellus", 'serif'],
+        'lora': ["Lora", 'serif'],
       },
       spacing: {
         '18': '4.5rem',

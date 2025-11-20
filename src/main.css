@@ -15,7 +15,7 @@
     }
 
     h1 {
-        @apply font-marcellus font-normal text-balance tracking-wider leading-none text-white text-3xl sm:text-5xl md:text-5xl md:leading-none mt-0.5;
+        @apply font-marcellus font-normal text-balance tracking-wider leading-none text-white text-3xl sm:text-5xl md:text-5xl md:leading-none lg:leading-[50px];
     }
 
     h2 {

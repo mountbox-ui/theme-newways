@@ -55,7 +55,7 @@ function neways_services_section_shortcode($atts) {
     ob_start();
     ?>
     <section class="services-section py-12 sm:py-16 lg:py-16 <?php echo esc_attr($bg_class); ?> <?php echo esc_attr($atts['class']); ?>"<?php echo !empty($bg_style) ? ' style="' . esc_attr($bg_style) . '"' : ''; ?>>
-        <div class="container-custom max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-0 pb-12 sm:pb-16 lg:pb-20">
+        <div class="container-custom max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-0 ">
             <div class="pb-4 sm:pb-6 lg:pb-12">
                 <h2 class="pb-3">
                     <?php echo esc_html($atts['title']); ?>
@@ -95,7 +95,7 @@ function neways_services_section_shortcode($atts) {
                             <!-- Service Items List -->
                             <ul class="space-y-3 sm:space-y-4 mb-4 sm:mb-6 flex-1">
                                 <?php foreach ($service['items'] as $item) : ?>
-                                    <li class="flex items-start gap-3">
+                                    <li class="flex items-center gap-3">
                                         <!-- Gold Checkmark Icon -->
                                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
                                         <path d="M8.33333 16.6667C12.9358 16.6667 16.6667 12.9358 16.6667 8.33333C16.6667 3.73083 12.9358 0 8.33333 0C3.73083 0 0 3.73083 0 8.33333C0 12.9358 3.73083 16.6667 8.33333 16.6667ZM12.8808 6.21417L7.5 11.595L3.99417 8.08917L5.1725 6.91083L7.5 9.23833L11.7025 5.03583L12.8808 6.21417Z" fill="#CDAC79"/>

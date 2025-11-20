@@ -169,9 +169,9 @@ function neways_news_section_shortcode($atts) {
     ob_start();
     ?>
 
-    <div class="bg-white py-24 sm:py-32">
-      <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-16">
+    <div class="bg-white py-12 sm:py-20">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8 py-12 sm:py-16">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-6">
           <div class="text-center sm:text-left">
             <h2 class="text-balance text-4xl font-normal font-marcellus tracking-tight text-gray-900 sm:text-5xl md:text-4xl">Latest news</h2>
           </div>
@@ -192,13 +192,11 @@ function neways_news_section_shortcode($atts) {
             </svg>
           </a>
         </div>
-        <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           <?php if ($news_query->have_posts()) : ?>
             <?php while ($news_query->have_posts()) : $news_query->the_post();
                 $post_id = get_the_ID();
                 $categories = get_the_terms($post_id, 'news_category');
-                $author_id = get_post_field('post_author', $post_id);
-                $author_name = get_the_author_meta('display_name', $author_id);
                 
                 // Get category for badge
                 $category_name = '';
@@ -209,34 +207,6 @@ function neways_news_section_shortcode($atts) {
                     $category_link = get_term_link($first_category);
                 }
                 
-                // Get author avatar
-                $avatar_url = '';
-                $avatar_alt = 'Author Avatar';
-                $acf_avatar = function_exists('get_field') ? get_field('news_author_avatar', $post_id) : '';
-                if (!empty($acf_avatar)) {
-                    if (is_array($acf_avatar)) {
-                        $avatar_url = $acf_avatar['sizes']['thumbnail'] ?? $acf_avatar['url'];
-                        $avatar_alt = $acf_avatar['alt'] ?? 'Author Avatar';
-                    } else {
-                        $avatar_url = $acf_avatar;
-                    }
-                } else {
-                    $avatar_url = get_avatar_url($author_id, array('size' => 40));
-                }
-                
-                // Get author role/title
-                $author_role = 'Reporter';
-                $acf_source = function_exists('get_field') ? get_field('news_source', $post_id) : '';
-                if (!empty($acf_source)) {
-                    $author_role = $acf_source;
-                }
-                
-                // Get reporter name (ACF or author name)
-                $reporter_name = $author_name;
-                $acf_reporter = function_exists('get_field') ? get_field('news_reporter', $post_id) : '';
-                if (!empty($acf_reporter)) {
-                    $reporter_name = $acf_reporter;
-                }
             ?>
             <article class="flex flex-col items-start justify-between">
               <div class="relative w-full">
@@ -272,18 +242,6 @@ function neways_news_section_shortcode($atts) {
                   <p class="mt-5 line-clamp-3 text-sm/6 text-gray-600">
                     <?php echo wp_trim_words(get_the_excerpt($post_id) ?: get_the_content($post_id), 20, '...'); ?>
                   </p>
-                </div>
-                <div class="relative mt-8 flex items-center gap-x-4 justify-self-end">
-                  <img src="<?php echo esc_url($avatar_url); ?>" alt="<?php echo esc_attr($avatar_alt); ?>" class="size-10 rounded-full bg-gray-100" />
-                  <div class="text-sm/6">
-                    <p class="font-semibold text-gray-900">
-                      <a href="<?php echo get_author_posts_url($author_id); ?>">
-                        <span class="absolute inset-0"></span>
-                        <?php echo esc_html($reporter_name); ?>
-                      </a>
-                    </p>
-                    <p class="text-gray-600"><?php echo esc_html($author_role); ?></p>
-                  </div>
                 </div>
               </div>
             </article>

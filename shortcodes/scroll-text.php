@@ -15,19 +15,18 @@ if ( ! function_exists( 'sw_enqueue_scroll_reveal_assets' ) ) {
         wp_enqueue_style( 'sw-scroll-reveal-inline' );
 
         $css = <<<'CSS'
-:root{--fade-opacity:0.18;--visible-opacity:1;--char-gap:0.08rem;--font-size:22px}
+:root{--fade-opacity:0.46;--visible-opacity:1;--char-gap:0.08rem;--font-size:22px}
 .sw-scroll-wrap{max-width:1200px;margin:0 auto;min-height:190vh;display:flex;align-items:flex-start;position:relative}
 .sw-scroll-wrap.sw-align-left{justify-content:flex-start}
 .sw-scroll-wrap.sw-align-right{justify-content:flex-end}
-.sw-scroll-inner{position:sticky;top:18vh;display:flex;flex-direction:column;align-items:flex-start;gap:28px;padding:72px 0;}
-.sw-scroll-heading{display:block;font-family:"Manrope";font-weight:600;font-size:16px;letter-spacing:1.44px;text-transform:uppercase;color:#312F60;padding-bottom:22px}
-.sw-animated-paragraph{font-family:"Manrope";font-size:48px;font-weight:500;line-height:1.12;color:#111827;background:#fff;display:inline-block ; max-width:970px;}
-.sw-scroll-description{font-family:"Manrope";font-size:20px;line-height:30px;color:#4b5563;max-width:970px; padding-top:8px; font-weight: 500; }
-.sw-animated-paragraph .char{display:inline-block;opacity:var(--fade-opacity);transform:translateY(6px);transition:opacity 420ms ease,transform 420ms ease;letter-spacing:var(--char-gap);color:rgba(0,0,0,1);white-space:pre}
+.sw-scroll-inner{position:sticky;top:18vh;display:flex;flex-direction:column;align-items:flex-start;gap:28px;}
+.sw-scroll-heading{display:block;font-family:"Manrope";font-weight:600;font-size:16px;letter-spacing:1.44px;text-transform:uppercase;color:#312F60;}
+.sw-animated-paragraph{font-family:"Manrope";font-size:48px;font-weight:500;line-height:normal;color:#211F3E;background:#fff;display:inline-block ; max-width:970px;}
+.sw-scroll-description{font-family:"Manrope";font-size:20px;line-height:30px;color:#4b5563;max-width:970px; padding-top:8px; font-weight: 500;padding-bottom:80px }
+.sw-animated-paragraph .char{display:inline-block;opacity:var(--fade-opacity);transform:translateY(6px);transition:opacity 420ms ease,transform 420ms ease;letter-spacing:var(--char-gap);color:#211F3E;white-space:pre}
 .sw-animated-paragraph .char.visible{opacity:var(--visible-opacity);transform:translateY(0)}
 .sw-animated-paragraph .char.space{width:0.4rem}
 .sw-animated-paragraph .char.always-visible{opacity:var(--visible-opacity)!important;transform:translateY(0)!important}
-.sw-scroll-progress{height:3px;width:100%;background:linear-gradient(90deg,#111 var(--p,0%),rgba(0,0,0,0.08) 0%);border-radius:999px;transition:background 140ms linear;margin-top:8px}
 @media (max-width:520px){:root{--font-size:18px};.sw-scroll-inner{top:14vh;padding:72px 0}}
 @media (max-width:1024px){.sw-scroll-wrap{padding:0 24px;max-width:960px;min-height:170vh}.sw-scroll-inner{top:16vh;padding:64px 0}.sw-animated-paragraph{font-size:42px;line-height:1.18;padding:28px}.sw-scroll-description{max-width:520px;font-size:15px}}
 @media (max-width:768px){.sw-scroll-wrap{padding:0 18px;max-width:100%;min-height:155vh}.sw-scroll-inner{top:14vh;gap:22px;padding:56px 0}.sw-animated-paragraph{font-size:36px;padding:26px;border-radius:16px}.sw-scroll-description{max-width:100%;font-size:14.5px}}
@@ -118,13 +117,6 @@ CSS;
       marked++;
     }
 
-    let progressBar = container.nextElementSibling;
-    if(!progressBar || !progressBar.classList.contains('sw-scroll-progress')){
-      progressBar = document.createElement('div');
-      progressBar.className = 'sw-scroll-progress';
-      container.parentNode.insertBefore(progressBar, container.nextSibling);
-    }
-
     let visibleCount = Math.max(firstNChars, 0);
     const maxChars = chars.length;
     const remaining = Math.max(0, maxChars - firstNChars);
@@ -139,8 +131,6 @@ CSS;
           chars[i].classList.remove('visible');
         }
       }
-      const pct = maxChars > 0 ? Math.round((visibleCount / maxChars) * 100) : 0;
-      progressBar.style.setProperty('--p', pct + '%');
     }
 
     applyVisibleCount(visibleCount);
@@ -367,7 +357,6 @@ if ( ! function_exists( 'sw_scroll_reveal_shortcode' ) ) {
         $out .= '<div class="sw-scroll-inner">';
         $out .= '<span class="sw-scroll-heading">' . esc_html( $heading ) . '</span>';
         $out .= '<div class="sw-animated-paragraph" data-words="' . esc_attr( $words ) . '" data-speed="' . esc_attr( $speed ) . '">' . $text . '</div>';
-        $out .= '<div class="sw-scroll-progress" style="--p:0%"></div>';
         $out .= '<p class="sw-scroll-description">' . wp_kses_post( $description ) . '</p>';
         $out .= '</div>';
         $out .= '</div>';

@@ -74,7 +74,7 @@ function neways_counter_section_shortcode($atts) {
                          data-suffix="<?php echo esc_attr($counter1_data['suffix']); ?>">
                         0<?php echo esc_html($counter1_data['suffix']); ?>
                     </div>
-                    <div class="counter-text text-base sm:text-lg lg:text-xl font-manrope text-[#757575] font-normal mt-2">
+                    <div class="counter-text text-base sm:text-lg font-manrope text-[var(--Text-Gray-900,#18191F)] font-medium text-opacity-80">
                         <?php echo esc_html($atts['counter1_text']); ?>
                     </div>
                 </div>
@@ -86,7 +86,7 @@ function neways_counter_section_shortcode($atts) {
                          data-suffix="<?php echo esc_attr($counter2_data['suffix']); ?>">
                         0<?php echo esc_html($counter2_data['suffix']); ?>
                     </div>
-                    <div class="counter-text text-base sm:text-lg lg:text-xl font-manrope text-[#757575] font-normal mt-2">
+                    <div class="counter-text text-base sm:text-lg font-manrope text-[var(--Text-Gray-900,#18191F)] font-medium text-opacity-80">
                         <?php echo esc_html($atts['counter2_text']); ?>
                     </div>
                 </div>
@@ -98,7 +98,7 @@ function neways_counter_section_shortcode($atts) {
                          data-suffix="<?php echo esc_attr($counter3_data['suffix']); ?>">
                         0<?php echo esc_html($counter3_data['suffix']); ?>
                     </div>
-                    <div class="counter-text text-base sm:text-lg lg:text-xl font-manrope text-[#757575] font-normal mt-2">
+                    <div class="counter-text text-base sm:text-lg font-manrope text-[var(--Text-Gray-900,#18191F)] font-medium text-opacity-80">
                         <?php echo esc_html($atts['counter3_text']); ?>
                     </div>
                 </div>
@@ -110,7 +110,7 @@ function neways_counter_section_shortcode($atts) {
                          data-suffix="<?php echo esc_attr($counter4_data['suffix']); ?>">
                         0<?php echo esc_html($counter4_data['suffix']); ?>
                     </div>
-                    <div class="counter-text text-base sm:text-lg lg:text-xl font-manrope text-[#757575] font-normal mt-2">
+                    <div class="counter-text text-base sm:text-lg font-manrope text-[var(--Text-Gray-900,#18191F)] font-medium text-opacity-80">
                         <?php echo esc_html($atts['counter4_text']); ?>
                     </div>
                 </div>

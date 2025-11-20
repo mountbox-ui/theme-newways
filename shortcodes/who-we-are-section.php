@@ -45,34 +45,26 @@ function neways_who_we_are_section_shortcode($atts) {
             opacity: 0.9;
         }
     </style>
-    <section class="who-we-are-section pb-12 sm:pb-16 lg:pb-20 <?php echo esc_attr($bg_class); ?> <?php echo esc_attr($atts['class']); ?>">
+    <section class="who-we-are-section  <?php echo esc_attr($bg_class); ?> <?php echo esc_attr($atts['class']); ?>">
         <div class="container-custom max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-0">
             
             <!-- Main Content Section -->
-            <div class="flex flex-col <?php echo ($atts['image_position'] === 'top' || $atts['image_position'] === 'bottom') ? '' : 'lg:flex-row'; ?> gap-8 lg:gap-12 items-center">
+            <div class="flex flex-col <?php echo ($atts['image_position'] === 'top' || $atts['image_position'] === 'bottom') ? '' : 'lg:flex-row'; ?> items-center">
                 
                 <!-- Text Content Section -->
                 <div class="w-full <?php echo ($atts['image_position'] !== 'top' && $atts['image_position'] !== 'bottom') ? 'lg:w-1/2' : ''; ?>">
-                    <div class="pb-4 sm:pb-6 lg:pb-8 text-left">
+                    <div class="text-left">
                         <h2 class="pb-2.5 text-center">
                             <?php echo esc_html($atts['title']); ?>
                         </h2>
                         <?php if (!empty($atts['subtitle'])) : ?>
-                            <p class="text-lg sm:text-xl lg:text-2xl text-[#1E1D37] font-semibold text-center mb-4 leading-relaxed font-manrope">
+                            <p class="text-lg sm:text-xl lg:text-2xl text-[#000] font-semibold text-center mb-4 leading-relaxed font-manrope">
                                 <?php echo esc_html($atts['subtitle']); ?>
                             </p>
                         <?php endif; ?>
                         <?php if (!empty($atts['description'])) : ?>
-                            <div class="text-base sm:text-lg lg:text-xl text-[#1E1D37] text-center max-w-2xl mx-auto leading-relaxed font-manrope font-medium space-y-4">
+                            <div class="text-base sm:text-lg lg:text-lg text-[#5B5B5B] text-center max-w-2xl mx-auto leading-relaxed font-manrope font-medium space-y-4 tracking-[-0.4px] shadow-[0 67px 80px 0 rgba(55, 52, 169, 0.07), 0 43.426px 46.852px 0 rgba(55, 52, 169, 0.05), 0 25.807px 25.481px 0 rgba(55, 52, 169, 0.04), 0 13.4px 13px 0 rgba(55, 52, 169, 0.04), 0 5.459px 6.519px 0 rgba(55, 52, 169, 0.03), 0 1.241px 3.148px 0 rgba(55, 52, 169, 0.02)]">
                                 <?php echo wp_kses_post(wpautop($atts['description'])); ?>
-                            </div>
-                        <?php endif; ?>
-                        <?php if (!empty($atts['button_text']) && !empty($atts['button_url'])) : ?>
-                            <div class="mt-6 sm:mt-8 text-center">
-                                <a href="<?php echo esc_url($atts['button_url']); ?>" 
-                                   class="who-we-are-button px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-medium">
-                                    <?php echo esc_html($atts['button_text']); ?>
-                                </a>
                             </div>
                         <?php endif; ?>
                     </div>
@@ -86,6 +78,15 @@ function neways_who_we_are_section_shortcode($atts) {
                              class="w-full h-auto object-cover">
                     </div>
                 </div>
+
+                <?php if (!empty($atts['button_text']) && !empty($atts['button_url'])) : ?>
+                            <div class="mt-6 sm:mt-8 text-center">
+                                <a href="<?php echo esc_url($atts['button_url']); ?>" 
+                                   class="who-we-are-button px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-medium">
+                                    <?php echo esc_html($atts['button_text']); ?>
+                                </a>
+                            </div>
+                        <?php endif; ?>
             </div>
         </div>
     </section>
