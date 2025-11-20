@@ -169,11 +169,11 @@ function neways_news_section_shortcode($atts) {
     ob_start();
     ?>
 
-    <div class="bg-white py-12 sm:py-20">
-      <div class="mx-auto max-w-7xl px-6 lg:px-8 py-12 sm:py-16">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-6">
+    <div class="bg-white py-8 sm:py-12 lg:py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6 pb-6 sm:pb-8">
           <div class="text-center sm:text-left">
-            <h2 class="text-balance text-4xl font-normal font-marcellus tracking-tight text-gray-900 sm:text-5xl md:text-4xl">Latest news</h2>
+            <h2 class="text-balance text-3xl sm:text-4xl md:text-5xl lg:text-4xl font-normal font-marcellus tracking-tight text-gray-900">Latest news</h2>
           </div>
           <?php 
           // Get news page URL
@@ -184,15 +184,15 @@ function neways_news_section_shortcode($atts) {
           }
           ?>
           <a href="<?php echo esc_url($all_news_url); ?>" 
-             class="inline-flex items-center justify-center gap-2.5 self-center sm:self-auto"
-             style="border-radius: 5.871px; border: 1px solid rgba(36, 33, 99, 0.30); padding: 6px 15px; color: #242163; font-family: Lato; font-size: 16px; font-style: normal; font-weight: 600; line-height: 28.183px; letter-spacing: 0.705px; text-decoration: none;">
+             class="inline-flex items-center justify-center gap-2 sm:gap-2.5 self-center sm:self-auto text-sm sm:text-base"
+             style="border-radius: 5.871px; border: 1px solid rgba(36, 33, 99, 0.30); padding: 6px 12px; color: #242163; font-family: Lato; font-style: normal; font-weight: 600; line-height: 28.183px; letter-spacing: 0.705px; text-decoration: none;">
             <span>View all news</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" style="transform: rotate(0deg);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 21 21" fill="none" class="sm:w-5 sm:h-5" style="transform: rotate(0deg);">
               <path d="M11.5246 10.4999L7.19336 6.16861L8.43148 4.93136L14 10.4999L8.43149 16.0684L7.19424 14.8311L11.5246 10.4999Z" fill="#242163"/>
             </svg>
           </a>
         </div>
-        <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        <div class="mx-auto grid max-w-2xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 sm:gap-x-8 gap-y-12 sm:gap-y-16 lg:gap-y-20 lg:mx-0 lg:max-w-none">
           <?php if ($news_query->have_posts()) : ?>
             <?php while ($news_query->have_posts()) : $news_query->the_post();
                 $post_id = get_the_ID();
@@ -209,39 +209,48 @@ function neways_news_section_shortcode($atts) {
                 
             ?>
             <article class="flex flex-col items-start justify-between">
-              <div class="relative w-full">
+              <div class="relative w-full overflow-hidden rounded-2xl">
                 <?php if (has_post_thumbnail($post_id)) : ?>
-                  <a href="<?php echo get_permalink($post_id); ?>">
-                    <?php echo get_the_post_thumbnail($post_id, 'large', array('class' => 'aspect-video w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]')); ?>
+                  <a href="<?php echo get_permalink($post_id); ?>" class="block w-full">
+                    <?php echo get_the_post_thumbnail($post_id, 'large', array('class' => 'w-full h-48 sm:h-56 md:h-64 lg:h-auto object-cover rounded-2xl bg-gray-100 sm:aspect-[2/1] lg:aspect-[3/2]')); ?>
                   </a>
                 <?php else : ?>
-                  <div class="aspect-video w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2] flex items-center justify-center">
+                  <div class="w-full h-48 sm:h-56 md:h-64 lg:h-auto rounded-2xl bg-gray-100 sm:aspect-[2/1] lg:aspect-[3/2] flex items-center justify-center">
                     <span class="text-gray-400 text-xs">No Image</span>
                   </div>
                 <?php endif; ?>
-                <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
+                <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10 pointer-events-none"></div>
               </div>
-              <div class="flex max-w-xl grow flex-col justify-between">
-                <div class="mt-8 flex items-center gap-x-4 text-xs">
+              <div class="flex max-w-xl grow flex-col justify-between w-full">
+                <div class="mt-6 sm:mt-8 flex items-center flex-wrap gap-x-3 sm:gap-x-4 gap-y-2 text-xs">
                   <time datetime="<?php echo esc_attr(get_the_date('c', $post_id)); ?>" class="text-gray-500">
                     <?php echo esc_html(get_the_date('M j, Y', $post_id)); ?>
                   </time>
                   <?php if (!empty($category_name)) : ?>
-                    <a href="<?php echo esc_url($category_link); ?>" class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">
+                    <a href="<?php echo esc_url($category_link); ?>" class="relative z-10 rounded-full bg-gray-50 px-2.5 sm:px-3 py-1 sm:py-1.5 font-medium text-gray-600 hover:bg-gray-100 text-xs">
                       <?php echo esc_html($category_name); ?>
                     </a>
                   <?php endif; ?>
                 </div>
                 <div class="group relative grow">
-                  <h3 class="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
+                  <h3 class="mt-3 sm:mt-4 text-base sm:text-lg leading-6 font-semibold text-gray-900 group-hover:text-gray-600">
                     <a href="<?php echo get_permalink($post_id); ?>">
                       <span class="absolute inset-0"></span>
                       <?php echo get_the_title($post_id); ?>
                     </a>
                   </h3>
-                  <p class="mt-5 line-clamp-3 text-sm/6 text-gray-600">
+                  <p class="mt-4 sm:mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
                     <?php echo wp_trim_words(get_the_excerpt($post_id) ?: get_the_content($post_id), 20, '...'); ?>
                   </p>
+                </div>
+                <div class="mt-5 sm:mt-6">
+                  <a href="<?php echo get_permalink($post_id); ?>" 
+                     class="group inline-flex items-center gap-2 text-black font-lato text-sm sm:text-base font-normal hover:text-[#4A5565] transition-colors">
+                    <span>Read more</span>
+                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                  </a>
                 </div>
               </div>
             </article>

@@ -61,7 +61,7 @@ function neways_services_section_shortcode($atts) {
                     <?php echo esc_html($atts['title']); ?>
                 </h2>
                 <?php if (!empty($atts['intro'])) : ?>
-                    <p class="text-base sm:text-lg lg:text-xl text-[#1E1D37] max-w-full sm:max-w-2xl lg:max-w-3xl leading-relaxed font-manrope font-medium">
+                    <p class="text-base sm:text-lg lg:text-xl text-[#1E1D37] max-w-full sm:max-w-2xl lg:max-w-lg leading-relaxed font-manrope font-medium">
                         <?php echo esc_html($atts['intro']); ?>
                     </p>
                 <?php endif; ?>
@@ -69,7 +69,7 @@ function neways_services_section_shortcode($atts) {
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                 <?php foreach ($services as $service) : ?>
-                    <div class="service-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                    <a href="<?php echo esc_url($service['link']); ?>" class="service-card bg-white  overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col cursor-pointer block">
                         <!-- Service Image -->
                         <?php if (!empty($service['image'])) : ?>
                             <div class="service-image-wrapper w-full h-48 sm:h-56 lg:h-64 overflow-hidden">
@@ -107,13 +107,13 @@ function neways_services_section_shortcode($atts) {
                                 <?php endforeach; ?>
                             </ul>
                             
-                            <!-- Learn More Link -->
-                            <a href="<?php echo esc_url($service['link']); ?>" 
-                               class="text-[#362470] font-manrope text-sm sm:text-base font-bold hover:text-[#4A5565] transition-colors inline-flex items-center mt-auto">
-                                Learn more →
-                            </a>
+                            <!-- Learn More Text -->
+                            <div class="group text-[#362470] font-manrope text-sm sm:text-base font-bold hover:text-[#4A5565] transition-colors inline-flex items-center gap-2 mt-auto">
+                                <span>Learn more</span>
+                                <span class="group-hover:translate-x-2 transition-transform duration-500">→</span>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 <?php endforeach; ?>
             </div>
         </div>

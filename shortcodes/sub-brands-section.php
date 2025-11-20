@@ -46,7 +46,7 @@ function neways_sub_brands_section_shortcode($atts) {
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-10">
                 <!-- Sub-brand 1: Neways at Home -->
-                <div class="sub-brand-card bg-[#F8DDE2] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10  flex flex-col lg:flex-row items-start lg:items-center gap-4 sm:gap-6 lg:gap-10">
+                <div class="sub-brand-card bg-[#F8DDE2] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10 flex flex-col lg:flex-row items-start lg:items-center gap-4 sm:gap-6 lg:gap-10 transition-all duration-300 hover:shadow-lg hover:-translate-y-2">
                     <div class="flex-1 w-full">
                         <h3 class="pb-2 sm:pb-3 text-[#1C1A1D] ">Neways at Home</h3>
                         <p class="text-[#4A5565] leading-5 sm:leading-6 font-manrope text-base sm:text-lg md:text-lg font-bold">Home & Domiciliary Care Services</p>
@@ -54,8 +54,9 @@ function neways_sub_brands_section_shortcode($atts) {
                         <p class="text-[#4A5565] leading-5 sm:leading-6 font-manrope text-sm sm:text-base md:text-lg font-medium pb-3 sm:pb-4">
                         Providing personalized care in the comfort and familiarity of your own home.
                         </p>
-                        <a href="#" class="text-[#362470] font-manrope text-sm sm:text-base font-bold hover:text-gray-700 transition-colors inline-flex items-center">
-                            Learn more →
+                        <a href="#" class="group text-[#362470] font-manrope text-sm sm:text-base font-bold hover:text-gray-700 transition-colors inline-flex items-center gap-2">
+                            <span>Learn more</span>
+                            <span class="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">→</span>
                         </a>
                     </div>
                     <div class="flex-shrink-0 flex items-center justify-center lg:justify-end w-full lg:w-auto mt-4 lg:mt-0">
@@ -93,7 +94,7 @@ function neways_sub_brands_section_shortcode($atts) {
                 </div>
 
                 <!-- Sub-brand 2: Neways Residential -->
-                <div class="sub-brand-card bg-[#DEECE0] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10  flex flex-col lg:flex-row items-start lg:items-center gap-4 sm:gap-6 lg:gap-10">
+                <div class="sub-brand-card bg-[#DEECE0] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10 flex flex-col lg:flex-row items-start lg:items-center gap-4 sm:gap-6 lg:gap-10 transition-all duration-300 hover:shadow-lg hover:-translate-y-2">
                     <div class="flex-1 w-full">
                         <h3 class="pb-2 sm:pb-3 text-[#1C1A1D] ">Neways Residential</h3>
                         <p class="text-[#4A5565] leading-5 sm:leading-6 font-manrope text-base sm:text-lg md:text-lg font-bold">Care Homes & Nursing Care</p>
@@ -101,8 +102,9 @@ function neways_sub_brands_section_shortcode($atts) {
                         <p class="text-[#4A5565] leading-5 sm:leading-6 font-manrope text-sm sm:text-base md:text-lg font-medium pb-3 sm:pb-4">
                         Safe, comfortable residential and nursing care facilities for enhanced wellbeing.
                         </p>
-                        <a href="#" class="text-[#362470] font-manrope text-sm sm:text-base font-bold hover:text-gray-700 transition-colors inline-flex items-center">
-                            Learn more →
+                        <a href="#" class="group text-[#362470] font-manrope text-sm sm:text-base font-bold hover:text-gray-700 transition-colors inline-flex items-center gap-2">
+                            <span>Learn more</span>
+                            <span class="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">→</span>
                         </a>
                     </div>
                     <div class="flex-shrink-0 flex items-center justify-center lg:justify-end w-full lg:w-auto mt-4 lg:mt-0">
@@ -145,7 +147,7 @@ function neways_sub_brands_section_shortcode($atts) {
                 </div>
 
                 <!-- Sub-brand 3: Neways Recruitment -->
-                <div class="sub-brand-card bg-[#D4E7E5] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10  flex flex-col lg:flex-row items-start lg:items-center gap-4 sm:gap-6 lg:gap-10">
+                <div class="sub-brand-card bg-[#D4E7E5] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10 flex flex-col lg:flex-row items-start lg:items-center gap-4 sm:gap-6 lg:gap-10 transition-all duration-300 hover:shadow-lg hover:-translate-y-2">
                     <div class="flex-1 w-full">
                         <h3 class="pb-2 sm:pb-3 text-[#1C1A1D] ">Neways Recruitment</h3>
                         <p class="text-[#4A5565] leading-5 sm:leading-6 font-manrope text-base sm:text-lg md:text-lg font-bold"> Healthcare Staffing Solutions</p>
@@ -153,8 +155,9 @@ function neways_sub_brands_section_shortcode($atts) {
                         <p class="text-[#4A5565] leading-5 sm:leading-6 font-manrope text-sm sm:text-base md:text-lg font-medium pb-3 sm:pb-4">
                         Connecting talented healthcare professionals with meaningful opportunities.
                         </p>
-                        <a href="#" class="text-[#362470] font-manrope text-sm sm:text-base font-bold hover:text-gray-700 transition-colors inline-flex items-center">
-                            Learn more →
+                        <a href="#" class="group text-[#362470] font-manrope text-sm sm:text-base font-bold hover:text-gray-700 transition-colors inline-flex items-center gap-2">
+                            <span>Learn more</span>
+                            <span class="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">→</span>
                         </a>
                     </div>
                     <div class="flex-shrink-0 flex items-center justify-center lg:justify-end w-full lg:w-auto mt-4 lg:mt-0">
@@ -197,7 +200,7 @@ function neways_sub_brands_section_shortcode($atts) {
 
                 <!-- Sub-brand 4: Neways Consulting -->
                 
-                <div class="sub-brand-card bg-[#C7D6EE] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10  flex flex-col lg:flex-row items-start lg:items-center gap-4 sm:gap-6 lg:gap-10">
+                <div class="sub-brand-card bg-[#C7D6EE] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10 flex flex-col lg:flex-row items-start lg:items-center gap-4 sm:gap-6 lg:gap-10 transition-all duration-300 hover:shadow-lg hover:-translate-y-2">
                     <div class="flex-1 w-full">
                         <h3 class="pb-2 sm:pb-3 text-[#1C1A1D] ">Neways Consulting</h3>
                         <p class="text-[#4A5565] leading-5 sm:leading-6 font-manrope text-base sm:text-lg md:text-lg font-bold"> Strategic Consulting for Health & Care</p>
@@ -205,8 +208,9 @@ function neways_sub_brands_section_shortcode($atts) {
                         <p class="text-[#4A5565] leading-5 sm:leading-6 font-manrope text-sm sm:text-base md:text-lg font-medium pb-3 sm:pb-4">
                         Expert guidance to transform and optimize healthcare service delivery.
                         </p>
-                        <a href="#" class="text-[#362470] font-manrope text-sm sm:text-base font-bold hover:text-gray-700 transition-colors inline-flex items-center">
-                            Learn more →
+                        <a href="#" class="group text-[#362470] font-manrope text-sm sm:text-base font-bold hover:text-gray-700 transition-colors inline-flex items-center gap-2">
+                            <span>Learn more</span>
+                            <span class="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">→</span>
                         </a>
                     </div>
                     <div class="flex-shrink-0 flex items-center justify-center lg:justify-end w-full lg:w-auto mt-4 lg:mt-0">

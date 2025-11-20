@@ -70,7 +70,7 @@
 
     @media (max-width: 782px) {
         body.admin-bar .site-header.fixed {
-            top: 0;
+            top: 30px;
         }
     }
 

@@ -72,7 +72,7 @@ function neways_who_we_are_section_shortcode($atts) {
                 
                 <!-- Image Section -->
                 <div class="w-full <?php echo ($atts['image_position'] === 'top' || $atts['image_position'] === 'bottom') ? 'lg:w-full' : 'lg:w-1/2'; ?> flex-shrink-0">
-                    <div class="relative overflow-hidden rounded-xl shadow-lg">
+                    <div class="relative overflow-hidden rounded-xl ">
                         <img src="<?php echo esc_url($image_url); ?>" 
                              alt="<?php echo esc_attr($atts['title']); ?>" 
                              class="w-full h-auto object-cover">

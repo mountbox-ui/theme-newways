@@ -34,14 +34,14 @@ if (!function_exists('hero_section_shortcode')) {
 
         ob_start();
         ?>
-        <div id="hero-section" class="<?php echo esc_attr($atts['class']); ?> max-h-[625px] mb-[80px]">
+        <div id="hero-section" class="<?php echo esc_attr($atts['class']); ?> max-h-[625px] mb-0 sm:mb-0 md:mb-0 xl:mb-[80px]">
             <div class="relative isolate overflow-hidden text-white">
                 <div
                     class="absolute inset-0 bg-cover bg-center"
                     <?php echo $background ? 'style="background-image:url(\'' . esc_url($background) . '\');"' : ''; ?>
                 ></div>
 
-                <div class="relative z-10 mx-auto flex w-full max-w-[1220px] items-center px-6 pt-16 sm:px-1 sm:pt-24 pb-8 sm:pb-12 md:pb-8 lg:px-1">
+                <div class="relative z-10 mx-auto flex w-full max-w-[1220px] items-center px-6 pt-16 sm:px-1 md:px-8 lg:px-8 xl:px-1 sm:pt-24 pb-8 sm:pb-12 md:pb-8 ">
                     <div class="hero-section__content w-full max-w-[500px] text-left">
                         <?php echo do_shortcode($content); ?>
                     </div>
@@ -125,8 +125,12 @@ if (!function_exists('hero_section_buttons_shortcode')) {
             return '';
         }
 
-        $button = '<a href="' . esc_url($atts['primary_url']) . '" class="hero-section__cta inline-flex items-center justify-center rounded-full btn-primary text-black bg-[#FFB64D] shadow-[0_4px_4px_0_rgba(0,0,0,0.25),0_67px_80px_0_rgba(55,52,169,0.07),0_43.426px_46.852px_0_rgba(55,52,169,0.05),0_25.807px_25.481px_0_rgba(55,52,169,0.04),0_13.4px_13px_0_rgba(55,52,169,0.04),0_5.459px_6.519px_0_rgba(55,52,169,0.03),0_1.241px_3.148px_0_rgba(55,52,169,0.02) transition duration-700 ease-in-out]">'
-            . esc_html($atts['primary_text']) . '</a>';
+        $button = '<a href="' . esc_url($atts['primary_url']) . '" class="hero-section__cta group inline-flex items-center justify-center gap-2 rounded-full btn-primary text-black bg-[#FFB64D] shadow-[0_4px_4px_0_rgba(0,0,0,0.25),0_67px_80px_0_rgba(55,52,169,0.07),0_43.426px_46.852px_0_rgba(55,52,169,0.05),0_25.807px_25.481px_0_rgba(55,52,169,0.04),0_13.4px_13px_0_rgba(55,52,169,0.04),0_5.459px_6.519px_0_rgba(55,52,169,0.03),0_1.241px_3.148px_0_rgba(55,52,169,0.02)] hover:bg-[#381F75] hover:text-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ease-in-out">'
+            . '<span class="text-center">' . esc_html($atts['primary_text']) . '</span>'
+            . '<svg class="w-5 h-5 opacity-0 w-0 group-hover:opacity-100 group-hover:w-5 transition-all duration-300 ease-in-out flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">'
+            . '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>'
+            . '</svg>'
+            . '</a>';
 
         return '<div class="mt-4 flex flex-wrap items-center gap-4">' . $button . '</div>';
     }

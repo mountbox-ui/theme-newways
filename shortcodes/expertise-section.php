@@ -23,7 +23,7 @@ function neways_expertise_section_shortcode($atts) {
     ob_start();
     ?>
     <section class="expertise-section py-12 sm:py-16 lg:py-20 <?php echo esc_attr($bg_class); ?> <?php echo esc_attr($atts['class']); ?>">
-        <div class="container-custom max-w-[1200px] mx-auto ">
+        <div class="container-custom max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-0  ">
             <div class="py-12 sm:py-16 lg:py-12 text-left">
                 <h2 class="pb-2.5">
                     <?php echo esc_html($atts['title']); ?>
@@ -37,11 +37,11 @@ function neways_expertise_section_shortcode($atts) {
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12 pb-12 sm:pb-16 lg:pb-12">
                 <!-- Expertise 1: Dementia care -->
-                <div class="expertise-card bg-white rounded-xl  overflow-hidden">
+                <div class="expertise-card bg-white rounded-xl overflow-hidden group">
                     <div class="w-full h-48 sm:h-56 lg:h-64 overflow-hidden rounded-lg">
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service1.png" 
                              alt="Dementia care" 
-                             class="w-full h-full object-cover">
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 ease-in-out">
                     </div>
                     <div class="py-3 sm:py-3">
                         <h3 class="pb-2 sm:pb-3 text-[#1C1A1D]">Dementia care</h3>
@@ -52,11 +52,11 @@ function neways_expertise_section_shortcode($atts) {
                 </div>
 
                 <!-- Expertise 2: Parkinson's Care -->
-                <div class="expertise-card bg-white rounded-xl  overflow-hidden">
+                <div class="expertise-card bg-white rounded-xl overflow-hidden group">
                     <div class="w-full h-48 sm:h-56 lg:h-64 overflow-hidden rounded-lg">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service2.jpg" 
                              alt="Parkinson's Care" 
-                             class="w-full h-full object-cover">
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 ease-in-out">
                     </div>
                     <div class="py-3 sm:py-3">
                         <h3 class="pb-2 sm:pb-3 text-[#1C1A1D]">Parkinson's Care</h3>
@@ -67,11 +67,11 @@ function neways_expertise_section_shortcode($atts) {
                 </div>
 
                 <!-- Expertise 3: End of Life Care -->
-                <div class="expertise-card bg-white rounded-xl  overflow-hidden">
+                <div class="expertise-card bg-white rounded-xl overflow-hidden group">
                     <div class="w-full h-48 sm:h-56 lg:h-64 overflow-hidden rounded-lg">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service3.jpg" 
                              alt="End of Life Care" 
-                             class="w-full h-full object-cover">
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 ease-in-out">
                     </div>
                     <div class="py-3 sm:py-3">
                         <h3 class="pb-2 sm:pb-3 text-[#1C1A1D]">End of Life Care</h3>
@@ -82,11 +82,11 @@ function neways_expertise_section_shortcode($atts) {
                 </div>
 
                 <!-- Expertise 4: Respite care -->
-                <div class="expertise-card bg-white rounded-xl  overflow-hidden">
+                <div class="expertise-card bg-white rounded-xl overflow-hidden group">
                     <div class="w-full h-48 sm:h-56 lg:h-64 overflow-hidden rounded-lg">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/service4.png"  
                              alt="Respite care" 
-                             class="w-full h-full object-cover">
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 ease-in-out">
                     </div>
                     <div class="py-3 sm:py-3">
                         <h3 class="pb-2 sm:pb-3 text-[#1C1A1D]">Respite care</h3>

@@ -24,7 +24,7 @@
 ?>
 <div id="page" class="site min-h-screen flex flex-col">
     <header id="masthead" class="site-header fixed top-0 z-50 w-full bg-transparent">
-        <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-10">
+        <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 md:px-10">
             <div class="flex items-center gap-4">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="block">
                     <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo.png' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" class="w-20 h-24 object-contain" />

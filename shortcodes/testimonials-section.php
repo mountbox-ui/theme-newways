@@ -74,13 +74,13 @@ function neways_testimonials_section_shortcode($atts) {
 
     ob_start();
     ?>
-    <section class="testimonials-section lg:h-[700px] md:h-[500px] h-[400px] <?php echo esc_attr($atts['class']); ?>" style="background: <?php echo esc_attr($atts['background']); ?>;">
-        <div class="max-w-7xl mx-auto px-6 py-16 lg:py-24">
-            <div class="grid gap-12 lg:grid-cols-2 items-start">
+    <section class="testimonials-section overflow-hidden min-h-[420px] md:min-h-[520px] lg:min-h-[700px] <?php echo esc_attr($atts['class']); ?>" style="background: <?php echo esc_attr($atts['background']); ?>;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
+            <div class="grid gap-10 lg:gap-12 lg:grid-cols-2 items-start">
                 <!-- Left Section: Quote Icon + Text -->
-                <div class="relative">
+                <div class="relative w-full">
                     <!-- Large Quote Icon - Overlapping -->
-                    <div class="absolute -left-4 -top-4 lg:-left-8 lg:-top-8 z-0">
+                    <div class="absolute -left-2 -top-4 sm:-left-4 lg:-left-8 lg:-top-8 z-0">
                         <svg xmlns="http://www.w3.org/2000/svg" width="143" height="120" viewBox="0 0 143 120" fill="none" class="w-24 h-20 sm:w-32 sm:h-28 lg:w-40 lg:h-32">
                             <g opacity="0.3" clip-path="url(#clip0_72_1092)">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M142.373 18.7419C121.049 29.1541 110.387 41.3882 110.387 55.4447C119.476 56.4859 126.992 60.1735 132.934 66.5076C138.877 72.8417 141.849 80.1735 141.849 88.5033C141.849 97.3536 138.965 104.816 133.197 110.889C127.428 116.963 120.175 120 111.435 120C101.647 120 93.1701 116.052 86.0037 108.156C78.8374 100.26 75.2542 90.6725 75.2542 79.3926C75.2542 45.553 94.306 19.089 132.41 0L142.373 18.7419ZM67.1186 18.7419C45.6196 29.1541 34.8702 41.3882 34.8702 55.4447C44.134 56.4859 51.7373 60.1735 57.6801 66.5076C63.6229 72.8417 66.5943 80.1735 66.5943 88.5033C66.5943 97.3536 63.6666 104.816 57.8112 110.889C51.9557 116.963 44.6584 120 35.919 120C26.1308 120 17.6973 116.052 10.6184 108.156C3.53942 100.26 0 90.6725 0 79.3926C0 45.553 18.9643 19.089 56.8935 0L67.1186 18.7419Z" fill="#A8C0F0"/>
@@ -93,12 +93,12 @@ function neways_testimonials_section_shortcode($atts) {
                         </svg>
                     </div>
                     <!-- Text Content -->
-                    <div class="relative z-10 pt-8 lg:pt-12 pl-8 lg:pl-12">
-                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-normal text-[#333333] font-marcellus leading-tight mb-4 max-w-md">
+                    <div class="relative z-10 pt-8 lg:pt-12 pl-8 lg:pl-12 text-center lg:text-left">
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-normal text-[#333333] font-marcellus leading-tight mb-4 max-w-md mx-auto lg:mx-0">
                             <?php echo esc_html($atts['title']); ?>
                         </h2>
                         <?php if (!empty($atts['subtitle'])) : ?>
-                            <p class="text-base text-[#555555] font-manrope font-normal">
+                            <p class="text-base text-[#555555] font-manrope font-normal max-w-md mx-auto lg:mx-0">
                                 <?php echo esc_html($atts['subtitle']); ?>
                             </p>
                         <?php endif; ?>
@@ -106,10 +106,10 @@ function neways_testimonials_section_shortcode($atts) {
                 </div>
 
                 <!-- Right Section: Testimonial Cards -->
-                <div class="relative flex flex-col gap-6 lg:min-h-[420px]">
+                <div class="relative flex flex-col gap-6 w-full items-center lg:items-start lg:min-h-[420px]">
                     <?php foreach ($testimonials as $index => $item) : ?>
                         <?php
-                        $card_classes = 'bg-white rounded-lg shadow-[0 10px 20px 0 rgba(41, 41, 42, 0.07)] p-6 sm:p-7 flex flex-col gap-2 transition-transform duration-200 mx-auto lg:mx-0 w-full max-w-md';
+                        $card_classes = 'bg-white rounded-lg shadow-[0_10px_20px_rgba(41,41,42,0.07)] p-6 sm:p-7 flex flex-col gap-2 transition-transform duration-200 mx-auto lg:mx-0 w-full max-w-md';
 
                         // Support custom layout classes and per-card positioning
                         if (!empty($item['layout_class'])) {
