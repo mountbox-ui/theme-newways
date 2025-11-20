@@ -127,7 +127,7 @@ if (!function_exists('hero_section_buttons_shortcode')) {
 
         $button = '<a href="' . esc_url($atts['primary_url']) . '" class="hero-section__cta group inline-flex items-center justify-center gap-2 rounded-full btn-primary text-black bg-[#FFB64D] shadow-[0_4px_4px_0_rgba(0,0,0,0.25),0_67px_80px_0_rgba(55,52,169,0.07),0_43.426px_46.852px_0_rgba(55,52,169,0.05),0_25.807px_25.481px_0_rgba(55,52,169,0.04),0_13.4px_13px_0_rgba(55,52,169,0.04),0_5.459px_6.519px_0_rgba(55,52,169,0.03),0_1.241px_3.148px_0_rgba(55,52,169,0.02)] hover:bg-[#381F75] hover:text-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ease-in-out">'
             . '<span class="text-center">' . esc_html($atts['primary_text']) . '</span>'
-            . '<svg class="w-5 h-5 opacity-0 w-0 group-hover:opacity-100 group-hover:w-5 transition-all duration-300 ease-in-out flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">'
+            . '<svg class="w-0 h-5 opacity-0 w-0 group-hover:opacity-100 group-hover:w-5 transition-all duration-300 ease-in-out flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">'
             . '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>'
             . '</svg>'
             . '</a>';
