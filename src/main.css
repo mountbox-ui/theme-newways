@@ -23,7 +23,7 @@
     }
 
     h3 {
-        @apply font-manrope font-bold  leading-snug text-lg sm:text-xl md:text-xl;
+        @apply font-lato font-bold  leading-snug text-lg sm:text-xl md:text-xl;
     }
 
     h4 {
@@ -31,11 +31,11 @@
     }
 
     h5 {
-        @apply font-manrope font-bold text-2xl leading-snug sm:text-3xl md:text-2xl;
+        @apply font-lato font-bold text-2xl leading-snug sm:text-3xl md:text-2xl;
     }
 
     h6 {
-        @apply font-manrope font-semibold text-sm leading-5 pb-3 uppercase tracking-widest sm:text-sm;
+        @apply font-lato font-semibold text-sm leading-5 pb-3 uppercase tracking-widest sm:text-sm;
     }
 
     h2 span {
@@ -45,7 +45,7 @@
 
 @layer components {
     nav a {
-        @apply font-manrope text-white no-underline text-base leading-7 transition-colors duration-300 sm:text-lg font-semibold;
+        @apply font-lato text-white no-underline text-base leading-7 transition-colors duration-300 sm:text-lg font-semibold;
     }
 
     nav a:hover {
@@ -83,7 +83,7 @@
     }
 
     .btn-primary {
-        @apply font-manrope justify-center text-white text-sm sm:text-base font-bold rounded-full leading-snug tracking-wide flex items-center gap-3 px-5 py-3 sm:px-6 sm:py-4 transition duration-300 ease-in-out;
+        @apply font-lato justify-center text-white text-sm sm:text-base font-bold rounded-full leading-snug tracking-wide flex items-center gap-3 px-5 py-3 sm:px-6 sm:py-4 transition duration-300 ease-in-out;
     }
 
     .btn-secondary {
@@ -116,9 +116,9 @@
 
     @media (min-width: 1024px) {
         .main-navigation li { @apply relative; }
-        .main-navigation .sub-menu { @apply absolute left-0 top-full hidden bg-navy-800 text-white rounded-md shadow-lg p-2 space-y-1 min-w-[200px] z-50; }
+        .main-navigation .sub-menu { @apply absolute left-0 top-full hidden bg-white text-black rounded-md shadow-lg p-2 space-y-1 min-w-[200px] z-50; }
         .main-navigation li:hover > .sub-menu { @apply block; }
-        .main-navigation .sub-menu a { @apply block px-4 py-2 rounded-md hover:bg-navy-700; }
+        .main-navigation .sub-menu a { @apply block px-4 py-2 rounded-md text-black opacity-60 transition-opacity duration-300 hover:opacity-100; }
     }
 
     .mobile-navigation .sub-menu { @apply hidden ml-4 space-y-1; }
@@ -229,6 +229,18 @@
     .grid > article[class*="bg-gradient"]:hover::before {
         background: rgba(255, 255, 255, 0.5);
         opacity: 1;
+    }
+
+    .view-all-news-arrow .hover-arrow {
+        display: none;
+    }
+
+    .view-all-news-btn:hover .view-all-news-arrow .default-arrow {
+        display: none;
+    }
+
+    .view-all-news-btn:hover .view-all-news-arrow .hover-arrow {
+        display: block;
     }
 }
 

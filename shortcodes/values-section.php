@@ -29,7 +29,7 @@ function neways_values_section_shortcode($atts) {
                     <?php echo esc_html($atts['title']); ?>
                 </h2>
                 <?php if (!empty($atts['intro'])) : ?>
-                    <p class="text-base sm:text-lg lg:text-xl text-[#1E1D37] max-w-full sm:max-w-lg leading-relaxed font-manrope font-medium">
+                    <p class="text-base sm:text-lg lg:text-xl text-[#1E1D37] max-w-full sm:max-w-lg leading-relaxed font-lato font-medium">
                         <?php echo esc_html($atts['intro']); ?>
                     </p>
                 <?php endif; ?>
@@ -44,7 +44,7 @@ function neways_values_section_shortcode($atts) {
                     </svg>
                     </div>
                     <h3 class="pb-2 sm:pb-3 text-[#1C1A1D]">Compassion</h3>
-                    <p class="text-[#4A5565] leading-5 sm:leading-6 font-manrope text-base sm:text-lg md:text-lg font-medium">
+                    <p class="text-[#4A5565] leading-5 sm:leading-6 font-lato text-base sm:text-lg md:text-lg font-medium">
                         We put care and empathy at the heart of everything we do.
                     </p>
                 </div>
@@ -57,7 +57,7 @@ function neways_values_section_shortcode($atts) {
                     </svg>
                     </div>
                     <h3 class="pb-2 sm:pb-3 text-[#1C1A1D]">Trust</h3>
-                    <p class="text-[#4A5565] leading-5 sm:leading-6 font-manrope text-base sm:text-lg md:text-lg font-medium">
+                    <p class="text-[#4A5565] leading-5 sm:leading-6 font-lato text-base sm:text-lg md:text-lg font-medium">
                         Building lasting relationships through reliability and transparency.
                     </p>
                 </div>
@@ -70,7 +70,7 @@ function neways_values_section_shortcode($atts) {
                     </svg>
                     </div>
                     <h3 class="pb-2 sm:pb-3 text-[#1C1A1D]">Excellence</h3>
-                    <p class="text-[#4A5565] leading-5 sm:leading-6 font-manrope text-base sm:text-lg md:text-lg font-medium">
+                    <p class="text-[#4A5565] leading-5 sm:leading-6 font-lato text-base sm:text-lg md:text-lg font-medium">
                         Committed to the highest standards of care and service delivery.
                     </p>
                 </div>
@@ -83,7 +83,7 @@ function neways_values_section_shortcode($atts) {
                     </svg>
                     </div>
                     <h3 class="pb-2 sm:pb-3 text-[#1C1A1D]">Dignity</h3>
-                    <p class="text-[#4A5565] leading-5 sm:leading-6 font-manrope text-base sm:text-lg md:text-lg font-medium">
+                    <p class="text-[#4A5565] leading-5 sm:leading-6 font-lato text-base sm:text-lg md:text-lg font-medium">
                         Respecting and honoring the individuality of every person we serve.
                     </p>
                 </div>

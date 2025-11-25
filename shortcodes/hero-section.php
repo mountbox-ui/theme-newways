@@ -102,7 +102,7 @@ if (!function_exists('hero_section_paragraph_shortcode')) {
             'hero_paragraph'
         );
 
-        return '<p class="hero-section__description font-manrope font-medium pb-9 text-lg leading-6 text-[rgba(255,255,255,0.74)] md:text-lg sm:text-base sm:leading-[1.9]">'
+        return '<p class="hero-section__description font-lato font-medium pb-9 text-lg leading-6 text-[rgba(255,255,255,0.74)] md:text-lg sm:text-base sm:leading-[1.9]">'
             . esc_html($atts['text']) . '</p>';
     }
     add_shortcode('hero_paragraph', 'hero_section_paragraph_shortcode');
