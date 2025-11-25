@@ -15,7 +15,7 @@ if ( ! function_exists( 'sw_enqueue_scroll_reveal_assets' ) ) {
         wp_enqueue_style( 'sw-scroll-reveal-inline' );
 
         $css = <<<'CSS'
-:root{--fade-opacity:0.46;--visible-opacity:1;--char-gap:0.08rem;--font-size:22px}
+:root{--fade-opacity:0.46;--visible-opacity:1;--word-gap:0.5rem;--font-size:22px}
 .sw-scroll-wrap{max-width:1200px;margin:0 auto;min-height:190vh;display:flex;align-items:flex-start;position:relative}
 .sw-scroll-wrap.sw-align-left{justify-content:flex-start}
 .sw-scroll-wrap.sw-align-right{justify-content:flex-end}
@@ -23,10 +23,9 @@ if ( ! function_exists( 'sw_enqueue_scroll_reveal_assets' ) ) {
 .sw-scroll-heading{display:block;font-family:"Manrope";font-weight:600;font-size:16px;letter-spacing:1.44px;text-transform:uppercase;color:#312F60;}
 .sw-animated-paragraph{font-family:"Manrope";font-size:48px;font-weight:500;line-height:normal;color:#211F3E;background:#fff;display:inline-block ; max-width:970px;}
 .sw-scroll-description{font-family:"Manrope";font-size:20px;line-height:30px;color:#4b5563;max-width:970px; padding-top:8px; font-weight: 500;padding-bottom:80px }
-.sw-animated-paragraph .char{display:inline-block;opacity:var(--fade-opacity);transform:translateY(6px);transition:opacity 420ms ease,transform 420ms ease;letter-spacing:var(--char-gap);color:#211F3E;white-space:pre}
-.sw-animated-paragraph .char.visible{opacity:var(--visible-opacity);transform:translateY(0)}
-.sw-animated-paragraph .char.space{width:0.4rem}
-.sw-animated-paragraph .char.always-visible{opacity:var(--visible-opacity)!important;transform:translateY(0)!important}
+.sw-animated-paragraph .word{display:inline-block;opacity:var(--fade-opacity);transform:translateY(6px);transition:opacity 420ms ease,transform 420ms ease;margin-right:var(--word-gap);color:#211F3E}
+.sw-animated-paragraph .word.visible{opacity:var(--visible-opacity);transform:translateY(0)}
+.sw-animated-paragraph .word.always-visible{opacity:var(--visible-opacity)!important;transform:translateY(0)!important}
 @media (max-width:520px){:root{--font-size:18px};.sw-scroll-inner{top:14vh;padding:72px 0}}
 @media (max-width:1024px){.sw-scroll-wrap{padding:0 24px;max-width:960px;min-height:170vh}.sw-scroll-inner{top:16vh;padding:64px 0}.sw-animated-paragraph{font-size:42px;line-height:1.18;}.sw-scroll-description{max-width:520px;font-size:15px}}
 @media (max-width:768px){.sw-scroll-wrap{padding:0 24px;max-width:100%;min-height:155vh}.sw-scroll-inner{top:14vh;gap:22px;padding:56px 0}.sw-animated-paragraph{font-size:36px;border-radius:16px}.sw-scroll-description{max-width:100%;font-size:14.5px;padding-bottom:0px;}}
@@ -90,45 +89,37 @@ CSS;
     const speedAttr = parseFloat(container.dataset.speed);
     const speedFactor = Number.isFinite(speedAttr) && speedAttr > 0 ? speedAttr : 0.85;
 
-    const words = original.split(/\s+/);
-    let firstNChars = 0;
-    for(let i=0;i<Math.min(firstWords, words.length);i++){
-      firstNChars += words[i].length + (i < firstWords-1 ? 1 : 0);
-    }
+    const wordArray = original.trim().split(/\s+/);
+    const maxWords = wordArray.length;
+    const firstNWords = Math.min(firstWords, maxWords);
+    const remaining = Math.max(0, maxWords - firstNWords);
 
-    const chars = [];
-    for(let i=0;i<original.length;i++){
-      const ch = original[i];
+    const words = [];
+    for(let i=0;i<wordArray.length;i++){
+      const word = wordArray[i];
       const span = document.createElement('span');
-      span.className = 'char';
-      if(ch === ' '){
-        span.classList.add('space');
-        span.textContent = ' ';
-      } else {
-        span.textContent = ch;
-      }
+      span.className = 'word';
+      span.textContent = word;
       container.appendChild(span);
-      chars.push(span);
+      words.push(span);
     }
 
     let marked = 0;
-    while(marked < firstNChars && marked < chars.length){
-      chars[marked].classList.add('always-visible','visible');
+    while(marked < firstNWords && marked < words.length){
+      words[marked].classList.add('always-visible','visible');
       marked++;
     }
 
-    let visibleCount = Math.max(firstNChars, 0);
-    const maxChars = chars.length;
-    const remaining = Math.max(0, maxChars - firstNChars);
+    let visibleCount = Math.max(firstNWords, 0);
 
     function applyVisibleCount(n){
-      const clamped = Math.max(firstNChars, Math.min(maxChars, Math.round(n)));
+      const clamped = Math.max(firstNWords, Math.min(maxWords, Math.round(n)));
       visibleCount = clamped;
-      for(let i=0;i<maxChars;i++){
+      for(let i=0;i<maxWords;i++){
         if(i < visibleCount){
-          chars[i].classList.add('visible');
-        } else if(!chars[i].classList.contains('always-visible')){
-          chars[i].classList.remove('visible');
+          words[i].classList.add('visible');
+        } else if(!words[i].classList.contains('always-visible')){
+          words[i].classList.remove('visible');
         }
       }
     }
@@ -139,7 +130,7 @@ CSS;
       container,
       wrap: container.closest('.sw-scroll-wrap'),
       inner: container.parentElement,
-      firstNChars,
+      firstNWords,
       remaining,
       speed: speedFactor,
       progress: 0,
@@ -193,7 +184,7 @@ CSS;
         state.progress = state.target;
       }
 
-      const revealCount = state.firstNChars + Math.round(state.remaining * state.progress);
+      const revealCount = state.firstNWords + Math.round(state.remaining * state.progress);
       state.updateVisible(revealCount);
 
       if(scrollDirection === 'up' && state.progress <= 0.05){
