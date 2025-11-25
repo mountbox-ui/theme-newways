@@ -384,7 +384,7 @@ function neways_team_departments_shortcode($atts) {
         echo '<div class="flex flex-wrap gap-2">';
         foreach ($departments as $department) {
             $count = $atts['show_count'] === 'true' ? ' (' . $department->count . ')' : '';
-            echo '<a href="' . esc_url(get_term_link($department)) . '" class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 hover:bg-blue-200 transition-colors duration-200">';
+        echo '<a href="' . esc_url(get_term_link($department)) . '" class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 hover:bg-blue-200 transition-colors duration-200">';
             echo esc_html($department->name) . $count;
             echo '</a>';
         }

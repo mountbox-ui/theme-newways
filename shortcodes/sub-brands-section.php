@@ -54,9 +54,16 @@ function neways_sub_brands_section_shortcode($atts) {
                         <p class="text-[#4A5565] leading-5 sm:leading-6 font-lato text-sm sm:text-base md:text-lg font-medium pb-3 sm:pb-4">
                         Providing personalized care in the comfort and familiarity of your own home.
                         </p>
-                        <a href="#" class="group text-[#362470] font-lato text-sm sm:text-base font-bold hover:text-gray-700 transition-colors inline-flex items-center gap-2">
+                        <a href="#" class="sub-brands-learn-more group text-[#362470] font-lato text-sm sm:text-base font-bold hover:text-gray-700 transition-colors inline-flex items-center gap-2">
                             <span>Learn more</span>
-                            <span class="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">→</span>
+                            <span class="sub-brands-learn-more-arrow inline-flex items-center justify-center">
+                                <svg class="sub-brands-learn-more-default" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                    <path d="M11.5246 10.4999L7.19336 6.16861L8.43148 4.93136L14 10.4999L8.43149 16.0684L7.19424 14.8311L11.5246 10.4999Z" fill="#242163"/>
+                                </svg>
+                                <svg class="sub-brands-learn-more-hover" xmlns="http://www.w3.org/2000/svg" width="17" height="11" viewBox="0 0 17 11" fill="none">
+                                    <path d="M10.7528 1.28425C10.459 0.990463 10.459 0.514133 10.7528 0.220343C11.0465 -0.0734475 11.5229 -0.0734475 11.8167 0.220343L16.3305 4.73412C16.6243 5.02792 16.6243 5.50432 16.3305 5.79802L11.8167 10.3119C11.5229 10.6056 11.0465 10.6056 10.7528 10.3119C10.459 10.0181 10.459 9.54172 10.7528 9.24792L13.9823 6.01842H0.7606C0.34053 6.01842 0 5.68162 0 5.26612C0 4.85062 0.34053 4.51382 0.7606 4.51382H13.9823L10.7528 1.28425Z" fill="#362470"/>
+                                </svg>
+                            </span>
                         </a>
                     </div>
                     <div class="flex-shrink-0 flex items-center justify-center lg:justify-end w-full lg:w-auto mt-4 lg:mt-0">
@@ -102,9 +109,16 @@ function neways_sub_brands_section_shortcode($atts) {
                         <p class="text-[#4A5565] leading-5 sm:leading-6 font-lato text-sm sm:text-base md:text-lg font-medium pb-3 sm:pb-4">
                         Safe, comfortable residential and nursing care facilities for enhanced wellbeing.
                         </p>
-                        <a href="#" class="group text-[#362470] font-lato text-sm sm:text-base font-bold hover:text-gray-700 transition-colors inline-flex items-center gap-2">
+                        <a href="#" class="sub-brands-learn-more group text-[#362470] font-lato text-sm sm:text-base font-bold hover:text-gray-700 transition-colors inline-flex items-center gap-2">
                             <span>Learn more</span>
-                            <span class="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">→</span>
+                            <span class="sub-brands-learn-more-arrow inline-flex items-center justify-center">
+                                <svg class="sub-brands-learn-more-default" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                    <path d="M11.5246 10.4999L7.19336 6.16861L8.43148 4.93136L14 10.4999L8.43149 16.0684L7.19424 14.8311L11.5246 10.4999Z" fill="#242163"/>
+                                </svg>
+                                <svg class="sub-brands-learn-more-hover" xmlns="http://www.w3.org/2000/svg" width="17" height="11" viewBox="0 0 17 11" fill="none">
+                                    <path d="M10.7528 1.28425C10.459 0.990463 10.459 0.514133 10.7528 0.220343C11.0465 -0.0734475 11.5229 -0.0734475 11.8167 0.220343L16.3305 4.73412C16.6243 5.02792 16.6243 5.50432 16.3305 5.79802L11.8167 10.3119C11.5229 10.6056 11.0465 10.6056 10.7528 10.3119C10.459 10.0181 10.459 9.54172 10.7528 9.24792L13.9823 6.01842H0.7606C0.34053 6.01842 0 5.68162 0 5.26612C0 4.85062 0.34053 4.51382 0.7606 4.51382H13.9823L10.7528 1.28425Z" fill="#362470"/>
+                                </svg>
+                            </span>
                         </a>
                     </div>
                     <div class="flex-shrink-0 flex items-center justify-center lg:justify-end w-full lg:w-auto mt-4 lg:mt-0">
@@ -155,9 +169,16 @@ function neways_sub_brands_section_shortcode($atts) {
                         <p class="text-[#4A5565] leading-5 sm:leading-6 font-lato text-sm sm:text-base md:text-lg font-medium pb-3 sm:pb-4">
                         Connecting talented healthcare professionals with meaningful opportunities.
                         </p>
-                        <a href="#" class="group text-[#362470] font-lato text-sm sm:text-base font-bold hover:text-gray-700 transition-colors inline-flex items-center gap-2">
+                        <a href="#" class="sub-brands-learn-more group text-[#362470] font-lato text-sm sm:text-base font-bold hover:text-gray-700 transition-colors inline-flex items-center gap-2">
                             <span>Learn more</span>
-                            <span class="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">→</span>
+                            <span class="sub-brands-learn-more-arrow inline-flex items-center justify-center">
+                                <svg class="sub-brands-learn-more-default" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                    <path d="M11.5246 10.4999L7.19336 6.16861L8.43148 4.93136L14 10.4999L8.43149 16.0684L7.19424 14.8311L11.5246 10.4999Z" fill="#242163"/>
+                                </svg>
+                                <svg class="sub-brands-learn-more-hover" xmlns="http://www.w3.org/2000/svg" width="17" height="11" viewBox="0 0 17 11" fill="none">
+                                    <path d="M10.7528 1.28425C10.459 0.990463 10.459 0.514133 10.7528 0.220343C11.0465 -0.0734475 11.5229 -0.0734475 11.8167 0.220343L16.3305 4.73412C16.6243 5.02792 16.6243 5.50432 16.3305 5.79802L11.8167 10.3119C11.5229 10.6056 11.0465 10.6056 10.7528 10.3119C10.459 10.0181 10.459 9.54172 10.7528 9.24792L13.9823 6.01842H0.7606C0.34053 6.01842 0 5.68162 0 5.26612C0 4.85062 0.34053 4.51382 0.7606 4.51382H13.9823L10.7528 1.28425Z" fill="#362470"/>
+                                </svg>
+                            </span>
                         </a>
                     </div>
                     <div class="flex-shrink-0 flex items-center justify-center lg:justify-end w-full lg:w-auto mt-4 lg:mt-0">
@@ -208,9 +229,16 @@ function neways_sub_brands_section_shortcode($atts) {
                         <p class="text-[#4A5565] leading-5 sm:leading-6 font-lato text-sm sm:text-base md:text-lg font-medium pb-3 sm:pb-4">
                         Expert guidance to transform and optimize healthcare service delivery.
                         </p>
-                        <a href="#" class="group text-[#362470] font-lato text-sm sm:text-base font-bold hover:text-gray-700 transition-colors inline-flex items-center gap-2">
+                        <a href="#" class="sub-brands-learn-more group text-[#362470] font-lato text-sm sm:text-base font-bold hover:text-gray-700 transition-colors inline-flex items-center gap-2">
                             <span>Learn more</span>
-                            <span class="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">→</span>
+                            <span class="sub-brands-learn-more-arrow inline-flex items-center justify-center">
+                                <svg class="sub-brands-learn-more-default" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                    <path d="M11.5246 10.4999L7.19336 6.16861L8.43148 4.93136L14 10.4999L8.43149 16.0684L7.19424 14.8311L11.5246 10.4999Z" fill="#242163"/>
+                                </svg>
+                                <svg class="sub-brands-learn-more-hover" xmlns="http://www.w3.org/2000/svg" width="17" height="11" viewBox="0 0 17 11" fill="none">
+                                    <path d="M10.7528 1.28425C10.459 0.990463 10.459 0.514133 10.7528 0.220343C11.0465 -0.0734475 11.5229 -0.0734475 11.8167 0.220343L16.3305 4.73412C16.6243 5.02792 16.6243 5.50432 16.3305 5.79802L11.8167 10.3119C11.5229 10.6056 11.0465 10.6056 10.7528 10.3119C10.459 10.0181 10.459 9.54172 10.7528 9.24792L13.9823 6.01842H0.7606C0.34053 6.01842 0 5.68162 0 5.26612C0 4.85062 0.34053 4.51382 0.7606 4.51382H13.9823L10.7528 1.28425Z" fill="#362470"/>
+                                </svg>
+                            </span>
                         </a>
                     </div>
                     <div class="flex-shrink-0 flex items-center justify-center lg:justify-end w-full lg:w-auto mt-4 lg:mt-0">

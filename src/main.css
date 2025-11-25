@@ -60,20 +60,6 @@
         @apply transition-colors transition-shadow duration-200 ease-in-out;
     }
 
-    .site-header.fixed {
-        @apply top-0;
-    }
-
-    body.admin-bar .site-header.fixed {
-        top: 20px;
-    }
-
-    @media (max-width: 782px) {
-        body.admin-bar .site-header.fixed {
-            top: 30px;
-        }
-    }
-
     .site-header.header-solid {
         @apply bg-[#014854] shadow-[0_8px_16px_rgba(0,0,0,0.15)];
     }
@@ -240,6 +226,71 @@
     }
 
     .view-all-news-btn:hover .view-all-news-arrow .hover-arrow {
+        display: block;
+    }
+
+    .read-more-arrow,
+    .learn-more-arrow {
+        position: relative;
+        width: 20px;
+        height: 20px;
+    }
+
+    .read-more-arrow svg,
+    .learn-more-arrow svg {
+        position: absolute;
+        inset: 0;
+    }
+
+    .read-more-arrow-hover,
+    .learn-more-arrow-hover {
+        display: none;
+    }
+
+    .read-more-link:hover .read-more-arrow-default,
+    .learn-more-link:hover .learn-more-arrow-default {
+        display: none;
+    }
+
+    .read-more-link:hover .read-more-arrow-hover,
+    .learn-more-link:hover .learn-more-arrow-hover {
+        display: block;
+    }
+
+    .sub-brands-learn-more-arrow {
+        position: relative;
+        width: 22px;
+        height: 22px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .sub-brands-learn-more-arrow svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: block;
+    }
+
+    .sub-brands-learn-more-arrow .sub-brands-learn-more-default {
+        width: 21px;
+        height: 21px;
+    }
+
+    .sub-brands-learn-more-arrow .sub-brands-learn-more-hover {
+        width: 17px;
+        height: 11px;
+        display: none;
+    }
+
+    .sub-brands-learn-more:hover .sub-brands-learn-more-arrow .sub-brands-learn-more-default {
+        display: none;
+    }
+
+    .sub-brands-learn-more:hover .sub-brands-learn-more-arrow .sub-brands-learn-more-hover {
         display: block;
     }
 }

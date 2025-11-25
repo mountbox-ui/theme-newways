@@ -38,8 +38,48 @@ function neways_who_we_are_section_shortcode($atts) {
             box-shadow: 0 67px 80px 0 rgba(55, 52, 169, 0.07), 0 43.426px 46.852px 0 rgba(55, 52, 169, 0.05), 0 25.807px 25.481px 0 rgba(55, 52, 169, 0.04), 0 13.4px 13px 0 rgba(55, 52, 169, 0.04), 0 5.459px 6.519px 0 rgba(55, 52, 169, 0.03), 0 1.241px 3.148px 0 rgba(55, 52, 169, 0.02);
             color: white;
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             transition: opacity 0.2s ease;
+        }
+        .who-we-are-section .who-we-are-button > span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .who-we-are-section .who-we-are-arrow {
+            position: relative;
+            width: 22px;
+            height: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .who-we-are-section .who-we-are-arrow svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: block;
+        }
+        .who-we-are-section .who-we-are-arrow .who-we-are-arrow-default {
+            width: 21px;
+            height: 21px;
+        }
+        .who-we-are-section .who-we-are-arrow .who-we-are-arrow-hover {
+            width: 17px;
+            height: 11px;
+        }
+        .who-we-are-section .who-we-are-arrow .who-we-are-arrow-hover {
+            display: none;
+        }
+        .who-we-are-section .who-we-are-button:hover .who-we-are-arrow-default {
+            display: none;
+        }
+        .who-we-are-section .who-we-are-button:hover .who-we-are-arrow-hover {
+            display: block;
         }
         .who-we-are-section .who-we-are-button:hover {
             opacity: 0.9;
@@ -83,7 +123,17 @@ function neways_who_we_are_section_shortcode($atts) {
                             <div class="mt-6 sm:mt-8 text-center">
                                 <a href="<?php echo esc_url($atts['button_url']); ?>" 
                                    class="who-we-are-button px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-medium">
-                                    <?php echo esc_html($atts['button_text']); ?>
+                                    <span>
+                                        <?php echo esc_html($atts['button_text']); ?>
+                                        <span class="who-we-are-arrow">
+                                            <svg class="who-we-are-arrow-default" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                                <path d="M11.5246 10.4999L7.19336 6.16861L8.43148 4.93136L14 10.4999L8.43149 16.0684L7.19424 14.8311L11.5246 10.4999Z" fill="#FFFFFF"/>
+                                            </svg>
+                                            <svg class="who-we-are-arrow-hover" xmlns="http://www.w3.org/2000/svg" width="17" height="11" viewBox="0 0 17 11" fill="none">
+                                                <path d="M10.7528 1.28425C10.459 0.990463 10.459 0.514133 10.7528 0.220343C11.0465 -0.0734475 11.5229 -0.0734475 11.8167 0.220343L16.3305 4.73412C16.6243 5.02792 16.6243 5.50432 16.3305 5.79802L11.8167 10.3119C11.5229 10.6056 11.0465 10.6056 10.7528 10.3119C10.459 10.0181 10.459 9.54172 10.7528 9.24792L13.9823 6.01842H0.7606C0.34053 6.01842 0 5.68162 0 5.26612C0 4.85062 0.34053 4.51382 0.7606 4.51382H13.9823L10.7528 1.28425Z" fill="#FFFFFF"/>
+                                            </svg>
+                                        </span>
+                                    </span>
                                 </a>
                             </div>
                         <?php endif; ?>

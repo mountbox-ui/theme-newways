@@ -35,13 +35,13 @@ if (!function_exists('hero_section_shortcode')) {
         ob_start();
         ?>
         <div id="hero-section" class="<?php echo esc_attr($atts['class']); ?> max-h-[625px] mb-0 sm:mb-0 md:mb-0 xl:mb-[80px]">
-            <div class="relative isolate overflow-hidden text-white">
+            <div class="isolate overflow-hidden text-white">
                 <div
-                    class="absolute inset-0 bg-cover bg-center"
+                    class="absolute inset-0 bg-cover bg-center h-[650px] sm:h-[700px]"
                     <?php echo $background ? 'style="background-image:url(\'' . esc_url($background) . '\');"' : ''; ?>
                 ></div>
 
-                <div class="relative z-10 mx-auto flex w-full max-w-[1220px] items-center px-6 pt-16 sm:px-1 md:px-8 lg:px-8 xl:px-1 sm:pt-24 pb-8 sm:pb-12 md:pb-8 ">
+                <div class="relative z-10 mx-auto flex w-full max-w-[1220px] items-center px-6 pt-16 sm:px-1 md:px-8 lg:px-8  sm:pt-20 pb-8 sm:pb-12 md:pb-8 ">
                     <div class="hero-section__content w-full max-w-[500px] text-left">
                         <?php echo do_shortcode($content); ?>
                     </div>
@@ -66,7 +66,7 @@ if (!function_exists('hero_section_pretitle_shortcode')) {
             'hero_pretitle'
         );
 
-        return '<h6 class="hero-section__badge inline-flex items-center  text-[#f9d463]  pt-20 ">'
+        return '<h6 class="hero-section__badge inline-flex items-center  text-[#f9d463] ">'
             . esc_html($atts['text']) . '</h6>';
     }
     add_shortcode('hero_pretitle', 'hero_section_pretitle_shortcode');

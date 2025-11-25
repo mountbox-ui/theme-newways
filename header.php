@@ -23,7 +23,7 @@
 //     : 'bg-[#07143a]/95 backdrop-blur-md border-b border-white/10';
 ?>
 <div id="page" class="site min-h-screen flex flex-col">
-    <header id="masthead" class="site-header fixed top-0 z-50 w-full bg-transparent">
+    <header id="masthead" class="site-header z-10 w-full bg-transparent">
         <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 md:px-10">
             <div class="flex items-center gap-4">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="block">
@@ -31,7 +31,7 @@
                 </a>
             </div>
 
-            <nav id="site-navigation" class="main-navigation hidden flex-1 items-center justify-end gap-8 font-manrope text-lg font-semibold text-white lg:flex">
+            <nav id="site-navigation" class="main-navigation hidden flex-1 items-center justify-end gap-8 font-lato text-lg font-semibold text-white lg:flex">
                 <?php
                 wp_nav_menu(
                     array(

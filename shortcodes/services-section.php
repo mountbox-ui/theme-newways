@@ -61,7 +61,7 @@ function neways_services_section_shortcode($atts) {
                     <?php echo esc_html($atts['title']); ?>
                 </h2>
                 <?php if (!empty($atts['intro'])) : ?>
-                    <p class="text-base sm:text-lg lg:text-xl text-[#1E1D37] max-w-full sm:max-w-2xl lg:max-w-lg leading-relaxed font-manrope font-medium">
+                    <p class="text-base sm:text-lg lg:text-xl text-[#1E1D37] max-w-full sm:max-w-2xl lg:max-w-lg leading-relaxed font-lato font-medium">
                         <?php echo esc_html($atts['intro']); ?>
                     </p>
                 <?php endif; ?>
@@ -108,9 +108,16 @@ function neways_services_section_shortcode($atts) {
                             </ul>
                             
                             <!-- Learn More Text -->
-                            <div class="group text-[#362470] font-manrope text-sm sm:text-base font-bold hover:text-[#4A5565] transition-colors inline-flex items-center gap-2 mt-auto">
+                            <div class="learn-more-link group text-[#362470] font-lato text-sm sm:text-base font-bold hover:text-[#4A5565] transition-colors inline-flex items-center gap-2 mt-auto">
                                 <span>Learn more</span>
-                                <span class="group-hover:translate-x-2 transition-transform duration-500">→</span>
+                                <span class="learn-more-arrow inline-flex items-center justify-center">
+                                    <svg class="learn-more-arrow-default w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                        <path d="M11.5246 10.4999L7.19336 6.16861L8.43148 4.93136L14 10.4999L8.43149 16.0684L7.19424 14.8311L11.5246 10.4999Z" fill="#242163"/>
+                                    </svg>
+                                    <svg class="learn-more-arrow-hover w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg" width="17" height="11" viewBox="0 0 17 11" fill="none">
+                                        <path d="M10.7528 1.28425C10.459 0.990463 10.459 0.514133 10.7528 0.220343C11.0465 -0.0734475 11.5229 -0.0734475 11.8167 0.220343L16.3305 4.73412C16.6243 5.02792 16.6243 5.50432 16.3305 5.79802L11.8167 10.3119C11.5229 10.6056 11.0465 10.6056 10.7528 10.3119C10.459 10.0181 10.459 9.54172 10.7528 9.24792L13.9823 6.01842H0.7606C0.34053 6.01842 0 5.68162 0 5.26612C0 4.85062 0.34053 4.51382 0.7606 4.51382H13.9823L10.7528 1.28425Z" fill="#362470"/>
+                                    </svg>
+                                </span>
                             </div>
                         </div>
                     </a>

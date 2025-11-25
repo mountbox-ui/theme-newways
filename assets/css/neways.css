@@ -1839,20 +1839,6 @@ nav a:hover {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.site-header.fixed {
-  top: 0px;
-}
-
-body.admin-bar .site-header.fixed {
-  top: 20px;
-}
-
-@media (max-width: 782px) {
-  body.admin-bar .site-header.fixed {
-    top: 30px;
-  }
-}
-
 .site-header.header-solid {
   --tw-bg-opacity: 1;
   background-color: rgb(1 72 84 / var(--tw-bg-opacity, 1));
@@ -2132,6 +2118,71 @@ body.admin-bar .site-header.fixed {
   display: block;
 }
 
+.read-more-arrow,
+    .learn-more-arrow {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.read-more-arrow svg,
+    .learn-more-arrow svg {
+  position: absolute;
+  inset: 0;
+}
+
+.read-more-arrow-hover,
+    .learn-more-arrow-hover {
+  display: none;
+}
+
+.read-more-link:hover .read-more-arrow-default,
+    .learn-more-link:hover .learn-more-arrow-default {
+  display: none;
+}
+
+.read-more-link:hover .read-more-arrow-hover,
+    .learn-more-link:hover .learn-more-arrow-hover {
+  display: block;
+}
+
+.sub-brands-learn-more-arrow {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sub-brands-learn-more-arrow svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+}
+
+.sub-brands-learn-more-arrow .sub-brands-learn-more-default {
+  width: 21px;
+  height: 21px;
+}
+
+.sub-brands-learn-more-arrow .sub-brands-learn-more-hover {
+  width: 17px;
+  height: 11px;
+  display: none;
+}
+
+.sub-brands-learn-more:hover .sub-brands-learn-more-arrow .sub-brands-learn-more-default {
+  display: none;
+}
+
+.sub-brands-learn-more:hover .sub-brands-learn-more-arrow .sub-brands-learn-more-hover {
+  display: block;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -2226,10 +2277,6 @@ body.admin-bar .site-header.fixed {
 
 .z-20 {
   z-index: 20;
-}
-
-.z-50 {
-  z-index: 50;
 }
 
 .col-span-3 {
@@ -2475,6 +2522,10 @@ body.admin-bar .site-header.fixed {
   height: 20rem;
 }
 
+.h-\[650px\] {
+  height: 650px;
+}
+
 .h-auto {
   height: auto;
 }
@@ -2629,11 +2680,6 @@ body.admin-bar .site-header.fixed {
 
 .-translate-x-12 {
   --tw-translate-x: -3rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.-translate-x-2 {
-  --tw-translate-x: -0.5rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -3406,10 +3452,6 @@ body.admin-bar .site-header.fixed {
   padding-top: 4rem;
 }
 
-.pt-20 {
-  padding-top: 5rem;
-}
-
 .pt-6 {
   padding-top: 1.5rem;
 }
@@ -3938,10 +3980,6 @@ body.admin-bar .site-header.fixed {
   transition-duration: 300ms;
 }
 
-.duration-500 {
-  transition-duration: 500ms;
-}
-
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -4260,18 +4298,8 @@ body.admin-bar .site-header.fixed {
   width: 1.25rem;
 }
 
-.group:hover .group-hover\:translate-x-0 {
-  --tw-translate-x: 0px;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 .group:hover .group-hover\:translate-x-1 {
   --tw-translate-x: 0.25rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.group:hover .group-hover\:translate-x-2 {
-  --tw-translate-x: 0.5rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -4354,6 +4382,10 @@ body.admin-bar .site-header.fixed {
 
   .sm\:h-56 {
     height: 14rem;
+  }
+
+  .sm\:h-\[700px\] {
+    height: 700px;
   }
 
   .sm\:w-10 {
@@ -4541,8 +4573,8 @@ body.admin-bar .site-header.fixed {
     padding-bottom: 2rem;
   }
 
-  .sm\:pt-24 {
-    padding-top: 6rem;
+  .sm\:pt-20 {
+    padding-top: 5rem;
   }
 
   .sm\:pt-48 {
@@ -5095,11 +5127,6 @@ body.admin-bar .site-header.fixed {
   .xl\:px-0 {
     padding-left: 0px;
     padding-right: 0px;
-  }
-
-  .xl\:px-1 {
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
   }
 }
 
