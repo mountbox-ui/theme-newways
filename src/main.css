@@ -294,6 +294,16 @@
         display: block;
     }
 
+    .sub-brand-card {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .sub-brand-card:hover {
+        text-decoration: none;
+        color: inherit;
+    }
+
     .hero-cta-arrow {
         position: relative;
         width: 22px;
