@@ -41,7 +41,8 @@ function neways_who_we_are_section_shortcode($atts) {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.2s ease;
+            transition: all 0.3s ease-in-out;
+            transform: translateY(0);
         }
         .who-we-are-section .who-we-are-button > span {
             display: inline-flex;
@@ -82,7 +83,13 @@ function neways_who_we_are_section_shortcode($atts) {
             display: block;
         }
         .who-we-are-section .who-we-are-button:hover {
-            opacity: 0.9;
+            background: white;
+            color: #381F75;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 5px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+        .who-we-are-section .who-we-are-button:hover .who-we-are-arrow svg path {
+            fill: #381F75;
         }
     </style>
     <section class="who-we-are-section  <?php echo esc_attr($bg_class); ?> <?php echo esc_attr($atts['class']); ?>">

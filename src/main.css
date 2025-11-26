@@ -69,7 +69,17 @@
     }
 
     .btn-primary {
-        @apply font-lato justify-center text-white text-sm sm:text-base font-bold rounded-full leading-snug tracking-wide flex items-center gap-3 px-5 py-3 sm:px-6 sm:py-4 transition duration-300 ease-in-out;
+        @apply font-lato justify-center text-white text-sm sm:text-lg font-bold rounded-full leading-snug tracking-wide flex items-center gap-3 px-5 py-3 sm:px-6 sm:py-4 transition duration-300 ease-in-out;
+    }
+
+    .site-header .btn-primary {
+        @apply transition-all duration-300 ease-in-out;
+    }
+
+    .site-header .btn-primary:hover {
+        @apply shadow-xl bg-white text-black font-bold;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 5px 10px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
     }
 
     .btn-secondary {
@@ -217,8 +227,45 @@
         opacity: 1;
     }
 
+    .view-all-news-btn {
+        transition: all 0.3s ease-in-out;
+    }
+
+    .view-all-news-arrow {
+        position: relative;
+        width: 22px;
+        height: 22px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .view-all-news-arrow svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .view-all-news-arrow .default-arrow {
+        width: 21px;
+        height: 21px;
+    }
+
     .view-all-news-arrow .hover-arrow {
+        width: 17px;
+        height: 11px;
         display: none;
+    }
+
+    .view-all-news-btn:hover {
+        transform: translateX(4px);
+    }
+
+    .view-all-news-btn:hover .view-all-news-arrow svg {
+        transform: translate(-50%, -50%) translateX(2px);
     }
 
     .view-all-news-btn:hover .view-all-news-arrow .default-arrow {
@@ -232,14 +279,20 @@
     .read-more-arrow,
     .learn-more-arrow {
         position: relative;
-        width: 20px;
-        height: 20px;
+        width: 22px;
+        height: 22px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
     }
 
     .read-more-arrow svg,
     .learn-more-arrow svg {
         position: absolute;
-        inset: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .read-more-arrow-hover,
@@ -247,13 +300,126 @@
         display: none;
     }
 
-    .read-more-link:hover .read-more-arrow-default,
-    .learn-more-link:hover .learn-more-arrow-default {
+    .learn-more-arrow .learn-more-arrow-default {
+        width: 21px;
+        height: 21px;
+    }
+
+    .learn-more-arrow .learn-more-arrow-hover {
+        width: 17px;
+        height: 11px;
+    }
+
+    .read-more-link {
+        transition: all 0.3s ease-in-out;
+        display: inline-flex;
+        align-items: center;
+        transform: translateX(0);
+    }
+
+    .read-more-arrow {
+        transition: transform 0.3s ease-in-out;
+        position: relative;
+    }
+
+    .read-more-arrow svg {
+        transform: translate(-50%, -50%);
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+
+    .read-more-arrow .read-more-arrow-default {
+        width: 21px;
+        height: 21px;
+        opacity: 1;
+        display: block;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .read-more-arrow .read-more-arrow-hover {
+        width: 17px;
+        height: 11px;
+        opacity: 0;
+        display: none;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    article:hover .read-more-link {
+        transform: translateX(4px);
+    }
+
+    article:hover .read-more-arrow {
+        transform: translateX(2px);
+    }
+
+    article:hover .read-more-arrow svg {
+        transform: translate(-50%, -50%) translateX(2px);
+    }
+
+    article:hover .read-more-arrow .read-more-arrow-default {
+        opacity: 0;
+        display: none !important;
+    }
+
+    article:hover .read-more-arrow .read-more-arrow-hover {
+        opacity: 1;
+        display: block !important;
+    }
+
+    .read-more-link:hover {
+        transform: translateX(0) !important;
+    }
+
+    .read-more-link:hover .read-more-arrow {
+        transform: translateX(0) !important;
+    }
+
+    .read-more-link:hover .read-more-arrow svg {
+        transform: translate(-50%, -50%) !important;
+    }
+
+    .read-more-link:hover .read-more-arrow .read-more-arrow-default {
+        opacity: 1 !important;
+        display: block !important;
+    }
+
+    .read-more-link:hover .read-more-arrow .read-more-arrow-hover {
+        opacity: 0 !important;
+        display: none !important;
+    }
+
+    article:not(:hover) .read-more-arrow .read-more-arrow-default {
+        display: block !important;
+        opacity: 1;
+    }
+
+    article:not(:hover) .read-more-arrow .read-more-arrow-hover {
+        display: none !important;
+        opacity: 0;
+    }
+
+    .learn-more-link {
+        transition: all 0.3s ease-in-out;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .learn-more-arrow {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .service-card:hover .learn-more-link {
+        transform: translateX(4px);
+    }
+
+    .service-card:hover .learn-more-arrow svg {
+        transform: translate(-50%, -50%) translateX(2px);
+    }
+
+    .service-card:hover .learn-more-arrow .learn-more-arrow-default {
         display: none;
     }
 
-    .read-more-link:hover .read-more-arrow-hover,
-    .learn-more-link:hover .learn-more-arrow-hover {
+    .service-card:hover .learn-more-arrow .learn-more-arrow-hover {
         display: block;
     }
 
@@ -265,6 +431,7 @@
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
+        vertical-align: middle;
     }
 
     .sub-brands-learn-more-arrow svg {
@@ -273,6 +440,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         display: block;
+        vertical-align: middle;
     }
 
     .sub-brands-learn-more-arrow .sub-brands-learn-more-default {
@@ -291,6 +459,33 @@
     }
 
     .sub-brands-learn-more:hover .sub-brands-learn-more-arrow .sub-brands-learn-more-hover {
+        display: block;
+    }
+
+    .sub-brands-learn-more {
+        transition: all 0.3s ease-in-out;
+        display: inline-flex;
+        align-items: center;
+        vertical-align: middle;
+    }
+
+    .sub-brands-learn-more-arrow {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .sub-brand-card:hover .sub-brands-learn-more {
+        transform: translateX(4px);
+    }
+
+    .sub-brand-card:hover .sub-brands-learn-more-arrow svg {
+        transform: translate(-50%, -50%) translateX(2px);
+    }
+
+    .sub-brand-card:hover .sub-brands-learn-more-arrow .sub-brands-learn-more-default {
+        display: none;
+    }
+
+    .sub-brand-card:hover .sub-brands-learn-more-arrow .sub-brands-learn-more-hover {
         display: block;
     }
 
