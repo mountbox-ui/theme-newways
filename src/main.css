@@ -293,6 +293,47 @@
     .sub-brands-learn-more:hover .sub-brands-learn-more-arrow .sub-brands-learn-more-hover {
         display: block;
     }
+
+    .hero-cta-arrow {
+        position: relative;
+        width: 22px;
+        height: 22px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .hero-cta-arrow svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .hero-cta-arrow .hero-cta-arrow-default {
+        width: 21px;
+        height: 21px;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .hero-cta-arrow .hero-cta-arrow-hover {
+        width: 17px;
+        height: 11px;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .hero-section__cta:hover .hero-cta-arrow .hero-cta-arrow-default {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .hero-section__cta:hover .hero-cta-arrow .hero-cta-arrow-hover {
+        opacity: 1;
+        visibility: visible;
+    }
 }
 
 @layer utilities {

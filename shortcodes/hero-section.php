@@ -41,7 +41,7 @@ if (!function_exists('hero_section_shortcode')) {
                     <?php echo $background ? 'style="background-image:url(\'' . esc_url($background) . '\');"' : ''; ?>
                 ></div>
 
-                <div class="relative z-10 mx-auto flex w-full max-w-[1220px] items-center px-6 pt-16 sm:px-1 md:px-8 lg:px-8  sm:pt-20 pb-8 sm:pb-12 md:pb-8 ">
+                <div class="relative z-10 mx-auto flex w-full max-w-[1220px] items-center px-6 pt-16 pb-8 sm:px-1 sm:pt-20 sm:pb-12 md:px-8 md:pb-8 lg:px-0">
                     <div class="hero-section__content w-full max-w-[500px] text-left">
                         <?php echo do_shortcode($content); ?>
                     </div>
@@ -127,9 +127,14 @@ if (!function_exists('hero_section_buttons_shortcode')) {
 
         $button = '<a href="' . esc_url($atts['primary_url']) . '" class="hero-section__cta group inline-flex items-center justify-center gap-2 rounded-full btn-primary text-black bg-[#FFB64D] shadow-[0_4px_4px_0_rgba(0,0,0,0.25),0_67px_80px_0_rgba(55,52,169,0.07),0_43.426px_46.852px_0_rgba(55,52,169,0.05),0_25.807px_25.481px_0_rgba(55,52,169,0.04),0_13.4px_13px_0_rgba(55,52,169,0.04),0_5.459px_6.519px_0_rgba(55,52,169,0.03),0_1.241px_3.148px_0_rgba(55,52,169,0.02)] hover:bg-white  hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ease-in-out">'
             . '<span class="text-center">' . esc_html($atts['primary_text']) . '</span>'
-            . '<svg class="w-0 h-5 opacity-0 w-0 group-hover:opacity-100 group-hover:w-5 transition-all duration-300 ease-in-out flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">'
-            . '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>'
+            . '<span class="hero-cta-arrow inline-flex items-center justify-center">'
+            . '<svg class="hero-cta-arrow-default" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">'
+            . '<path d="M11.5246 10.4999L7.19336 6.16861L8.43148 4.93136L14 10.4999L8.43149 16.0684L7.19424 14.8311L11.5246 10.4999Z" fill="#242163"/>'
             . '</svg>'
+            . '<svg class="hero-cta-arrow-hover" xmlns="http://www.w3.org/2000/svg" width="17" height="11" viewBox="0 0 17 11" fill="none">'
+            . '<path d="M10.7528 1.28425C10.459 0.990463 10.459 0.514132 10.7528 0.220343C11.0465 -0.0734475 11.5229 -0.0734475 11.8167 0.220343L16.3305 4.73412C16.6243 5.02792 16.6243 5.50432 16.3305 5.79802L11.8167 10.3119C11.5229 10.6056 11.0465 10.6056 10.7528 10.3119C10.459 10.0181 10.459 9.54172 10.7528 9.24792L13.9823 6.01842H0.7606C0.34053 6.01842 0 5.68162 0 5.26612C0 4.85062 0.34053 4.51382 0.7606 4.51382H13.9823L10.7528 1.28425Z" fill="#362470"/>'
+            . '</svg>'
+            . '</span>'
             . '</a>';
 
         return '<div class="mt-4 flex flex-wrap items-center gap-4">' . $button . '</div>';
