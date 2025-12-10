@@ -37,11 +37,11 @@ if (!function_exists('hero_section_shortcode')) {
         <div id="hero-section" class="<?php echo esc_attr($atts['class']); ?> max-h-[625px] mb-0 sm:mb-0 md:mb-0 xl:mb-[80px]">
             <div class="isolate overflow-hidden text-white">
                 <div
-                    class="absolute inset-0 bg-cover bg-center h-[650px] sm:h-[700px]"
+                    class="absolute inset-0 bg-auto bg-center h-[650px] sm:h-[700px] md:h-[650px]"
                     <?php echo $background ? 'style="background-image:url(\'' . esc_url($background) . '\');"' : ''; ?>
                 ></div>
 
-                <div class="relative z-10 mx-auto flex w-full max-w-[1220px] items-center px-6 pt-16 pb-8 sm:px-1 sm:pt-20 sm:pb-12 md:px-8 md:pb-8 lg:px-0">
+                <div class="relative z-10 mx-auto flex w-full max-w-[1220px] items-center px-6 pt-16 pb-8  sm:pt-16sm:pb-12 md:px-8 md:pb-8 xl:px-0">
                     <div class="hero-section__content w-full max-w-[500px] text-left">
                         <?php echo do_shortcode($content); ?>
                     </div>
@@ -102,13 +102,14 @@ if (!function_exists('hero_section_paragraph_shortcode')) {
             'hero_paragraph'
         );
 
-        return '<p class="hero-section__description font-lato font-medium pb-9 text-lg leading-6 text-[rgba(255,255,255,0.74)] md:text-lg sm:text-base sm:leading-[1.9]">'
+        return '<p class="hero-section__description font-lato font-medium pb-9 text-lg leading-[26px] text-[rgba(255,255,255,0.74)] md:text-lg sm:text-base sm:leading-[1.9]">'
             . esc_html($atts['text']) . '</p>';
     }
     add_shortcode('hero_paragraph', 'hero_section_paragraph_shortcode');
 }
 
 // === Buttons Row Shortcode ===
+
 if (!function_exists('hero_section_buttons_shortcode')) {
     function hero_section_buttons_shortcode($atts)
     {
@@ -121,23 +122,36 @@ if (!function_exists('hero_section_buttons_shortcode')) {
             'hero_buttons'
         );
 
+        // Return empty if either text or URL is missing
         if (empty($atts['primary_text']) || empty($atts['primary_url'])) {
             return '';
         }
 
-        $button = '<a href="' . esc_url($atts['primary_url']) . '" class="hero-section__cta group inline-flex items-center justify-center gap-2 rounded-full btn-primary text-black bg-[#FFB64D] shadow-[0_4px_4px_0_rgba(0,0,0,0.25),0_67px_80px_0_rgba(55,52,169,0.07),0_43.426px_46.852px_0_rgba(55,52,169,0.05),0_25.807px_25.481px_0_rgba(55,52,169,0.04),0_13.4px_13px_0_rgba(55,52,169,0.04),0_5.459px_6.519px_0_rgba(55,52,169,0.03),0_1.241px_3.148px_0_rgba(55,52,169,0.02)] hover:bg-white  hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ease-in-out">'
-            . '<span class="text-center">' . esc_html($atts['primary_text']) . '</span>'
-            . '<span class="hero-cta-arrow inline-flex items-center justify-center">'
-            . '<svg class="hero-cta-arrow-default" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">'
-            . '<path d="M11.5246 10.4999L7.19336 6.16861L8.43148 4.93136L14 10.4999L8.43149 16.0684L7.19424 14.8311L11.5246 10.4999Z" fill="#242163"/>'
-            . '</svg>'
-            . '<svg class="hero-cta-arrow-hover" xmlns="http://www.w3.org/2000/svg" width="17" height="11" viewBox="0 0 17 11" fill="none">'
-            . '<path d="M10.7528 1.28425C10.459 0.990463 10.459 0.514132 10.7528 0.220343C11.0465 -0.0734475 11.5229 -0.0734475 11.8167 0.220343L16.3305 4.73412C16.6243 5.02792 16.6243 5.50432 16.3305 5.79802L11.8167 10.3119C11.5229 10.6056 11.0465 10.6056 10.7528 10.3119C10.459 10.0181 10.459 9.54172 10.7528 9.24792L13.9823 6.01842H0.7606C0.34053 6.01842 0 5.68162 0 5.26612C0 4.85062 0.34053 4.51382 0.7606 4.51382H13.9823L10.7528 1.28425Z" fill="#362470"/>'
-            . '</svg>'
-            . '</span>'
-            . '</a>';
+        // Button HTML with reusable btn-hero class and inline background color
+        $button = '<a href="' . esc_url($atts['primary_url']) . '" class="btn-hero group" >
+                    <span>' . esc_html($atts['primary_text']) . '</span>
+                    <span class="btn-hero-arrow">
+                        <svg viewBox="0 0 6 9" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                            <!-- Arrow head -->
+                            <g class="btn-hero-arrow-head">
+                                <path d="M1 1C4.5 4 5 4.38484 5 4.5C5 4.61516 4.5 5 1 8" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                            <!-- Arrow body -->
+                            <g class="btn-hero-arrow-body">
+                                <path d="M3.5 4.5H0" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                            </g>
+                        </svg>
+                    </span>
+                </a>';
 
+                
+                
+
+        // Wrap the button in a flex container for spacing
         return '<div class="mt-4 flex flex-wrap items-center gap-4">' . $button . '</div>';
     }
+
     add_shortcode('hero_buttons', 'hero_section_buttons_shortcode');
 }
+
+

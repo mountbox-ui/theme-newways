@@ -4,7 +4,7 @@
 
 @layer base {
     body {
-        @apply font-sans text-gray-900 bg-white;
+        @apply font-lato text-[#1E1D37] bg-white;
     }
     
     /* Force all dark mode styles to match light mode */
@@ -41,15 +41,19 @@
     h2 span {
         @apply font-lora italic font-medium text-2xl sm:text-3xl md:text-4xl;
     }
+
+    .paragraph {
+        @apply font-lato  font-normal text-[18px] leading-[26px];
+    }
 }
 
 @layer components {
     nav a {
-        @apply font-lato text-white no-underline text-base leading-7 transition-colors duration-300 sm:text-lg font-semibold;
+        @apply font-lato text-white no-underline text-base leading-[26px] transition-colors duration-300 sm:text-lg font-medium;
     }
 
     nav a:hover {
-        @apply text-[#CDAC79] font-semibold;
+        @apply text-[#CDAC79] ;
     }
 
     .main-navigation a {
@@ -64,27 +68,103 @@
         @apply bg-[#014854] shadow-[0_8px_16px_rgba(0,0,0,0.15)];
     }
 
+    /* button styling */
+
     .btn {
-        @apply inline-flex items-center border border-transparent font-medium rounded-md shadow-sm transition duration-300 ease-in-out;
+        @apply flex px-[20px] py-[8px] justify-center items-center gap-[10px] rounded-3xl bg-[#453E60] text-white font-lato text-[18px] font-medium leading-[30px] tracking-[-0.18px] transition duration-300 ease-in-out;
     }
 
     .btn-primary {
-        @apply font-lato justify-center text-white text-sm sm:text-lg font-bold rounded-full leading-snug tracking-wide flex items-center gap-3 px-5 py-3 sm:px-6 sm:py-4 transition duration-300 ease-in-out;
-    }
-
-    .site-header .btn-primary {
-        @apply transition-all duration-300 ease-in-out;
-    }
-
-    .site-header .btn-primary:hover {
-        @apply shadow-xl bg-white text-black font-bold;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 5px 10px rgba(0, 0, 0, 0.2);
-        transform: translateY(-2px);
+        @apply font-lato justify-center text-white text-sm sm:text-base leading-snug tracking-wide flex items-center gap-[9px] px-[18px] py-[16px] opacity-90 transition duration-300 ease-in-out;
     }
 
     .btn-secondary {
         @apply font-lato text-white text-base sm:text-lg leading-snug tracking-wide flex items-center gap-2 px-6 sm:px-7 py-4 sm:py-5 rounded-md bg-[#016A7C] opacity-90 w-full sm:w-auto min-w-[180px] sm:min-w-[235px] justify-center;
     }
+
+    .btn-resources {
+        @apply px-[18px] py-[10px] justify-center transition-all duration-300 ease-in-out bg-[#016A7C];
+    }
+
+    .btn-resources svg {
+        @apply transition-transform duration-300 ease-in-out;
+    }
+
+    .btn-resources:hover {
+        @apply bg-[#018a9f];
+    }
+
+    .btn-resources:hover svg {
+        @apply translate-x-1;
+    }
+
+    /* Hero/CTA Button with Arrow Animation - Tailwind Classes */
+    .btn-hero {
+        @apply inline-flex items-center font-lato text-base font-bold;
+        @apply text-black px-6 no-underline cursor-pointer relative;
+        @apply transition-all duration-300 ease-in-out;
+        border-radius: 46px;
+        background-color: #FFB64D;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border: 0;
+        line-height: 30px;
+        letter-spacing: -0.16px;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25), 
+                    0 67px 80px 0 rgba(55, 52, 169, 0.07), 
+                    0 43.426px 46.852px 0 rgba(55, 52, 169, 0.05), 
+                    0 25.807px 25.481px 0 rgba(55, 52, 169, 0.04), 
+                    0 13.4px 13px 0 rgba(55, 52, 169, 0.04), 
+                    0 5.459px 6.519px 0 rgba(55, 52, 169, 0.03), 
+                    0 1.241px 3.148px 0 rgba(55, 52, 169, 0.02);
+    }
+
+    .btn-hero:hover {
+        @apply no-underline;
+        background-color: white;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .btn-hero span {
+        @apply inline-block;
+    }
+
+    .btn-hero-arrow {
+        @apply ml-2 inline-block flex-shrink-0 overflow-visible relative;
+        width: 20px;
+        height: 12px;
+    }
+
+    .btn-hero-arrow svg {
+        @apply block absolute left-0 top-0 overflow-visible;
+        width: 8px;
+        height: 12px;
+    }
+
+    .btn-hero-arrow-head {
+        @apply transform transition-transform duration-300 ease-in-out;
+        transform: translateX(0);
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .btn-hero:hover .btn-hero-arrow-head {
+        transform: translateX(3px);
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .btn-hero-arrow-body {
+        @apply opacity-0 origin-left transition-all duration-300 ease-in-out invisible;
+        transform: scaleX(1);
+    }
+
+    .btn-hero:hover .btn-hero-arrow-body {
+        @apply opacity-100 visible;
+        transform: scaleX(2);
+    }
+
+    /* button styling end */
 
     .bg-primary {
         @apply bg-[#014854];
@@ -203,7 +283,7 @@
     }
 
     .grid > article:hover {
-        @apply border-[#d1d5db] shadow-[0_4px_20px_rgba(0,0,0,0.08)] bg-white/95;
+        @apply  shadow-[0_4px_20px_rgba(0,0,0,0.08)] bg-white/95;
     }
 
     .grid > article:hover::before {
@@ -596,4 +676,9 @@
     background-color: inherit !important;
     color: inherit !important;
     border-color: inherit !important;
+}
+
+/* Careers page header override */
+.header-careers {
+    background-color: #1C1A1D !important;
 }

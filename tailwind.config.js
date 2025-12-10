@@ -39,7 +39,6 @@ module.exports = {
         'inter': ["Inter", 'sans-serif'],
         'jakarta': ["Plus Jakarta Sans", 'sans-serif'],
         'lato': ["Lato", 'sans-serif'],
-        'manrope': ["Manrope", 'sans-serif'],
         'marcellus': ["Marcellus", 'serif'],
         'lora': ["Lora", 'serif'],
       },

@@ -22,9 +22,15 @@
 //     ? 'bg-gradient-to-r from-[#07143a]/85 via-[#0c1f4a]/80 to-[#0c1f4a]/60 backdrop-blur-md border-b border-white/10'
 //     : 'bg-[#07143a]/95 backdrop-blur-md border-b border-white/10';
 ?>
+<?php
+$header_classes = 'site-header z-10 w-full bg-transparent';
+if (is_singular('jobs') || is_page_template('jobs/page-jobs.php') || is_page('career')) {
+    $header_classes .= ' header-careers';
+}
+?>
 <div id="page" class="site min-h-screen flex flex-col">
-    <header id="masthead" class="site-header z-10 w-full bg-transparent">
-        <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 md:px-10">
+    <header id="masthead" class="<?php echo esc_attr($header_classes); ?>">
+        <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 pt-4 md:px-10">
             <div class="flex items-center gap-4">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="block">
                     <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo.png' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" class="w-20 h-24 object-contain" />
@@ -44,7 +50,7 @@
                     )
                 );
                 ?>
-                <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="btn-primary bg-[#453E60] ">
+                <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="btn min-w-[150px] bg-[#453E60] ">
                     <?php esc_html_e( 'Contact us', 'neways-theme' ); ?>
                 </a>
             </nav>
@@ -70,7 +76,7 @@
                 )
             );
             ?>
-            <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="btn-primary bg-[#453E60] ">
+            <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="btn ">
                 <?php esc_html_e( 'Contact us', 'neways-theme' ); ?>
             </a>
         </nav>
