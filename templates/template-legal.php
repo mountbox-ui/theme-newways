@@ -17,9 +17,9 @@ get_header();
             <article id="post-<?php the_ID(); ?>" <?php post_class('legal-page'); ?>>
                 
                 <!-- Hero Section -->
-                <div class="legal-hero bg-gradient-to-br from-[#014854] to-[#0a2540] text-white py-16 sm:py-20 lg:py-24">
+                <div class="legal-hero bg-gradient-to-br from-[#014854] to-[#0a2540] text-black py-16 sm:py-20 lg:py-[200px]">
                     <div class="max-w-4xl mx-auto px-6 lg:px-8">
-                        <h1 class="font-marcellus text-4xl sm:text-5xl lg:text-6xl font-normal mb-4">
+                        <h1 class="font-lato text-4xl sm:text-5xl lg:text-6xl text-black font-normal mb-4">
                             <?php the_title(); ?>
                         </h1>
                         <?php if (get_the_modified_date()) : ?>

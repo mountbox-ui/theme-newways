@@ -18,22 +18,30 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <?php
-// $header_classes = ( is_front_page() || is_home() )
-//     ? 'bg-gradient-to-r from-[#07143a]/85 via-[#0c1f4a]/80 to-[#0c1f4a]/60 backdrop-blur-md border-b border-white/10'
-//     : 'bg-[#07143a]/95 backdrop-blur-md border-b border-white/10';
-?>
-<?php
-$header_classes = 'site-header z-10 w-full bg-transparent';
-if (is_singular('jobs') || is_page_template('jobs/page-jobs.php') || is_page('career')) {
-    $header_classes .= ' header-careers';
+// Determine header classes based on page type
+if (is_front_page() || is_home()) {
+    // Home page - transparent background
+    $header_classes = 'site-header z-10 w-full bg-transparent';
+    $container_classes = 'mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 pt-4 md:px-10';
+    $logo_classes = 'w-20 h-24 object-contain';
+} else {
+    // All other pages - solid background with fixed height
+    $header_classes = 'site-header z-50 w-full bg-[#0F172B] h-20';
+    $container_classes = 'mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 h-full md:px-10';
+    $logo_classes = 'h-16 w-auto object-contain';
+    
+    // Special background for careers pages
+    if (is_singular('jobs') || is_page_template('jobs/page-jobs.php') || is_page('career')) {
+        $header_classes = 'site-header z-50 w-full bg-[#1C1A1D] h-20 header-careers';
+    }
 }
 ?>
 <div id="page" class="site min-h-screen flex flex-col">
     <header id="masthead" class="<?php echo esc_attr($header_classes); ?>">
-        <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 pt-4 md:px-10">
+        <div class="<?php echo esc_attr($container_classes); ?>">
             <div class="flex items-center gap-4">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="block">
-                    <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo.png' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" class="w-20 h-24 object-contain" />
+                    <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo.png' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" class="<?php echo esc_attr($logo_classes); ?>" />
                 </a>
             </div>
 

@@ -65,7 +65,11 @@
     }
 
     .site-header.header-solid {
-        @apply bg-[#014854] shadow-[0_8px_16px_rgba(0,0,0,0.15)];
+        @apply bg-[#0F172B] shadow-[0_2px_8px_rgba(0,0,0,0.1)];
+    }
+
+    .site-header.header-careers {
+        @apply bg-[#1C1A1D];
     }
 
     /* button styling */
