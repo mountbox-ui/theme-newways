@@ -74,6 +74,87 @@ add_filter('nav_menu_css_class', 'neways_theme_nav_menu_css_class', 10, 3);
 
 
 /**
+ * Add Footer Menu Meta Box
+ */
+function neways_add_footer_menu_meta_box() {
+    add_meta_box(
+        'neways_footer_menu',
+        'Footer Menu Location',
+        'neways_footer_menu_meta_box_callback',
+        'page',
+        'side',
+        'default'
+    );
+}
+add_action('add_meta_boxes', 'neways_add_footer_menu_meta_box');
+
+/**
+ * Footer Menu Meta Box Callback
+ */
+function neways_footer_menu_meta_box_callback($post) {
+    wp_nonce_field('neways_footer_menu_nonce', 'neways_footer_menu_nonce');
+    $value = get_post_meta($post->ID, '_neways_footer_menu', true);
+    ?>
+    <label for="neways_footer_menu_select">Display this page in:</label>
+    <select name="neways_footer_menu" id="neways_footer_menu_select" style="width: 100%; margin-top: 10px;">
+        <option value="">-- None --</option>
+        <option value="sub-brands" <?php selected($value, 'sub-brands'); ?>>Our Sub-Brands</option>
+        <option value="quick-links" <?php selected($value, 'quick-links'); ?>>Quick Links</option>
+    </select>
+    <p style="margin-top: 10px; font-size: 12px; color: #666;">
+        Select where you want this page to appear in the footer menu.
+    </p>
+    <?php
+}
+
+/**
+ * Save Footer Menu Meta Box
+ */
+function neways_save_footer_menu_meta_box($post_id) {
+    if (!isset($_POST['neways_footer_menu_nonce'])) {
+        return;
+    }
+    if (!wp_verify_nonce($_POST['neways_footer_menu_nonce'], 'neways_footer_menu_nonce')) {
+        return;
+    }
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+    
+    if (isset($_POST['neways_footer_menu'])) {
+        update_post_meta($post_id, '_neways_footer_menu', sanitize_text_field($_POST['neways_footer_menu']));
+    } else {
+        delete_post_meta($post_id, '_neways_footer_menu');
+    }
+}
+add_action('save_post', 'neways_save_footer_menu_meta_box');
+
+/**
+ * Get Footer Menu Pages
+ */
+function neways_get_footer_menu_pages($menu_location) {
+    $args = array(
+        'post_type'      => 'page',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1,
+        'orderby'        => 'menu_order',
+        'order'          => 'ASC',
+        'meta_query'     => array(
+            array(
+                'key'     => '_neways_footer_menu',
+                'value'   => $menu_location,
+                'compare' => '='
+            )
+        )
+    );
+    
+    return get_posts($args);
+}
+
+/**
  * Load Shortcodes
  */
 require_once get_template_directory() . '/shortcodes/loader.php';

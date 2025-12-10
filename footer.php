@@ -20,20 +20,35 @@
                     <h4 class="text-white font-semibold text-base mb-4 font-lato">Our Sub-Brands</h4>
                     <ul class="space-y-3">
                         <?php
-                        $sub_brands = array(
-                            array('title' => 'Neways at Home', 'url' => '#'),
-                            array('title' => 'Neways Residential', 'url' => '#'),
-                            array('title' => 'Neways Recruitment', 'url' => '#'),
-                            array('title' => 'Neways Consulting', 'url' => '#'),
-                        );
-                        foreach ($sub_brands as $brand) : ?>
-                            <li>
-                                <a href="<?php echo esc_url($brand['url']); ?>" 
-                                   class="text-[#99A1AF] hover:text-gray-300 transition-colors duration-200 text-sm font-lato font-normal tracking-[-0.15px]">
-                                    <?php echo esc_html($brand['title']); ?>
-                                </a>
-                            </li>
-                        <?php endforeach; ?>
+                        // Get pages assigned to sub-brands menu
+                        $sub_brand_pages = neways_get_footer_menu_pages('sub-brands');
+                        
+                        if (!empty($sub_brand_pages)) :
+                            foreach ($sub_brand_pages as $page) : ?>
+                                <li>
+                                    <a href="<?php echo esc_url(get_permalink($page->ID)); ?>" 
+                                       class="text-[#99A1AF] hover:text-gray-300 transition-colors duration-200 text-sm font-lato font-normal tracking-[-0.15px]">
+                                        <?php echo esc_html($page->post_title); ?>
+                                    </a>
+                                </li>
+                            <?php endforeach;
+                        else :
+                            // Fallback default links if no pages assigned
+                            $sub_brands = array(
+                                array('title' => 'Neways at Home', 'url' => '#'),
+                                array('title' => 'Neways Residential', 'url' => '#'),
+                                array('title' => 'Neways Recruitment', 'url' => '#'),
+                                array('title' => 'Neways Consulting', 'url' => '#'),
+                            );
+                            foreach ($sub_brands as $brand) : ?>
+                                <li>
+                                    <a href="<?php echo esc_url($brand['url']); ?>" 
+                                       class="text-[#99A1AF] hover:text-gray-300 transition-colors duration-200 text-sm font-lato font-normal tracking-[-0.15px]">
+                                        <?php echo esc_html($brand['title']); ?>
+                                    </a>
+                                </li>
+                            <?php endforeach;
+                        endif; ?>
                     </ul>
                 </div>
 
@@ -42,21 +57,36 @@
                     <h4 class="text-white font-semibold text-base mb-4 font-lato">Quick Links</h4>
                     <ul class="space-y-3">
                         <?php
-                        $quick_links = array(
-                            array('title' => 'About Us', 'url' => '#'),
-                            array('title' => 'Services', 'url' => '#'),
-                            array('title' => 'Our Expertise', 'url' => '#'),
-                            array('title' => 'Careers', 'url' => '#'),
-                            array('title' => 'Contact', 'url' => '#'),
-                        );
-                        foreach ($quick_links as $link) : ?>
-                            <li>
-                                <a href="<?php echo esc_url($link['url']); ?>" 
-                                   class="text-[#99A1AF] hover:text-gray-300 transition-colors duration-200 text-sm font-lato font-normal tracking-[-0.15px]">
-                                    <?php echo esc_html($link['title']); ?>
-                                </a>
-                            </li>
-                        <?php endforeach; ?>
+                        // Get pages assigned to quick links menu
+                        $quick_link_pages = neways_get_footer_menu_pages('quick-links');
+                        
+                        if (!empty($quick_link_pages)) :
+                            foreach ($quick_link_pages as $page) : ?>
+                                <li>
+                                    <a href="<?php echo esc_url(get_permalink($page->ID)); ?>" 
+                                       class="text-[#99A1AF] hover:text-gray-300 transition-colors duration-200 text-sm font-lato font-normal tracking-[-0.15px]">
+                                        <?php echo esc_html($page->post_title); ?>
+                                    </a>
+                                </li>
+                            <?php endforeach;
+                        else :
+                            // Fallback default links if no pages assigned
+                            $quick_links = array(
+                                array('title' => 'About Us', 'url' => home_url('/about')),
+                                array('title' => 'Services', 'url' => home_url('/services')),
+                                array('title' => 'Our Expertise', 'url' => home_url('/expertise')),
+                                array('title' => 'Careers', 'url' => home_url('/careers')),
+                                array('title' => 'Contact', 'url' => home_url('/contact')),
+                            );
+                            foreach ($quick_links as $link) : ?>
+                                <li>
+                                    <a href="<?php echo esc_url($link['url']); ?>" 
+                                       class="text-[#99A1AF] hover:text-gray-300 transition-colors duration-200 text-sm font-lato font-normal tracking-[-0.15px]">
+                                        <?php echo esc_html($link['title']); ?>
+                                    </a>
+                                </li>
+                            <?php endforeach;
+                        endif; ?>
                     </ul>
                 </div>
 
@@ -96,9 +126,35 @@
 
             <!-- Copyright Section -->
             <div class="border-t border-white/10 mt-12 pt-6">
-                <p class="text-[#99A1AF] text-sm font-lato font-normal tracking-[-0.15px]">
-                    &copy; <?php echo date('Y'); ?> Neways Healthcare. All rights reserved.
-                </p>
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <p class="text-[#99A1AF] text-sm font-lato font-normal tracking-[-0.15px] m-0">
+                        &copy; <?php echo date('Y'); ?> Neways Healthcare. All rights reserved.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-4 sm:gap-6">
+                        <?php
+                        // Legal pages menu
+                        $legal_links = array(
+                            array('title' => 'Privacy Policy', 'slug' => 'privacy-policy'),
+                            array('title' => 'Terms & Conditions', 'slug' => 'terms-conditions'),
+                            array('title' => 'Modern Slavery Act', 'slug' => 'modern-slavery-act'),
+                        );
+                        
+                        foreach ($legal_links as $index => $link) :
+                            // Check if page exists
+                            $page = get_page_by_path($link['slug']);
+                            $url = $page ? get_permalink($page->ID) : home_url('/' . $link['slug']);
+                            
+                            if ($index > 0) {
+                                echo '<span class="text-[#99A1AF]">|</span>';
+                            }
+                            ?>
+                            <a href="<?php echo esc_url($url); ?>" 
+                               class="text-[#99A1AF] hover:text-gray-300 transition-colors duration-200 text-sm font-lato font-normal tracking-[-0.15px] no-underline">
+                                <?php echo esc_html($link['title']); ?>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>

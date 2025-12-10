@@ -166,6 +166,44 @@
 
     /* button styling end */
 
+    /* Legal Page Styling */
+    .legal-page .prose {
+        @apply text-gray-700;
+    }
+
+    .legal-page .prose h2 {
+        @apply text-gray-900 font-marcellus text-3xl mt-12 mb-6 first:mt-0;
+    }
+
+    .legal-page .prose h3 {
+        @apply text-gray-900 font-lato text-2xl font-bold mt-8 mb-4;
+    }
+
+    .legal-page .prose h4 {
+        @apply text-gray-900 font-lato text-xl font-semibold mt-6 mb-3;
+    }
+
+    .legal-page .prose p {
+        @apply mb-4 leading-relaxed;
+    }
+
+    .legal-page .prose ul,
+    .legal-page .prose ol {
+        @apply mb-4 pl-6;
+    }
+
+    .legal-page .prose li {
+        @apply mb-2;
+    }
+
+    .legal-page .prose a {
+        @apply text-[#014854] hover:text-[#0a2540] underline transition-colors duration-200;
+    }
+
+    .legal-page .prose strong {
+        @apply font-bold text-gray-900;
+    }
+
     .bg-primary {
         @apply bg-[#014854];
     }
