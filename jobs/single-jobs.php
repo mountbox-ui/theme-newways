@@ -38,324 +38,181 @@ if ($job_status === 'inactive') {
 }
 ?>
 
-<div class="job-detail-container">
-    <!-- Small div with 20vh height
-    <div class="small-div-20vh"></div> -->
-    
-    <div class="job-content-wrapper">
-        <div class="job-main-content">
-            <?php while (have_posts()) : the_post(); ?>
-                <?php 
-                $category = get_post_meta(get_the_ID(), '_job_category', true);
-                $job_type = get_post_meta(get_the_ID(), '_job_type', true);
-                $location = get_post_meta(get_the_ID(), '_job_location', true);
-                $salary = get_post_meta(get_the_ID(), '_job_salary', true);
-                $company = get_post_meta(get_the_ID(), '_job_company', true);
-                ?>
-                
-                <!-- Job Details with Model Line -->
-                <div class="job-header-section">
-                    <h1 class="job-title"><?php the_title(); ?></h1>
+
+<div class="min-h-screen bg-white py-8 lg:py-24">
+    <div class="max-w-[1280px] mx-auto px-4 py-16 sm:px-6 relative z-10">
+        <div class="flex flex-col lg:flex-row gap-12 lg:gap-24">
+           <!-- Left Column - Job Details -->
+            <div class="flex-1 min-w-0">
+                <?php while (have_posts()) : the_post(); ?>
+                    <?php 
+                    $category = get_post_meta(get_the_ID(), '_job_category', true);
+                    $job_type = get_post_meta(get_the_ID(), '_job_type', true);
+                    $location = get_post_meta(get_the_ID(), '_job_location', true);
+                    $short_description = get_post_meta(get_the_ID(), '_job_short_description', true);
+                    ?>
                     
-                    <div class="job-metadata">
-                        <div class="metadata-row">
-                            <span class="metadata-label">Job Category<span class="colon">:</span> </span>
-                            <span class="metadata-value"><?php echo esc_html($category); ?></span>
-                        </div>
-                        <div class="metadata-row">
-                            <span class="metadata-label">Job Type<span class="colon">:</span> </span>
-                            <span class="metadata-value"><?php echo ucfirst(str_replace('-', ' ', $job_type)); ?></span>
-                        </div>
-                        <div class="metadata-row">
-                            <span class="metadata-label">Job Location<span class="colon">:</span> </span>
-                            <span class="metadata-value"><?php echo esc_html($location); ?></span>
-                        </div>
-                    </div>
+                    <!-- Job Title -->
+                    <h1 class="text-[#00455E] font-poppins text-3xl md:text-4xl font-semibold mb-6 leading-tight"><?php the_title(); ?></h1>
                     
-                    <!-- Model Line Separator -->
-                    <hr class="model-line">
-                </div>
-                
-                <div class="job-description">
-                    <div class="job-content">
-                        <?php 
-                        // Get the raw content before WordPress processing
-                        global $post;
-                        $content = $post->post_content;
-                        
-                        // Remove HTML tags temporarily for pattern matching
-                        $plain_content = strip_tags($content);
-                        $plain_content = html_entity_decode($plain_content, ENT_QUOTES, 'UTF-8');
-                        
-                        // Split content by lines (handle both \n and \r\n)
-                        $lines = preg_split('/\r?\n/', $plain_content);
-                        $formatted_content = '';
-                        $has_formatted_fields = false;
-                        
-                        foreach ($lines as $line) {
-                            $line = trim($line);
-                            if (empty($line)) {
-                                continue;
-                            }
+                    <?php if (!empty($short_description)) : ?>
+                                <p class="paragraph pb-[12px]" style="width: 715px; max-width: 100%;"><?php echo esc_html($short_description); ?></p>
+                            <?php endif; ?>
                             
-                            // Check if line matches "Label : Value" pattern (more flexible)
-                            if (preg_match('/^([^:]+?)\s*:\s*(.+)$/u', $line, $matches)) {
-                                $label = trim($matches[1]);
-                                $value = trim($matches[2]);
+                            <div class="flex flex-wrap items-center gap-2 mt-[12px]">
+                                <?php if ($category) : ?>
+                                    <span class="flex-none rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-black/80 "><?php echo esc_html($category); ?></span>
+                                <?php endif; ?>
                                 
-                                // Only format if both label and value exist and are meaningful
-                                if (!empty($label) && !empty($value) && strlen($label) > 0 && strlen($value) > 0) {
-                                    $formatted_content .= '<div class="job-field"><strong class="job-field-label">' . esc_html($label) . ':</strong> <span class="job-field-value">' . esc_html($value) . '</span></div>';
-                                    $has_formatted_fields = true;
-                                } else {
-                                    // Regular paragraph
-                                    $formatted_content .= '<p class="job-content-text">' . esc_html($line) . '</p>';
-                                }
-                            } else {
-                                // Regular paragraph for non-matching lines
-                                if (!empty($line)) {
-                                    $formatted_content .= '<p class="job-content-text">' . esc_html($line) . '</p>';
-                                }
-                            }
-                        }
+                                <?php if ($job_type) : ?>
+                                    <span class="flex-none rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-black/80 "><?php echo ucfirst(str_replace('-', ' ', $job_type)); ?></span>
+                                <?php endif; ?>
+                                
+                                <?php if ($location) : ?>
+                                    <span class="flex-none rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-black/80 "><?php echo esc_html($location); ?></span>
+                                <?php endif; ?>
+                            </div>
+                            <div class="border-b border-gray-200 my-6"></div>
+                            
+                            <!-- Job Description -->
+                            <div class="job-content prose prose-sm lg:prose-base max-w-none text-gray-700 leading-relaxed">
+                                <?php the_content(); ?>
+                            </div>
+                            
+                        <?php endwhile; ?>
+            </div>
+            
+            <!-- Right Column - Apply Form -->
+            <div class="w-full lg:flex-none right-column-fixed">
+                <div class="bg-gray-50 rounded-lg p-6 lg:p-8 border border-gray-200 lg:sticky lg:top-6 w-full">
+                    <h2 class="text-xl lg:text-2xl font-bold text-gray-900 mb-6">Apply Now</h2>
+                    
+                    <form id="job-application-form" method="post" enctype="multipart/form-data" class="space-y-4">
+                        <?php wp_nonce_field('job_application_nonce', 'job_application_nonce_field'); ?>
+                        <input type="hidden" name="job_id" value="<?php echo get_the_ID(); ?>">
                         
-                        // Output formatted content
-                        if ($has_formatted_fields && !empty($formatted_content)) {
-                            echo $formatted_content;
-                        } else {
-                            // Fallback to default WordPress content formatting
-                            $content = apply_filters('the_content', $content);
-                            $content = str_replace(']]>', ']]&gt;', $content);
-                            echo $content;
-                        }
-                        ?>
-                    </div>
+                        <div>
+                            <input type="text" id="applicant_name" name="applicant_name" placeholder="Name*" required class="w-full px-4 py-3 border border-gray-300 rounded-md text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white transition-all">
+                        </div>
+                        
+                        <div>
+                            <input type="email" id="applicant_email" name="applicant_email" placeholder="Email*" required class="w-full px-4 py-3 border border-gray-300 rounded-md text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white transition-all">
+                        </div>
+                        
+                        <div>
+                            <input type="tel" id="applicant_phone" name="applicant_phone" placeholder="Phone*" required class="w-full px-4 py-3 border border-gray-300 rounded-md text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white transition-all">
+                        </div>
+                        
+                        <div>
+                            <textarea id="cover_letter" name="cover_letter" rows="4" placeholder="Cover Letter" class="w-full px-4 py-3 border border-gray-300 rounded-md text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white resize-none transition-all"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Upload Resume</label>
+                            <input type="file" id="resume_upload" name="resume_upload" accept=".pdf,.doc,.docx" required class="w-full px-4 py-3 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white file:mr-3 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer transition-all">
+                            <p class="text-xs text-gray-500 mt-2">Allowed Type(s): .pdf, .doc, .docx</p>
+                        </div>
+                        
+                        <div class="flex items-start pt-2">
+                            <input type="checkbox" name="privacy_policy" required id="privacy_policy" class="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded cursor-pointer">
+                            <label for="privacy_policy" class="ml-3 text-sm text-gray-700 cursor-pointer select-none">I accept the Privacy Policy</label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary bt-1 w-full bg-[#232361]">
+                            Submit
+                        </button>
+                    </form>
                 </div>
-                
-                
-            <?php endwhile; ?>
-        </div>
-        
-        <div class="job-application-form">
-            <div class="form-container">
-                <h2>Apply Now</h2>
-                <form id="job-application-form" method="post" enctype="multipart/form-data">
-                    <?php wp_nonce_field('job_application_nonce', 'job_application_nonce_field'); ?>
-                    <input type="hidden" name="job_id" value="<?php echo get_the_ID(); ?>">
-                    
-                    <div class="form-group">
-                        <input type="text" id="applicant_name" name="applicant_name" placeholder="Name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="email" id="applicant_email" name="applicant_email" placeholder="Email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="tel" id="applicant_phone" name="applicant_phone" placeholder="Phone" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <textarea id="cover_letter" name="cover_letter" rows="4" placeholder="Cover Letter"></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="file" id="resume_upload" name="resume_upload" accept=".pdf,.doc,.docx" required>
-                    </div>
-                    
-                    <div class="form-group checkbox-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="privacy_policy" required>
-                            <span class="checkmark"></span>
-                            I accept the Privacy Policy
-                        </label>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">Submit</button>
-                </form>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Thank You Modal -->
-<div id="thankYouModal" class="modal-overlay" style="display: none;">
-    <div class="modal-card">
-        <div class="modal-icon">
-            <div class="icon-circle">
-                <svg class="checkmark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 12L11 14L15 10" stroke="#FF6B6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-        </div>
-        <h2 class="modal-title">Thank you</h2>
-        <p class="modal-message">your message has been received,<br>we will update you shortly.</p>
-        <button class="modal-button" onclick="closeThankYouModal()">Go further</button>
-    </div>
-</div>
-
-<!-- <?php echo do_shortcode('[hfe_template id="8975"]'); ?> -->
 
 <style>
-/* Reset and Base Styles */
-* {
-    box-sizing: border-box;
+/* Custom width for the right column to ensure 422px on large screens */
+@media (min-width: 1024px) {
+    .right-column-fixed {
+        width: 422px !important;
+        flex: none !important;
+    }
+}
+</style>
+
+
+<!-- Thank You Modal -->
+<div id="thankYouModal" class="hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <!-- Background backdrop -->
+  <div class="modal-backdrop"></div>
+
+  <div class="modal-flex-container">
+    <!-- Modal panel -->
+    <div class="modal-panel">
+      <div>
+        <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100 mb-4">
+          <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+          </svg>
+        </div>
+        <div class="mt-3 text-center sm:mt-5">
+          <h3 class="text-xl font-semibold leading-6 text-gray-900 mb-2" id="modal-title">Application Received</h3>
+          <div class="mt-2">
+            <p class="text-sm text-gray-500">Your application has been successfully submitted. We will review your information and get back to you shortly.</p>
+          </div>
+          </div>
+      <div class="mt-6">
+        <button type="button" class="btn btn-primary bt-1 w-full bg-[#232361]" onclick="closeThankYouModal()" href="/home">Back to Home</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Robust Modal Styles */
+#thankYouModal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    overflow-y: auto;
 }
 
-/* Remove any gaps from WordPress admin bar and theme */
-body {
-    margin: 0;
-    padding: 0;
+#thankYouModal.hidden {
+    display: none !important;
 }
 
-/* Ensure no gaps at the top */
-html, body {
-    margin: 0;
-    padding: 0;
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(107, 114, 128, 0.75);
+    backdrop-filter: blur(4px);
 }
 
-/* Remove any default margins from the page */
-.page {
-    margin: 0;
-    padding: 0;
-}
-
-.job-detail-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px 40px 20px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: #ffffff;
-    min-height: 100vh;
-}
-
-/* Small div with 20vh height - Full Width Black */
-.small-div-20vh {
-    height: 90px;
-    background: #00323F;
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    margin-top: 0;
-}
-
-.job-content-wrapper {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 120px ;
-    align-items: start;
-    padding-top: 54px;
-}
-
-.job-main-content {
-    background: #ffffff;
-    padding: 0;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-}
-
-/* Job Header Section */
-.job-header-section {
-    background: #ffffff;
-    padding: 0;
-    margin-bottom: 30px;
-}
-
-.job-title {
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-size: 32px;
-    font-weight: 700;
-    color: #00455E !important;
-    line-height: 38.4px;
-    word-wrap: break-word;
-    margin: 0px !important;
-}
-
-/* Job Metadata Styling */
-.job-metadata {
-    margin-bottom: 23px;
-    margin-top: 23px;
-}
-
-.metadata-row {
+.modal-flex-container {
     display: flex;
-    margin-bottom: 8px;
+    min-height: 100%;
     align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
 }
 
-.metadata-label {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-weight: 400;
-    color: rgba(60, 74, 78, 0.8);
-    font-size: 16px;
-    min-width: 120px;
-    text-align: left;
-    white-space: nowrap;
-    padding-right: 0;
+.modal-panel {
+    position: relative;
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    width: 100%;
+    max-width: 24rem; /* 384px */
+    margin: 2rem auto;
 }
 
-.metadata-value {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    color: rgba(60, 74, 78, 0.8);
-    font-size: 16px;
-    font-weight: 400;
-}
-
-/* Model Line Separator */
-.model-line {
-    border: none;
-    height: 1px;
-    background: #000;
-    opacity: 0.2;
-    margin-top: 23px;
-    margin-bottom: 23px;
-    width: 598px;
-}
-
-.colon {
-    margin-left: 0px;
-    margin-right: 8px;
-    font-weight: 400;
-}
-
-.job-description {
-    margin-bottom: 30px;
-    word-wrap: break-word;
-}
-
-.job-description h2 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 20px;
-    font-weight: 600 !important;
-    color: #00455E;
-    margin: 0 0 15px 0;
-    text-transform: none;
-    padding-top: 32px;
-    padding-bottom: 10px;
-}
-
-
-.job-content {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #333;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-/* Style lists in job content with tick marks */
+/* Legacy WordPress content styles - keep for backward compatibility */
 .job-content ul {
     list-style: none;
     padding: 0;
-    margin: 0px !important;
+    margin: 0 !important;
 }
 
 .job-content ul li {
@@ -399,727 +256,29 @@ html, body {
     line-height: 24px;
 }
 
-/* Style for job field labels and values */
-.job-field {
-    margin-bottom: 24px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-}
-
-.job-field:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.job-field-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    color: #00455E;
-    display: block;
-    margin-bottom: 8px;
-}
-
-.job-field-value {
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    color: rgba(60, 74, 78, 0.80);
-    line-height: 24px;
-    display: block;
-}
-
-.job-content-text {
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    color: rgba(60, 74, 78, 0.80);
-    line-height: 24px;
-    margin-bottom: 15px;
-}
-
-
-
-
-/* Application Form Styles */
-.job-application-form {
-    position: sticky;
-    top: 20px;
-    z-index: 10;
-    padding-bottom: 10px;
-}
-
-.form-container {
-    padding: 32px;
-    width: 422px;
-    max-width: 100%;
-    border-radius: 8px;
-    border: 1px solid rgba(0, 69, 94, 0.10);
-    background: rgba(0, 69, 94, 0.05);
-    box-sizing: border-box;
-}
-
-.form-container h2 {
-    color: #00455E;
+.job-content h2 {
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
-    font-weight: 700;
-    line-height: 38.4px;
-    margin: 0px !important;
-    opacity: 0.8;
-}
-
-.form-group {
-    margin-bottom: 0px !important;
-    padding-top: 12px;
-}
-
-.form-group label {
-    display: block;
-    font-weight: 500;
-    color: #333;
-    margin-bottom: 8px;
-    font-size: 14px;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1px solid #d0d0d0;
-    border-radius: 8px;
-    font-size: 14px;
-    transition: border-color 0.2s ease;
-    box-sizing: border-box;
-    background: #ffffff;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: #1a365d;
-    box-shadow: 0 0 0 2px rgba(26, 54, 93, 0.1);
-}
-
-/* Style asterisks in placeholders */
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: #999;
-}
-
-/* Style for required fields with red asterisks */
-/*.form-group {*/
-/*    position: relative;*/
-/*}*/
-
-/*.form-group input[required]::after,*/
-/*.form-group textarea[required]::after {*/
-/*    content: "*";*/
-/*    color: #FF3336;*/
-/*    position: absolute;*/
-/*    right: 15px;*/
-/*    top: 50%;*/
-/*    transform: translateY(-50%);*/
-/*    font-weight: bold;*/
-/*    pointer-events: none;*/
-/*    z-index: 1;*/
-/*}*/
-
-.checkbox-group {
-    margin-bottom: 25px;
-}
-
-.checkbox-label {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    cursor: pointer;
-    font-size: 14px;
-    line-height: 1.4;
-}
-
-.checkbox-label input[type="checkbox"] {
-    width: auto;
-    margin: 0;
-    flex-shrink: 0;
-}
-
-.submit-btn {
-    width: 100%;
-    background: #00323F !important;
-    color: white !important;
-    border: none;
-    padding: 17px 153px;
-    border-radius: 100px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.submit-btn:hover {
-    background: #153a5e;
-}
-
-.submit-btn:active {
-    transform: translateY(1px);
-}
-
-/* Header Navigation Fix */
-.site-header {
-    overflow: visible;
-}
-
-.site-header .container {
-    max-width: 100%;
-    overflow: visible;
-}
-
-.site-header nav {
-    white-space: nowrap;
-    overflow: visible;
-}
-
-.site-header nav ul {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-.site-header nav li {
-    flex-shrink: 0;
-    white-space: nowrap;
-    position: relative;
-}
-
-/* Dropdown Menu Styles */
-.site-header nav li:hover ul,
-.site-header nav li:focus-within ul {
-    display: block;
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.site-header nav ul ul {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #fff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    border-radius: 4px;
-    min-width: 200px;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
-    flex-direction: column;
-    padding: 8px 0;
-}
-
-.site-header nav ul ul li {
-    white-space: normal;
-    flex-shrink: 1;
-}
-
-.site-header nav ul ul li a {
-    display: block;
-    padding: 10px 20px;
-    color: #333;
-    text-decoration: none;
-    transition: background-color 0.2s ease;
-}
-
-.site-header nav ul ul li a:hover {
-    background-color: #f8f9fa;
-}
-
-/* Logo and Brand Fix */
-.site-branding {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.site-branding .logo {
-    max-width: 50px;
-    height: auto;
-}
-
-.site-branding .site-title {
-    font-size: 18px;
-    font-weight: 600;
-    color: #2d3748;
-    margin: 0;
-}
-
-/* Responsive Design */
-@media (max-width: 1250px) {
-    .job-content-wrapper {
-        gap: 80px;
-    }
-    
-    .job-detail-container {
-        padding: 0 15px 40px 15px;
-    }
-}
-
-@media (max-width: 1100px) {
-    .job-content-wrapper {
-        gap: 60px;
-    }
-    
-    .form-container {
-        width: 380px;
-    }
-}
-
-@media (max-width: 1024px) {
-    .job-content-wrapper {
-        gap: 30px;
-        grid-template-columns: 2fr;
-    }
-    
-    .job-detail-container {
-        padding: 0 15px 30px 15px;
-    }
-    
-    .job-main-content {
-        padding: 0;
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-    
-    .job-title {
-        font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        font-size: 28px;
-        font-weight: 700;
-    }
-    
-    .job-description {
-        font-size: 15px;
-        line-height: 22px;
-    }
-    
-    .metadata-row {
-        flex-direction: row;
-        align-items: center;
-        gap: 0;
-    }
-    
-    .metadata-label {
-        min-width: 120px;
-        text-align: left;
-        padding-right: 0;
-        font-size: 14px;
-    }
-    
-    .metadata-value {
-        font-size: 14px;
-        margin-left: 0;
-    }
-    
-    .form-container {
-        width: 100%;
-        max-width: 100%;
-        padding: 24px;
-    }
-}
-
-@media (max-width: 768px) {
-    .job-content-wrapper {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    
-    .job-detail-container {
-        padding: 0 10px 20px 10px;
-    }
-    
-    .job-main-content {
-        padding: 0;
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-        box-sizing: border-box;
-    }
-    
-    .job-application-form {
-        position: static;
-    }
-    
-    .job-title {
-        font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        font-size: 26px;
-        font-weight: 700;
-    }
-    
-    .job-description {
-        font-size: 14px;
-        line-height: 20px;
-    }
-    
-    .metadata-row {
-        flex-direction: row;
-        align-items: center;
-        gap: 0;
-        margin-bottom: 12px;
-    }
-    
-    .metadata-label {
-        min-width: 120px;
-        text-align: left;
-        padding-right: 0;
-        font-size: 14px;
-        margin-bottom: 0;
-    }
-    
-    .metadata-value {
-        font-size: 14px;
-        margin-left: 0;
-    }
-    
-    .form-container {
-        padding: 20px;
-        width: fit-content;
-        max-width: 100%;
-        box-sizing: border-box;
-    }
-    
-    .form-container h2 {
-        font-size: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .job-detail-container {
-        padding: 0 10px 15px 10px;
-    }
-    
-    .job-main-content {
-        padding: 0;
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-        box-sizing: border-box;
-    }
-    
-    .job-title {
-        font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        font-size: 22px;
-        font-weight: 700;
-        line-height: 26px;
-    }
-    
-    .job-description {
-        font-size: 13px;
-        line-height: 18px;
-        margin-bottom: 20px;
-    }
-    
-    .metadata-row {
-        flex-direction: row;
-        align-items: center;
-        gap: 0;
-        margin-bottom: 10px;
-    }
-    
-    .metadata-label {
-        min-width: 120px;
-        text-align: left;
-        padding-right: 0;
-        font-size: 13px;
-        margin-bottom: 0;
-    }
-    
-    .metadata-value {
-        font-size: 13px;
-        margin-left: 0;
-    }
-    
-    .form-container {
-        padding: 15px;
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
-    }
-    
-    .form-container h2 {
-        font-size: 18px;
-    }
-    
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-        font-size: 14px;
-        padding: 12px;
-    }
-    
-    .submit-btn {
-        padding: 12px 24px;
-        font-size: 14px;
-    }
-}
-
-/* Extra small devices (320px and below) */
-@media (max-width: 320px) {
-    .job-detail-container {
-        padding: 0 5px 10px 5px;
-    }
-    
-    .job-main-content {
-        padding: 0;
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-        box-sizing: border-box;
-    }
-    
-    .job-title {
-        font-size: 20px;
-        line-height: 24px;
-    }
-    
-    .job-description {
-        font-size: 12px;
-        line-height: 16px;
-    }
-    
-    .form-container {
-        padding: 12px;
-    }
-    
-    .form-container h2 {
-        font-size: 16px;
-    }
-    
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-        font-size: 13px;
-        padding: 10px;
-    }
-    
-    .submit-btn {
-        padding: 10px 20px;
-        font-size: 13px;
-    }
-}
-
-/* Success/Error Messages */
-.application-message {
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    font-weight: 500;
-}
-
-.application-message.success {
-    background: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-}
-
-.application-message.error {
-    background: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-}
-
-/* Fix for text overflow issues */
-.job-content p,
-.job-content div,
-.job-content span {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    hyphens: auto;
-}
-
-/* Ensure proper spacing */
-.job-main-content > * {
-    margin-bottom: 0px;
-}
-
-.job-main-content > *:last-child {
-    margin-bottom: 0;
-}
-
-/* Thank You Modal Styles */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-    backdrop-filter: blur(5px);
-}
-
-.modal-card {
-    background: white;
-    border-radius: 16px;
-    padding: 40px;
-    text-align: center;
-    max-width: 400px;
-    width: 90%;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    animation: modalSlideIn 0.3s ease-out;
-}
-
-@keyframes modalSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-.modal-icon {
-    margin-bottom: 24px;
-}
-
-.icon-circle {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 2px solid white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    background: #00323F;
-}
-
-.checkmark {
-    width: 40px;
-    height: 40px;
-}
-
-.modal-title {
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: #2d3748;
-    margin: 0 0 16px 0;
-}
-
-.modal-message {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-size: 16px;
-    color: #718096;
-    line-height: 1.5;
-    margin: 0 0 32px 0;
-}
-
-.modal-button {
-    background: #00323F !important;
-    color: white !important;
-    border: none;
-    padding: 14px 32px;
-    border-radius: 12px;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    min-width: 140px;
-}
-
-.modal-button:hover {
-    background: #00323F;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(61, 213, 243, 0.3);
-}
-
-.modal-button:active {
-    transform: translateY(0);
-}
-
-/* Modal Responsive Design */
-@media (max-width: 768px) {
-    .modal-card {
-        padding: 30px 20px;
-        max-width: 90%;
-        margin: 20px;
-    }
-    
-    .modal-title {
-        font-size: 24px;
-    }
-    
-    .modal-message {
-        font-size: 14px;
-    }
-    
-    .icon-circle {
-        width: 60px;
-        height: 60px;
-    }
-    
-    .checkmark {
-        width: 30px;
-        height: 30px;
-    }
-}
-
-@media (max-width: 480px) {
-    .modal-card {
-        padding: 25px 15px;
-        max-width: 95%;
-        margin: 10px;
-    }
-    
-    .modal-title {
-        font-size: 20px;
-    }
-    
-    .modal-message {
-        font-size: 13px;
-    }
-    
-    .modal-button {
-        padding: 12px 24px;
-        font-size: 14px;
-        min-width: 120px;
-    }
-    
-    .icon-circle {
-        width: 50px;
-        height: 50px;
-    }
-    
-    .checkmark {
-        width: 25px;
-        height: 25px;
-    }
+    font-weight: 600 !important;
+    color: #00455E;
+    margin: 0 0 15px 0;
+    text-transform: none;
+    padding-top: 32px;
+    padding-bottom: 10px;
 }
 </style>
 
 <script>
 // Modal functions
 function showThankYouModal() {
-    document.getElementById('thankYouModal').style.display = 'flex';
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    const modal = document.getElementById('thankYouModal');
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
 }
 
 function closeThankYouModal() {
-    document.getElementById('thankYouModal').style.display = 'none';
+    const modal = document.getElementById('thankYouModal');
+    modal.classList.add('hidden');
     document.body.style.overflow = 'auto'; // Restore scrolling
 }
 

@@ -85,12 +85,16 @@
         @apply font-lato justify-center text-white text-sm sm:text-base leading-snug tracking-wide flex items-center gap-[9px] px-[18px] py-[16px] opacity-90 transition duration-300 ease-in-out;
     }
 
+    .bt-1 {
+        @apply rounded-md bg-[#232361] hover:bg-[#FFB64D];
+    }
+
     .btn-secondary {
-        @apply font-lato text-white text-base sm:text-lg leading-snug tracking-wide flex items-center gap-2 px-6 sm:px-7 py-4 sm:py-5 rounded-md bg-[#016A7C] opacity-90 w-full sm:w-auto min-w-[180px] sm:min-w-[235px] justify-center;
+        @apply font-lato text-white text-base sm:text-lg leading-snug tracking-wide flex items-center gap-2 px-6 sm:px-7 py-4 sm:py-5 rounded-md bg-[#232361] opacity-90 w-full sm:w-auto min-w-[180px] sm:min-w-[235px] justify-center;
     }
 
     .btn-resources {
-        @apply px-[18px] py-[10px] justify-center transition-all duration-300 ease-in-out bg-[#016A7C];
+        @apply px-[18px] py-[10px] justify-center transition-all duration-300 ease-in-out bg-[#232361];
     }
 
     .btn-resources svg {
@@ -338,7 +342,7 @@
     }
 
     .highlighted-news-title a:hover {
-        @apply text-[#016A7C];
+        @apply text-[#232361];
     }
 
     .submenu-icon svg {

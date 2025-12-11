@@ -11,9 +11,16 @@
 
 get_header(); ?>
 
-<div class="jobs-page-container">
-    <div class="container">
-        <h1>Available Jobs</h1>
+<div class="min-h-screen py-10 lg:py-16">
+    <div class="max-w-[1280px] mx-auto px-4 py-16 sm:px-6 relative z-10">
+        <div class="text-left mb-16 mx-auto max-w-2xl lg:mx-0">
+                <h2>
+                    Available Jobs
+                </h2>
+                <p class="paragraph">
+                    Explore current openings at TOV and find a role that matches your skills. Join us and be part of a growing, creative, and collaborative team.
+                </p>
+            </div>
         
         <?php
         // Get all published jobs (only active ones)
@@ -61,7 +68,8 @@ get_header(); ?>
         $jobs_query->post_count = count($filtered_posts);
         
         if ($jobs_query->have_posts()) : ?>
-            <div class="jobs-filters">
+            <!-- Filters -->
+            <div class="flex flex-col sm:flex-row gap-4 sm:gap-5 mb-8 p-5 rounded-lg w-[600px]">
                 <?php 
                 // Get unique categories, locations, and job types from actual job posts
                 $used_categories = array();
@@ -93,21 +101,21 @@ get_header(); ?>
                 sort($used_locations);
                 sort($used_job_types);
                 ?>
-                <select id="category-filter">
+                <select id="category-filter" class="w-full sm:w-[250px] px-4 py-3 border border-gray-300 rounded-md bg-white font-lato text-base focus:outline-none focus:ring-2 focus:ring-[#016A7C] focus:border-transparent transition-all">
                     <option value="">All Job Category</option>
                     <?php foreach ($used_categories as $category) : ?>
                         <option value="<?php echo esc_attr(sanitize_title($category)); ?>"><?php echo esc_html($category); ?></option>
                     <?php endforeach; ?>
                 </select>
                 
-                <select id="type-filter">
+                <select id="type-filter" class="w-full sm:w-[250px] px-4 py-3 border border-gray-300 rounded-md bg-white font-lato text-base focus:outline-none focus:ring-2 focus:ring-[#016A7C] focus:border-transparent transition-all">
                     <option value="">All Job Type</option>
                     <?php foreach ($used_job_types as $job_type) : ?>
                         <option value="<?php echo esc_attr($job_type); ?>"><?php echo esc_html(ucfirst(str_replace('-', ' ', $job_type))); ?></option>
                     <?php endforeach; ?>
                 </select>
                 
-                <select id="location-filter">
+                <select id="location-filter" class="w-full sm:w-[250px] px-4 py-3 border border-gray-300 rounded-md bg-white font-lato text-base focus:outline-none focus:ring-2 focus:ring-[#016A7C] focus:border-transparent transition-all">
                     <option value="">All Job Location</option>
                     <?php foreach ($used_locations as $location) : ?>
                         <option value="<?php echo esc_attr($location); ?>"><?php echo esc_html($location); ?></option>
@@ -115,54 +123,59 @@ get_header(); ?>
                 </select>
             </div>
             
-            <div class="jobs-list">
+            <!-- Job Listings -->
+            <ul role="list" class="divide-y divide-gray-100">
                 <?php while ($jobs_query->have_posts()) : $jobs_query->the_post(); ?>
                     <?php 
                     $category = get_post_meta(get_the_ID(), '_job_category', true);
                     $job_type = get_post_meta(get_the_ID(), '_job_type', true);
                     $location = get_post_meta(get_the_ID(), '_job_location', true);
+                    $short_description = get_post_meta(get_the_ID(), '_job_short_description', true);
                     
                     // Get activation date or fallback to post date
                     $activation_date = get_post_meta(get_the_ID(), '_job_activation_date', true);
                     $display_date = $activation_date ? $activation_date : get_the_date('Y-m-d H:i:s');
                     ?>
                     <?php $category_slug = $category ? sanitize_title($category) : ''; ?>
-                    <div class="job-item" 
+                    <li class="job-item flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 py-6" 
                          data-category="<?php echo esc_attr($category_slug); ?>"
                          data-type="<?php echo esc_attr($job_type); ?>"
                          data-location="<?php echo esc_attr($location); ?>">
-                        
-                        <div class="job-header">
-                            <h2><?php the_title(); ?></h2>
-                            <div class="job-meta">
+                        <div class="min-w-0 flex-1">
+                            <div class="mb-2">
+                                <h3><?php the_title(); ?></h3>
+                            </div>
+                            
+                            <?php if (!empty($short_description)) : ?>
+                                <p class="paragraph pb-[12px]" style="width: 715px; max-width: 100%;"><?php echo esc_html($short_description); ?></p>
+                            <?php endif; ?>
+                            
+                            <div class="flex flex-wrap items-center gap-2 mt-[12px]">
                                 <?php if ($category) : ?>
-                                    <span class="category"><?php echo ucfirst(str_replace('-', ' ', $category)); ?></span>
+                                    <span class="flex-none rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-black/80 "><?php echo esc_html($category); ?></span>
                                 <?php endif; ?>
                                 
                                 <?php if ($job_type) : ?>
-                                    <span class="type"><?php echo ucfirst(str_replace('-', ' ', $job_type)); ?></span>
+                                    <span class="flex-none rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-black/80 "><?php echo ucfirst(str_replace('-', ' ', $job_type)); ?></span>
                                 <?php endif; ?>
                                 
                                 <?php if ($location) : ?>
-                                    <span class="location">📍 <?php echo esc_html($location); ?></span>
+                                    <span class="flex-none rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-black/80 "><?php echo esc_html($location); ?></span>
                                 <?php endif; ?>
                             </div>
                         </div>
-                        
-                        <div class="job-content">
-                            <?php the_excerpt(); ?>
+                        <div class="flex-shrink-0">
+                            <a href="<?php the_permalink(); ?>" class="btn btn-primary bt-1 px-4 py-2 hover:text-black">
+                                View Details
+                            </a>
                         </div>
-                        
-                        <div class="job-actions">
-                            <a href="<?php the_permalink(); ?>" class="btn btn-primary">View Details</a>
-                        </div>
-                    </div>
+                    </li>
                 <?php endwhile; ?>
-            </div>
+            </ul>
             
         <?php else : ?>
-            <div class="no-jobs">
-                <p>No jobs available at the moment. Please check back later.</p>
+            <div class="text-center py-16">
+                <p class="paragraph">No jobs available at the moment. Please check back later.</p>
             </div>
         <?php endif; 
         
@@ -170,205 +183,6 @@ get_header(); ?>
         ?>
     </div>
 </div>
-
-<style>
-.jobs-page-container {
-    padding: 40px 0;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.jobs-filters {
-    display: flex;
-    gap: 20px;
-    margin: 30px 0;
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 8px;
-}
-
-.jobs-filters select {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background: white;
-}
-
-.jobs-list {
-    display: grid;
-    gap: 30px;
-}
-
-.job-item {
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 30px;
-    background: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease;
-}
-
-.job-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-}
-
-.job-header h2 {
-    margin: 0 0 15px 0;
-    color: #333;
-    font-size: 24px;
-}
-
-.job-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.job-meta span {
-    background: #f0f0f0;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 14px;
-    color: #666;
-}
-
-
-.job-content {
-    margin-bottom: 20px;
-    line-height: 1.6;
-    color: #555;
-}
-
-.job-actions {
-    display: flex;
-    gap: 15px;
-}
-
-.btn {
-    padding: 12px 24px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: 500;
-    transition: background-color 0.2s ease;
-}
-
-.btn-primary {
-    background: #0073aa;
-    color: white;
-}
-
-.btn-primary:hover {
-    background: #005a87;
-}
-
-.btn-secondary {
-    background: #6c757d;
-    color: white;
-}
-
-.btn-secondary:hover {
-    background: #545b62;
-}
-
-.no-jobs {
-    text-align: center;
-    padding: 60px 20px;
-    color: #666;
-}
-
-/* Filter functionality */
-.job-item.hidden {
-    display: none;
-}
-
-/* Responsive design */
-@media (max-width: 1024px) {
-    .jobs-filters {
-        gap: 15px;
-        flex-wrap: wrap;
-    }
-    
-    .job-filter {
-        width: 180px;
-    }
-}
-
-@media (max-width: 768px) {
-    .jobs-filters {
-        flex-direction: column;
-        gap: 10px;
-        align-items: stretch;
-    }
-    
-    .job-filter {
-        width: 100%;
-        max-width: 100%;
-    }
-    
-    .job-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-    
-    .job-actions {
-        margin-left: 0;
-        width: 100%;
-    }
-    
-    .btn {
-        justify-content: center;
-        width: 100%;
-        padding: 12px;
-        border: 1px solid #0073aa;
-        border-radius: 6px;
-        text-align: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .jobs-listing-container {
-        padding: 10px;
-    }
-    
-    .jobs-filters {
-        padding: 15px 0;
-        gap: 8px;
-    }
-    
-    .job-filter {
-        height: 44px;
-        font-size: 14px;
-    }
-    
-    .job-item {
-        padding: 15px;
-        gap: 12px;
-    }
-    
-    .job-title {
-        font-size: 16px;
-        line-height: 1.3;
-    }
-    
-    .job-meta {
-        font-size: 12px;
-        margin-bottom: 8px;
-    }
-    
-    .btn {
-        padding: 10px;
-        font-size: 14px;
-    }
-}
-</style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {

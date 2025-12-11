@@ -230,6 +230,7 @@ function tov_jobs_meta_box_callback($post) {
     $category = get_post_meta($post->ID, '_job_category', true);
     $job_type = get_post_meta($post->ID, '_job_type', true);
     $location = get_post_meta($post->ID, '_job_location', true);
+    $short_description = get_post_meta($post->ID, '_job_short_description', true);
     ?>
     <table class="form-table">
         <tr>
@@ -273,6 +274,13 @@ function tov_jobs_meta_box_callback($post) {
                     ?>
                 </select>
                 <p class="description">Add new locations in the Dynamic Options panel.</p>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="job_short_description">Short Description</label></th>
+            <td>
+                <textarea name="job_short_description" id="job_short_description" rows="4" style="width: 100%;"><?php echo esc_textarea($short_description); ?></textarea>
+                <p class="description">Brief description of the job (recommended: 150-200 characters).</p>
             </td>
         </tr>
     </table>
@@ -362,6 +370,10 @@ function tov_save_jobs_meta_fields($post_id) {
     
     if (isset($_POST['job_location'])) {
         update_post_meta($post_id, '_job_location', sanitize_text_field($_POST['job_location']));
+    }
+    
+    if (isset($_POST['job_short_description'])) {
+        update_post_meta($post_id, '_job_short_description', sanitize_textarea_field($_POST['job_short_description']));
     }
     
     
@@ -520,10 +532,10 @@ function jobs_display_shortcode($atts) {
     // Add cache busting parameter
     $cache_buster = time();
     ?>
-    <div class="jobs-listing-container" data-cache-buster="<?php echo $cache_buster; ?>">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" data-cache-buster="<?php echo $cache_buster; ?>">
         
         <?php if ($atts['show_filters'] === 'true') : ?>
-        <div class="jobs-filters">
+        <div class="flex flex-col sm:flex-row gap-4 sm:gap-5 mb-8 py-5">
             <?php 
             // Build unique filter values from the posts actually returned
             $used_categories = array();
@@ -541,21 +553,21 @@ function jobs_display_shortcode($atts) {
             sort($used_job_types);
             sort($used_locations);
             ?>
-            <select id="category-filter" class="job-filter">
+            <select id="category-filter" class="flex-1 px-4 py-3 h-12 border border-gray-300 rounded-md bg-white font-lato text-base focus:outline-none focus:ring-2 focus:ring-[#016A7C] focus:border-transparent transition-all cursor-pointer">
                 <option value="">All Job Category</option>
                 <?php foreach ($used_categories as $label) : $val = sanitize_title($label); ?>
                     <option value="<?php echo esc_attr($val); ?>"><?php echo esc_html($label); ?></option>
                 <?php endforeach; ?>
             </select>
             
-            <select id="type-filter" class="job-filter">
+            <select id="type-filter" class="flex-1 px-4 py-3 h-12 border border-gray-300 rounded-md bg-white font-lato text-base focus:outline-none focus:ring-2 focus:ring-[#016A7C] focus:border-transparent transition-all cursor-pointer">
                 <option value="">All Job Type</option>
                 <?php foreach ($used_job_types as $label) : ?>
                     <option value="<?php echo esc_attr($label); ?>"><?php echo esc_html(ucfirst(str_replace('-', ' ', $label))); ?></option>
                 <?php endforeach; ?>
             </select>
             
-            <select id="location-filter" class="job-filter">
+            <select id="location-filter" class="flex-1 px-4 py-3 h-12 border border-gray-300 rounded-md bg-white font-lato text-base focus:outline-none focus:ring-2 focus:ring-[#016A7C] focus:border-transparent transition-all cursor-pointer">
                 <option value="">All Job Location</option>
                 <?php foreach ($used_locations as $label) : ?>
                     <option value="<?php echo esc_attr($label); ?>"><?php echo esc_html($label); ?></option>
@@ -564,7 +576,7 @@ function jobs_display_shortcode($atts) {
         </div>
         <?php endif; ?>
         
-        <div class="jobs-list">
+        <div class="space-y-5">
             <?php if ($jobs_query->have_posts()) : ?>
                 <?php while ($jobs_query->have_posts()) : $jobs_query->the_post(); ?>
                     <?php 
@@ -577,250 +589,38 @@ function jobs_display_shortcode($atts) {
                     $display_date = $activation_date ? $activation_date : get_the_date('Y-m-d H:i:s');
                     ?>
                     <?php $category_slug = $category ? sanitize_title($category) : ''; ?>
-                    <div class="job-card" 
+                    <div class="job-card flex flex-col sm:flex-row justify-between items-start sm:items-center p-6 border  rounded-lg bg-[#F3FAFB] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer" 
                          data-category="<?php echo esc_attr($category_slug); ?>"
                          data-type="<?php echo esc_attr($job_type); ?>"
                          data-location="<?php echo esc_attr($location); ?>">
                         
-                        <div class="job-content">
-                            <h3 class="job-title"><?php the_title(); ?></h3>
-                            <p class="job-location"><?php echo esc_html($location); ?></p>
+                        <div class="flex-1 mb-4 sm:mb-0">
+                            <h3 class="font-jakarta text-lg font-semibold text-[#232361] mb-2 leading-tight"><?php the_title(); ?></h3>
+                            <p class="font-lato text-sm text-gray-600 m-0"><?php echo esc_html($location); ?></p>
                         </div>
                         
-                        <div class="job-actions">
-                            <a href="<?php the_permalink(); ?>" class="more-details-link">
-                                More Details →
+                        <div class="sm:ml-5 w-full sm:w-auto">
+                            <a href="<?php the_permalink(); ?>" class="inline-flex items-center text-[#232361] font-lato text-base font-medium no-underline hover:text-black transition-colors group">
+                                More Details
+                                <svg class="w-4 h-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
                             </a>
                         </div>
                     </div>
                 <?php endwhile; ?>
             <?php else : ?>
-                <div class="no-jobs">
-                    <p>No jobs available at the moment.</p>
+                <div class="text-center py-16">
+                    <p class="paragraph">No jobs available at the moment.</p>
                 </div>
             <?php endif; ?>
         </div>
     </div>
     
     <style>
-    .jobs-listing-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    }
-    
-    .jobs-filters {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 15px;
-        margin-bottom: 30px;
-        padding: 20px 0;
-    }
-    
-    .job-filter {
-        width: 191px;
-        height: 48px;
-        padding: 12px 16px;
-        border: 1px solid #d0d0d0;
-        border-radius: 6px;
-        background: white;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        font-size: 16px;
-        font-weight: 400;
-        color: #333;
-        cursor: pointer;
-        transition: border-color 0.2s ease;
-        box-sizing: border-box;
-    }
-    
-    .job-filter:focus {
-        outline: none;
-        border-color: #0073aa;
-        box-shadow: 0 0 0 2px rgba(0, 115, 170, 0.1);
-    }
-    
-    .jobs-list {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    .job-card {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 24px;
-        /*border: 1px solid #e0e0e0;*/
-        border: 1px solid rgba(60, 194, 217, 0.60);
-        border-radius: 8px;
-        background: #F3FAFB;
-        transition: all 0.2s ease;
-        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.05);
-        cursor: pointer;
-    }
-    
-    .job-card:hover {
-        border-color: #0073aa;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        transform: translateY(-2px);
-    }
-    
-    .job-content {
-        flex: 1;
-    }
-    
-    .job-title {
-        font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        margin: 0 0 8px 0;
-        font-size: 18px;
-        font-weight: 600;
-        color: #00455E;
-        line-height: 1.3;
-    }
-    
-    .job-location {
-        margin: 0 0 5px 0;
-        font-size: 14px;
-        color: #666;
-        font-weight: 400;
-    }
-    
-    
-    .job-actions {
-        margin-left: 20px;
-    }
-    
-    .more-details-link {
-        color: #0073aa;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 16px;
-        transition: color 0.2s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-    }
-    
-    .more-details-link:hover {
-        color: #005a87;
-        text-decoration: none;
-    }
-    
-    .no-jobs {
-        text-align: center;
-        padding: 60px 20px;
-        color: #666;
-        font-size: 16px;
-    }
-    
-    /* Filter functionality */
+    /* Only keeping the hidden class for filter functionality */
     .job-card.hidden {
         display: none;
-    }
-    
-    /* Responsive design */
-    @media (max-width: 768px) {
-        .jobs-filters {
-            flex-direction: column;
-            gap: 10px;
-            align-items: stretch;
-        }
-        
-        .job-filter {
-            width: 100%;
-            max-width: 100%;
-            min-width: 0;
-        }
-        
-        .job-card {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 15px;
-        }
-        
-        .job-actions {
-            margin-left: 0;
-            width: 100%;
-        }
-        
-        .more-details-link {
-            justify-content: center;
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #0073aa;
-            border-radius: 6px;
-            text-align: center;
-        }
-    }
-    
-    /* Extra small mobile devices */
-    @media (max-width: 480px) {
-        .jobs-listing-container {
-            padding: 10px;
-        }
-        
-        .jobs-filters {
-            padding: 15px 0;
-            flex-direction: column;
-            gap: 8px;
-        }
-        
-        .job-filter {
-            height: 44px;
-            font-size: 14px;
-            width: 100%;
-            max-width: 100%;
-        }
-        
-        .job-card {
-            padding: 15px;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 12px;
-        }
-        
-        .job-title {
-            font-size: 16px;
-            line-height: 1.3;
-        }
-        
-        .job-meta {
-            font-size: 12px;
-            margin-bottom: 8px;
-        }
-        
-        .job-actions {
-            width: 100%;
-            margin-left: 0;
-        }
-        
-        .more-details-link {
-            padding: 10px;
-            font-size: 14px;
-            width: 100%;
-            justify-content: center;
-        }
-    }
-    
-    /* Tablet landscape */
-    @media (max-width: 1024px) and (min-width: 769px) {
-        .jobs-listing-container {
-            padding: 20px;
-        }
-        
-        .jobs-filters {
-            gap: 15px;
-        }
-        
-        .job-filter {
-            width: 180px;
-        }
-        
-        .job-card {
-            padding: 20px;
-        }
     }
     </style>
     
@@ -861,14 +661,14 @@ function jobs_display_shortcode($atts) {
         jobCards.forEach(card => {
             card.addEventListener('click', function(e) {
                 // Don't trigger if clicking on the "More Details" link
-                if (e.target.classList.contains('more-details-link') || e.target.closest('.more-details-link')) {
+                if (e.target.tagName === 'A' || e.target.closest('a')) {
                     return;
                 }
                 
                 // Get the job URL from the "More Details" link
-                const moreDetailsLink = card.querySelector('.more-details-link');
-                if (moreDetailsLink) {
-                    window.location.href = moreDetailsLink.href;
+                const link = card.querySelector('a');
+                if (link) {
+                    window.location.href = link.href;
                 }
             });
         });

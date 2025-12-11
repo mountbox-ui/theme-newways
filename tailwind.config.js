@@ -6,6 +6,7 @@ module.exports = {
     './inc/**/*.php',
     './templates/**/*.php',
     './shortcodes/**/*.php',
+    './jobs/**/*.php',
     './assets/js/**/*.js',
     './*.html'
   ],
