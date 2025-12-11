@@ -101,16 +101,16 @@ function neways_who_we_are_section_shortcode($atts) {
                 <!-- Text Content Section -->
                 <div class="w-full <?php echo ($atts['image_position'] !== 'top' && $atts['image_position'] !== 'bottom') ? 'lg:w-1/2' : ''; ?>">
                     <div class="text-left">
-                        <h2 class="pb-2.5 text-center">
+                        <h2 class="pb-2.5 text-left sm:text-left md:text-center">
                             <?php echo esc_html($atts['title']); ?>
                         </h2>
                         <?php if (!empty($atts['subtitle'])) : ?>
-                            <p class="text-lg sm:text-xl lg:text-2xl text-[#000] font-semibold text-center mb-4 leading-relaxed font-lato">
+                            <p class="text-lg sm:text-xl lg:text-2xl text-[#000] font-semibold text-left sm:text-left md:text-center mb-4 leading-relaxed font-lato">
                                 <?php echo esc_html($atts['subtitle']); ?>
                             </p>
                         <?php endif; ?>
                         <?php if (!empty($atts['description'])) : ?>
-                            <div class="text-base sm:text-lg lg:text-lg text-[#5B5B5B] text-center max-w-2xl mx-auto leading-relaxed font-lato font-medium space-y-4 tracking-[-0.4px] shadow-[0 67px 80px 0 rgba(55, 52, 169, 0.07), 0 43.426px 46.852px 0 rgba(55, 52, 169, 0.05), 0 25.807px 25.481px 0 rgba(55, 52, 169, 0.04), 0 13.4px 13px 0 rgba(55, 52, 169, 0.04), 0 5.459px 6.519px 0 rgba(55, 52, 169, 0.03), 0 1.241px 3.148px 0 rgba(55, 52, 169, 0.02)]">
+                            <div class="text-base sm:text-lg lg:text-lg text-[#5B5B5B] text-left sm:text-left md:text-center max-w-2xl md:mx-auto leading-relaxed font-lato font-medium space-y-4 tracking-[-0.4px] shadow-[0 67px 80px 0 rgba(55, 52, 169, 0.07), 0 43.426px 46.852px 0 rgba(55, 52, 169, 0.05), 0 25.807px 25.481px 0 rgba(55, 52, 169, 0.04), 0 13.4px 13px 0 rgba(55, 52, 169, 0.04), 0 5.459px 6.519px 0 rgba(55, 52, 169, 0.03), 0 1.241px 3.148px 0 rgba(55, 52, 169, 0.02)]">
                                 <?php echo wp_kses_post(wpautop($atts['description'])); ?>
                             </div>
                         <?php endif; ?>

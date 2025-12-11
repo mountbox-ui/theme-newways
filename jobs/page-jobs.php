@@ -69,7 +69,7 @@ get_header(); ?>
         
         if ($jobs_query->have_posts()) : ?>
             <!-- Filters -->
-            <div class="flex flex-col sm:flex-row gap-4 sm:gap-5 mb-6  rounded-lg w-[600px]">
+            <div class="flex flex-col sm:flex-row gap-4 sm:gap-5 mb-6 rounded-lg w-full sm:w-auto md:w-[600px]">
                 <?php 
                 // Get unique categories, locations, and job types from actual job posts
                 $used_categories = array();
@@ -115,7 +115,7 @@ get_header(); ?>
                     <?php endforeach; ?>
                 </select>
                 
-                <select id="location-filter" class="w-full sm:w-[250px] px-4 py-3 border border-gray-300 rounded-md bg-white font-lato text-base focus:outline-none focus:ring-2 focus:ring-[#232361]/50 focus:border-transparent transition-all">
+                <select id="location-filter" class="w-full sm:w-[250px] px-4 py-3 border border-gray-300 rounded-md bg-white font-lato text-base focus:outline-none focus:ring-2 focus:ring-[#016A7C] focus:border-transparent transition-all">
                     <option value="">All Job Location</option>
                     <?php foreach ($used_locations as $location) : ?>
                         <option value="<?php echo esc_attr($location); ?>"><?php echo esc_html($location); ?></option>
