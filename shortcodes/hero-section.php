@@ -37,7 +37,7 @@ if (!function_exists('hero_section_shortcode')) {
         <div id="hero-section" class="<?php echo esc_attr($atts['class']); ?> max-h-[625px] mb-0 sm:mb-0 md:mb-0 xl:mb-[80px]">
             <div class="isolate overflow-hidden text-white">
                 <div
-                    class="absolute inset-0 bg-cover bg-center h-[650px] sm:h-[700px] md:h-[650px] xl:h-[625px]"
+                    class="absolute inset-0 bg-cover bg-center h-[650px] sm:h-[700px] md:h-[650px] xl:h-[650px]"
                     <?php echo $background ? 'style="background-image:url(\'' . esc_url($background) . '\');"' : ''; ?>
                 ></div>
 
@@ -102,7 +102,7 @@ if (!function_exists('hero_section_paragraph_shortcode')) {
             'hero_paragraph'
         );
 
-        return '<p class="hero-section__description font-lato font-medium pb-9 text-lg leading-[26px] text-[rgba(255,255,255,0.74)] md:text-lg sm:text-base sm:leading-[1.9]">'
+        return '<p class="hero-section__description font-lato font-medium pb-[30px] text-lg leading-[26px] text-[rgba(255,255,255,0.74)] md:text-lg sm:text-base sm:leading-[1.9]">'
             . esc_html($atts['text']) . '</p>';
     }
     add_shortcode('hero_paragraph', 'hero_section_paragraph_shortcode');

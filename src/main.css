@@ -43,7 +43,7 @@
     }
 
     .paragraph {
-        @apply font-lato  font-normal text-[18px] leading-[26px];
+        @apply font-lato  font-medium text-[18px] leading-[26px] ;
     }
 }
 
@@ -70,6 +70,9 @@
 
     .site-header.header-careers {
         @apply bg-[#1C1A1D];
+    }
+    .paragraph-text {
+        @apply font-lato  font-medium text-[18px] leading-[26px] ;
     }
 
     /* button styling */
@@ -165,6 +168,61 @@
     }
 
     .btn-hero:hover .btn-hero-arrow-body {
+        @apply opacity-100 visible;
+        transform: scaleX(2);
+    }
+
+
+    .btn-readmore {
+        @apply inline-flex items-center font-lato text-base font-bold;
+        @apply text-[#362470] px-6 no-underline cursor-pointer relative tracking-[0.48px];
+        @apply transition-all duration-300 ease-in-out;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border: 0;
+        line-height: 30px;
+        letter-spacing: -0.16px;
+    }
+
+    .btn-readmore:hover {
+        @apply no-underline;
+    }
+
+    .btn-readmore span {
+        @apply inline-block;
+    }
+
+    .btn-readmore-arrow {
+        @apply ml-2 inline-block flex-shrink-0 overflow-visible relative;
+        width: 20px;
+        height: 10px;
+    }
+
+    .btn-readmore-arrow svg {
+        @apply block absolute left-0 top-0 overflow-visible;
+        width: 8px;
+        height: 10px;
+    }
+
+    .btn-readmore-arrow-head {
+        @apply transform transition-transform duration-300 ease-in-out;
+        transform: translateX(0);
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .btn-readmore:hover .btn-readmore-arrow-head {
+        transform: translateX(3px);
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .btn-readmore-arrow-body {
+        @apply opacity-0 origin-left transition-all duration-300 ease-in-out invisible;
+        transform: scaleX(1);
+    }
+
+    .btn-readmore:hover .btn-readmore-arrow-body {
         @apply opacity-100 visible;
         transform: scaleX(2);
     }
