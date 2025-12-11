@@ -2181,6 +2181,8 @@ nav a:hover {
 .bt-1:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 182 77 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
 }
 
 /* Hero/CTA Button with Arrow Animation - Tailwind Classes */
@@ -2876,6 +2878,11 @@ nav a:hover {
   margin-bottom: 1.5rem;
 }
 
+.-mx-4 {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
 .mb-0 {
   margin-bottom: 0px;
 }
@@ -2986,6 +2993,10 @@ nav a:hover {
 
 .mt-\[12px\] {
   margin-top: 12px;
+}
+
+.mb-14 {
+  margin-bottom: 3.5rem;
 }
 
 .line-clamp-3 {
@@ -3597,6 +3608,11 @@ nav a:hover {
   border-top-width: 1px;
 }
 
+.border-\[\#232361\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(35 35 97 / var(--tw-border-opacity, 1));
+}
+
 .border-blue-500 {
   --tw-border-opacity: 1;
   border-color: rgb(59 130 246 / var(--tw-border-opacity, 1));
@@ -3652,6 +3668,18 @@ nav a:hover {
 .border-yellow-400 {
   --tw-border-opacity: 1;
   border-color: rgb(250 204 21 / var(--tw-border-opacity, 1));
+}
+
+.border-opacity-50 {
+  --tw-border-opacity: 0.5;
+}
+
+.border-opacity-80 {
+  --tw-border-opacity: 0.8;
+}
+
+.border-opacity-20 {
+  --tw-border-opacity: 0.2;
 }
 
 .bg-\[\#07143a\]\/95 {
@@ -5127,9 +5155,9 @@ nav a:hover {
   background-color: rgb(255 255 255 / 0.1);
 }
 
-.hover\:text-\[\#01889f\]:hover {
-  --tw-text-opacity: 1;
-  color: rgb(1 136 159 / var(--tw-text-opacity, 1));
+.hover\:bg-gray-50:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
 }
 
 .hover\:text-\[\#0a2540\]:hover {
@@ -5277,6 +5305,10 @@ nav a:hover {
 .focus\:ring-white:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(255 255 255 / var(--tw-ring-opacity, 1));
+}
+
+.focus\:ring-\[\#232361\]\/50:focus {
+  --tw-ring-color: rgb(35 35 97 / 0.5);
 }
 
 .focus\:ring-offset-2:focus {

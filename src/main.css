@@ -86,7 +86,7 @@
     }
 
     .bt-1 {
-        @apply rounded-md bg-[#232361] hover:bg-[#FFB64D];
+        @apply rounded-md bg-[#232361] hover:bg-[#FFB64D] hover:text-black;
     }
 
     .btn-secondary {

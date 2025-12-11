@@ -13,7 +13,7 @@ get_header(); ?>
 
 <div class="min-h-screen py-10 lg:py-16">
     <div class="max-w-[1280px] mx-auto px-4 py-16 sm:px-6 relative z-10">
-        <div class="text-left mb-16 mx-auto max-w-2xl lg:mx-0">
+        <div class="text-left mb-14 mx-auto max-w-2xl lg:mx-0">
                 <h2>
                     Available Jobs
                 </h2>
@@ -69,7 +69,7 @@ get_header(); ?>
         
         if ($jobs_query->have_posts()) : ?>
             <!-- Filters -->
-            <div class="flex flex-col sm:flex-row gap-4 sm:gap-5 mb-8 p-5 rounded-lg w-[600px]">
+            <div class="flex flex-col sm:flex-row gap-4 sm:gap-5 mb-6  rounded-lg w-[600px]">
                 <?php 
                 // Get unique categories, locations, and job types from actual job posts
                 $used_categories = array();
@@ -115,7 +115,7 @@ get_header(); ?>
                     <?php endforeach; ?>
                 </select>
                 
-                <select id="location-filter" class="w-full sm:w-[250px] px-4 py-3 border border-gray-300 rounded-md bg-white font-lato text-base focus:outline-none focus:ring-2 focus:ring-[#016A7C] focus:border-transparent transition-all">
+                <select id="location-filter" class="w-full sm:w-[250px] px-4 py-3 border border-gray-300 rounded-md bg-white font-lato text-base focus:outline-none focus:ring-2 focus:ring-[#232361]/50 focus:border-transparent transition-all">
                     <option value="">All Job Location</option>
                     <?php foreach ($used_locations as $location) : ?>
                         <option value="<?php echo esc_attr($location); ?>"><?php echo esc_html($location); ?></option>
@@ -124,7 +124,7 @@ get_header(); ?>
             </div>
             
             <!-- Job Listings -->
-            <ul role="list" class="divide-y divide-gray-100">
+            <ul role="list" class="divide-y divide-gray-100 border-b border-[#232361] border-opacity-20">
                 <?php while ($jobs_query->have_posts()) : $jobs_query->the_post(); ?>
                     <?php 
                     $category = get_post_meta(get_the_ID(), '_job_category', true);
@@ -137,13 +137,15 @@ get_header(); ?>
                     $display_date = $activation_date ? $activation_date : get_the_date('Y-m-d H:i:s');
                     ?>
                     <?php $category_slug = $category ? sanitize_title($category) : ''; ?>
-                    <li class="job-item flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 py-6" 
+                    <li class="job-item flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 py-6 cursor-pointer  transition-colors duration-200 rounded-lg px-4 -mx-4" 
                          data-category="<?php echo esc_attr($category_slug); ?>"
                          data-type="<?php echo esc_attr($job_type); ?>"
-                         data-location="<?php echo esc_attr($location); ?>">
+                         data-location="<?php echo esc_attr($location); ?>"
+                         data-url="<?php echo esc_url(get_permalink()); ?>"
+                         onclick="window.location.href='<?php echo esc_url(get_permalink()); ?>'">
                         <div class="min-w-0 flex-1">
                             <div class="mb-2">
-                                <h3><?php the_title(); ?></h3>
+                                <h4><?php the_title(); ?></h4>
                             </div>
                             
                             <?php if (!empty($short_description)) : ?>
@@ -165,7 +167,7 @@ get_header(); ?>
                             </div>
                         </div>
                         <div class="flex-shrink-0">
-                            <a href="<?php the_permalink(); ?>" class="btn btn-primary bt-1 px-4 py-2 hover:text-black">
+                            <a href="<?php the_permalink(); ?>" class="btn btn-primary bt-1 px-4 py-2 hover:text-black" onclick="event.stopPropagation();">
                                 View Details
                             </a>
                         </div>

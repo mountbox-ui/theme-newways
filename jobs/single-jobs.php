@@ -75,7 +75,7 @@ if ($job_status === 'inactive') {
                             <div class="border-b border-gray-200 my-6"></div>
                             
                             <!-- Job Description -->
-                            <div class="job-content prose prose-sm lg:prose-base max-w-none text-gray-700 leading-relaxed">
+                            <div class="paragraph-text prose prose-sm lg:prose-base max-w-none text-gray-700 ">
                                 <?php the_content(); ?>
                             </div>
                             
