@@ -238,13 +238,13 @@ function neways_news_section_shortcode($atts) {
                   <?php endif; ?>
                 </div>
                 <div class="group relative grow">
-                  <h3 class="mt-3 sm:mt-4 text-base sm:text-lg leading-6 font-semibold text-gray-900 group-hover:text-gray-600">
+                  <h3 class="mt-3 sm:mt-4 text-gray-900 group-hover:text-gray-600">
                     <a href="<?php echo get_permalink($post_id); ?>">
                       <span class="absolute inset-0"></span>
                       <?php echo get_the_title($post_id); ?>
                     </a>
                   </h3>
-                  <p class="mt-4 sm:mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
+                  <p class="mt-4 sm:mt-5 line-clamp-3 paragraph-text font-normal text-gray-600">
                     <?php echo wp_trim_words(get_the_excerpt($post_id) ?: get_the_content($post_id), 20, '...'); ?>
                   </p>
                 </div>

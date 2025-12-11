@@ -2113,6 +2113,31 @@ nav a:hover {
   line-height: 26px;
 }
 
+.p-brand {
+  padding-bottom: 0.75rem;
+  font-family: Lato, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  --tw-text-opacity: 1;
+  color: rgb(74 85 101 / var(--tw-text-opacity, 1));
+}
+
+@media (min-width: 640px) {
+  .p-brand {
+    padding-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .p-brand {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
 /* button styling */
 
 .btn {
@@ -3186,10 +3211,6 @@ nav a:hover {
 
 .w-8 {
   width: 2rem;
-}
-
-.w-\[600px\] {
-  width: 600px;
 }
 
 .w-auto {
@@ -5413,14 +5434,6 @@ nav a:hover {
     height: 700px;
   }
 
-  .sm\:h-\[3rem\] {
-    height: 3rem;
-  }
-
-  .sm\:h-12 {
-    height: 3rem;
-  }
-
   .sm\:w-10 {
     width: 2.5rem;
   }
@@ -5592,14 +5605,14 @@ nav a:hover {
     padding-bottom: 8rem;
   }
 
-  .sm\:py-8 {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-
   .sm\:py-4 {
     padding-top: 1rem;
     padding-bottom: 1rem;
+  }
+
+  .sm\:py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   .sm\:pb-16 {
@@ -5705,10 +5718,6 @@ nav a:hover {
     height: 650px;
   }
 
-  .md\:h-auto {
-    height: auto;
-  }
-
   .md\:min-h-\[520px\] {
     min-height: 520px;
   }
@@ -5760,14 +5769,14 @@ nav a:hover {
     padding-right: 2rem;
   }
 
-  .md\:py-16 {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
-
   .md\:py-10 {
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
+  }
+
+  .md\:py-16 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
   }
 
   .md\:pb-8 {

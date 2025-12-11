@@ -74,6 +74,9 @@
     .paragraph-text {
         @apply font-lato  font-medium text-[18px] leading-[26px] ;
     }
+    .p-brand{
+        @apply text-[#4A5565] leading-5 sm:leading-6 font-lato text-sm sm:text-base md:text-lg font-medium pb-3 sm:pb-4;
+    }
 
     /* button styling */
 
