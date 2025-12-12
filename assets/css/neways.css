@@ -3141,8 +3141,8 @@ nav a:hover {
   height: 20rem;
 }
 
-.h-\[650px\] {
-  height: 650px;
+.h-\[615px\] {
+  height: 615px;
 }
 
 .h-auto {
@@ -3151,6 +3151,14 @@ nav a:hover {
 
 .h-full {
   height: 100%;
+}
+
+.h-\[620px\] {
+  height: 620px;
+}
+
+.h-14 {
+  height: 3.5rem;
 }
 
 .max-h-\[625px\] {
@@ -3605,6 +3613,10 @@ nav a:hover {
   border-radius: 0.75rem;
 }
 
+.rounded-\[5\.871px\] {
+  border-radius: 5.871px;
+}
+
 .border {
   border-width: 1px;
 }
@@ -3689,6 +3701,10 @@ nav a:hover {
 .border-yellow-400 {
   --tw-border-opacity: 1;
   border-color: rgb(250 204 21 / var(--tw-border-opacity, 1));
+}
+
+.border-\[rgba\(36\2c 33\2c 99\2c 0\.30\)\] {
+  border-color: rgba(36,33,99,0.30);
 }
 
 .border-opacity-20 {
@@ -4003,11 +4019,6 @@ nav a:hover {
   padding-right: 2rem;
 }
 
-.py-0 {
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
 .py-0\.5 {
   padding-top: 0.125rem;
   padding-bottom: 0.125rem;
@@ -4076,6 +4087,11 @@ nav a:hover {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.py-\[6px\] {
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 
 .pb-12 {
@@ -4533,6 +4549,11 @@ nav a:hover {
 .text-yellow-800 {
   --tw-text-opacity: 1;
   color: rgb(133 77 14 / var(--tw-text-opacity, 1));
+}
+
+.text-\[\#242163\] {
+  --tw-text-opacity: 1;
+  color: rgb(36 33 99 / var(--tw-text-opacity, 1));
 }
 
 .text-opacity-80 {
@@ -5434,6 +5455,10 @@ nav a:hover {
     height: 700px;
   }
 
+  .sm\:h-16 {
+    height: 4rem;
+  }
+
   .sm\:w-10 {
     width: 2.5rem;
   }
@@ -5623,10 +5648,6 @@ nav a:hover {
     padding-bottom: 0.75rem;
   }
 
-  .sm\:pb-4 {
-    padding-bottom: 1rem;
-  }
-
   .sm\:pb-6 {
     padding-bottom: 1.5rem;
   }
@@ -5716,6 +5737,18 @@ nav a:hover {
 
   .md\:h-\[650px\] {
     height: 650px;
+  }
+
+  .md\:h-20 {
+    height: 5rem;
+  }
+
+  .md\:h-auto {
+    height: auto;
+  }
+
+  .md\:h-24 {
+    height: 6rem;
   }
 
   .md\:min-h-\[520px\] {
@@ -5931,6 +5964,10 @@ nav a:hover {
 
   .lg\:h-full {
     height: 100%;
+  }
+
+  .lg\:h-24 {
+    height: 6rem;
   }
 
   .lg\:min-h-\[420px\] {

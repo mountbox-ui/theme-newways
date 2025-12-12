@@ -50,7 +50,7 @@ function neways_sub_brands_section_shortcode($atts) {
                     <div class="flex-shrink-0 flex items-center justify-start lg:justify-end w-full lg:w-auto order-1 lg:order-2">
                         <div class="text-center">
                        
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-auto sm:w-16 md:w-20 lg:w-24 xl:w-[66px] xl:h-[117px]" viewBox="0 0 66 117" fill="none" preserveAspectRatio="xMidYMid meet">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-14 sm:w-16 md:w-20 md:h-24 lg:w-24 xl:w-[94px] xl:h-[116px]" viewBox="0 0 66 117" fill="none" preserveAspectRatio="xMidYMid meet">
   <g clip-path="url(#clip0_165_789)">
     <path d="M37.7127 47.601L44.0447 58.1031H43.9889L52.2873 71.8548C54.0028 74.6861 55.6904 74.2676 56.9595 72.594V23.5425H65.2301L56.2901 11.7712L47.3361 0L38.3822 11.7712L29.4282 23.5425H37.6988V47.601H37.7127Z" fill="#DC5A73"/>
     <path d="M19.4143 74.4629V59.972L13.1103 49.5257H13.1661L4.86761 35.774C4.39341 34.9929 3.47291 33.7795 2.49663 33.6401C1.98059 33.5703 1.11587 33.8772 0.16748 35.23V84.0863H9.79089C15.0907 84.0863 19.4143 79.7627 19.4143 74.4629Z" fill="#DC5A73"/>

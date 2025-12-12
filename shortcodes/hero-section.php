@@ -37,7 +37,7 @@ if (!function_exists('hero_section_shortcode')) {
         <div id="hero-section" class="<?php echo esc_attr($atts['class']); ?> max-h-[625px] mb-0 sm:mb-0 md:mb-0 xl:mb-[80px]">
             <div class="isolate overflow-hidden text-white">
                 <div
-                    class="absolute inset-0 bg-cover bg-center h-[650px] sm:h-[700px] md:h-[650px] xl:h-[650px]"
+                    class="absolute inset-0 bg-cover bg-center h-[620px] sm:h-[700px] md:h-[650px] xl:h-[650px]"
                     <?php echo $background ? 'style="background-image:url(\'' . esc_url($background) . '\');"' : ''; ?>
                 ></div>
 
