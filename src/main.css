@@ -234,6 +234,60 @@
         transform: scaleX(2);
     }
 
+    .btn-view {
+        @apply inline-flex items-center font-lato text-base font-bold rounded-[5.871px] border border-[rgba(36,33,99,0.30)] px-3 py-[6px] text-[#242163];
+        @apply  px-6 no-underline cursor-pointer relative;
+        @apply transition-all duration-300 ease-in-out;
+        line-height: 30px;
+        letter-spacing: -0.16px;
+        
+    }
+
+    .btn-view:hover {
+        @apply no-underline;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .btn-view span {
+        @apply inline-block;
+    }
+
+    .btn-hero-arrow {
+        @apply ml-2 inline-block flex-shrink-0 overflow-visible relative;
+        width: 20px;
+        height: 12px;
+    }
+
+    .btn-hero-arrow svg {
+        @apply block absolute left-0 top-0 overflow-visible;
+        width: 8px;
+        height: 12px;
+    }
+
+    .btn-hero-arrow-head {
+        @apply transform transition-transform duration-300 ease-in-out;
+        transform: translateX(0);
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .btn-view:hover .btn-hero-arrow-head {
+        transform: translateX(3px);
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .btn-hero-arrow-body {
+        @apply opacity-0 origin-left transition-all duration-300 ease-in-out invisible;
+        transform: scaleX(1);
+    }
+
+    .btn-view:hover .btn-hero-arrow-body {
+        @apply opacity-100 visible;
+        transform: scaleX(2);
+    }
+
+
     /* button styling end */
 
     /* Legal Page Styling */

@@ -184,16 +184,19 @@ function neways_news_section_shortcode($atts) {
           }
           ?>
           <a href="<?php echo esc_url($all_news_url); ?>" 
-             class="view-all-news-btn inline-flex items-center justify-center gap-2 sm:gap-2.5 self-center sm:self-auto text-sm sm:text-base transition-all duration-300"
-             style="border-radius: 5.871px; border: 1px solid rgba(36, 33, 99, 0.30); padding: 6px 12px; color: #242163; font-family: Lato; font-style: normal; font-weight: 600; line-height: 28.183px; letter-spacing: 0.705px; text-decoration: none;">
+             class="btn-view group">
             <span>View all news</span>
-            <span class="view-all-news-arrow inline-flex items-center">
-              <svg class="default-arrow sm:w-5 sm:h-5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 21 21" fill="none">
-                <path d="M11.5246 10.4999L7.19336 6.16861L8.43148 4.93136L14 10.4999L8.43149 16.0684L7.19424 14.8311L11.5246 10.4999Z" fill="#242163"/>
-              </svg>
-              <svg class="hover-arrow sm:w-4 sm:h-5" xmlns="http://www.w3.org/2000/svg" width="17" height="11" viewBox="0 0 17 11" fill="none">
-                <path d="M10.7528 1.28425C10.459 0.990463 10.459 0.514133 10.7528 0.220343C11.0465 -0.0734475 11.5229 -0.0734475 11.8167 0.220343L16.3305 4.73412C16.6243 5.02792 16.6243 5.50432 16.3305 5.79802L11.8167 10.3119C11.5229 10.6056 11.0465 10.6056 10.7528 10.3119C10.459 10.0181 10.459 9.54172 10.7528 9.24792L13.9823 6.01842H0.7606C0.34053 6.01842 0 5.68162 0 5.26612C0 4.85062 0.34053 4.51382 0.7606 4.51382H13.9823L10.7528 1.28425Z" fill="#242163"/>
-              </svg>
+            <span class="btn-readmore-arrow">
+            <svg viewBox="0 0 6 9" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                            <!-- Arrow head -->
+                            <g class="btn-hero-arrow-head">
+                                <path d="M1 1C4.5 4 5 4.38484 5 4.5C5 4.61516 4.5 5 1 8" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                            <!-- Arrow body -->
+                            <g class="btn-hero-arrow-body">
+                                <path d="M3.5 4.5H0" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                            </g>
+                        </svg>
             </span>
           </a>
         </div>

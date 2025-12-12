@@ -2393,6 +2393,93 @@ nav a:hover {
   transform: scaleX(2);
 }
 
+.btn-view {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 5.871px;
+  border-width: 1px;
+  border-color: rgba(36,33,99,0.30);
+  padding-top: 6px;
+  padding-bottom: 6px;
+  font-family: Lato, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgb(36 33 99 / var(--tw-text-opacity, 1));
+  position: relative;
+  cursor: pointer;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  text-decoration-line: none;
+  transition-property: all;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  line-height: 30px;
+  letter-spacing: -0.16px;
+}
+
+.btn-view:hover {
+  text-decoration-line: none;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.btn-view span {
+  display: inline-block;
+}
+
+.btn-hero-arrow {
+  position: relative;
+  margin-left: 0.5rem;
+  display: inline-block;
+  flex-shrink: 0;
+  overflow: visible;
+  width: 20px;
+  height: 12px;
+}
+
+.btn-hero-arrow svg {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  display: block;
+  overflow: visible;
+  width: 8px;
+  height: 12px;
+}
+
+.btn-hero-arrow-head {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  transition-property: transform;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(0);
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.btn-view:hover .btn-hero-arrow-head {
+  transform: translateX(3px);
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.btn-hero-arrow-body {
+  visibility: hidden;
+  transform-origin: left;
+  opacity: 0;
+  transition-property: all;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scaleX(1);
+}
+
+.btn-view:hover .btn-hero-arrow-body {
+  visibility: visible;
+  opacity: 1;
+  transform: scaleX(2);
+}
+
 /* button styling end */
 
 /* Legal Page Styling */
@@ -2675,55 +2762,6 @@ nav a:hover {
 .grid > article[class*="bg-gradient"]:hover::before {
   background: rgba(255, 255, 255, 0.5);
   opacity: 1;
-}
-
-.view-all-news-btn {
-  transition: all 0.3s ease-in-out;
-}
-
-.view-all-news-arrow {
-  position: relative;
-  width: 22px;
-  height: 22px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  transition: transform 0.3s ease-in-out;
-}
-
-.view-all-news-arrow svg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.view-all-news-arrow .default-arrow {
-  width: 21px;
-  height: 21px;
-}
-
-.view-all-news-arrow .hover-arrow {
-  width: 17px;
-  height: 11px;
-  display: none;
-}
-
-.view-all-news-btn:hover {
-  transform: translateX(4px);
-}
-
-.view-all-news-btn:hover .view-all-news-arrow svg {
-  transform: translate(-50%, -50%) translateX(2px);
-}
-
-.view-all-news-btn:hover .view-all-news-arrow .default-arrow {
-  display: none;
-}
-
-.view-all-news-btn:hover .view-all-news-arrow .hover-arrow {
-  display: block;
 }
 
 .service-card:hover .learn-more-link {
@@ -3089,6 +3127,10 @@ nav a:hover {
   height: 3rem;
 }
 
+.h-14 {
+  height: 3.5rem;
+}
+
 .h-16 {
   height: 4rem;
 }
@@ -3141,8 +3183,8 @@ nav a:hover {
   height: 20rem;
 }
 
-.h-\[615px\] {
-  height: 615px;
+.h-\[620px\] {
+  height: 620px;
 }
 
 .h-auto {
@@ -3151,14 +3193,6 @@ nav a:hover {
 
 .h-full {
   height: 100%;
-}
-
-.h-\[620px\] {
-  height: 620px;
-}
-
-.h-14 {
-  height: 3.5rem;
 }
 
 .max-h-\[625px\] {
@@ -3559,10 +3593,6 @@ nav a:hover {
   border-color: rgb(17 24 39 / 0.1);
 }
 
-.self-center {
-  align-self: center;
-}
-
 .justify-self-end {
   justify-self: end;
 }
@@ -3611,10 +3641,6 @@ nav a:hover {
 
 .rounded-xl {
   border-radius: 0.75rem;
-}
-
-.rounded-\[5\.871px\] {
-  border-radius: 5.871px;
 }
 
 .border {
@@ -3701,10 +3727,6 @@ nav a:hover {
 .border-yellow-400 {
   --tw-border-opacity: 1;
   border-color: rgb(250 204 21 / var(--tw-border-opacity, 1));
-}
-
-.border-\[rgba\(36\2c 33\2c 99\2c 0\.30\)\] {
-  border-color: rgba(36,33,99,0.30);
 }
 
 .border-opacity-20 {
@@ -4087,11 +4109,6 @@ nav a:hover {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
-}
-
-.py-\[6px\] {
-  padding-top: 6px;
-  padding-bottom: 6px;
 }
 
 .pb-12 {
@@ -4549,11 +4566,6 @@ nav a:hover {
 .text-yellow-800 {
   --tw-text-opacity: 1;
   color: rgb(133 77 14 / var(--tw-text-opacity, 1));
-}
-
-.text-\[\#242163\] {
-  --tw-text-opacity: 1;
-  color: rgb(36 33 99 / var(--tw-text-opacity, 1));
 }
 
 .text-opacity-80 {
@@ -5443,20 +5455,12 @@ nav a:hover {
     height: 7rem;
   }
 
-  .sm\:h-5 {
-    height: 1.25rem;
-  }
-
   .sm\:h-56 {
     height: 14rem;
   }
 
   .sm\:h-\[700px\] {
     height: 700px;
-  }
-
-  .sm\:h-16 {
-    height: 4rem;
   }
 
   .sm\:w-10 {
@@ -5469,14 +5473,6 @@ nav a:hover {
 
   .sm\:w-32 {
     width: 8rem;
-  }
-
-  .sm\:w-4 {
-    width: 1rem;
-  }
-
-  .sm\:w-5 {
-    width: 1.25rem;
   }
 
   .sm\:w-9 {
@@ -5523,10 +5519,6 @@ nav a:hover {
     gap: 3rem;
   }
 
-  .sm\:gap-2\.5 {
-    gap: 0.625rem;
-  }
-
   .sm\:gap-5 {
     gap: 1.25rem;
   }
@@ -5561,10 +5553,6 @@ nav a:hover {
     --tw-space-y-reverse: 0;
     margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
     margin-bottom: calc(1rem * var(--tw-space-y-reverse));
-  }
-
-  .sm\:self-auto {
-    align-self: auto;
   }
 
   .sm\:p-6 {
@@ -5731,24 +5719,16 @@ nav a:hover {
     margin-bottom: 2rem;
   }
 
+  .md\:h-24 {
+    height: 6rem;
+  }
+
   .md\:h-64 {
     height: 16rem;
   }
 
   .md\:h-\[650px\] {
     height: 650px;
-  }
-
-  .md\:h-20 {
-    height: 5rem;
-  }
-
-  .md\:h-auto {
-    height: auto;
-  }
-
-  .md\:h-24 {
-    height: 6rem;
   }
 
   .md\:min-h-\[520px\] {
@@ -5964,10 +5944,6 @@ nav a:hover {
 
   .lg\:h-full {
     height: 100%;
-  }
-
-  .lg\:h-24 {
-    height: 6rem;
   }
 
   .lg\:min-h-\[420px\] {
@@ -6239,20 +6215,12 @@ nav a:hover {
     height: 116px;
   }
 
-  .xl\:h-\[117px\] {
-    height: 117px;
-  }
-
   .xl\:h-\[650px\] {
     height: 650px;
   }
 
   .xl\:w-\[104px\] {
     width: 104px;
-  }
-
-  .xl\:w-\[66px\] {
-    width: 66px;
   }
 
   .xl\:w-\[94px\] {
