@@ -170,8 +170,8 @@ function neways_news_section_shortcode($atts) {
     ?>
 
     <div class="bg-white py-8 sm:py-12 lg:py-20">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6 pb-6 sm:pb-8">
+      <div class="mx-auto max-w-7xl px-0 sm:px-0 md:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6 pb-6 sm:pb-8 px-[12px]">
           <div class="text-center sm:text-left">
             <h2 class="text-balance text-3xl sm:text-4xl md:text-5xl lg:text-4xl font-normal font-marcellus tracking-tight text-gray-900">Latest news</h2>
           </div>
@@ -183,8 +183,9 @@ function neways_news_section_shortcode($atts) {
               $all_news_url = '#';
           }
           ?>
-          <a href="<?php echo esc_url($all_news_url); ?>" 
-             class="btn-view group">
+          <div class="text-center sm:text-left">
+            <a href="<?php echo esc_url($all_news_url); ?>" 
+               class="btn-view group">
             <span>View all news</span>
             <span class="btn-readmore-arrow">
             <svg viewBox="0 0 6 9" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
@@ -198,7 +199,8 @@ function neways_news_section_shortcode($atts) {
                             </g>
                         </svg>
             </span>
-          </a>
+            </a>
+          </div>
         </div>
         <div class="mx-auto grid max-w-2xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 sm:gap-x-8 gap-y-12 sm:gap-y-16 lg:gap-y-20 lg:mx-0 lg:max-w-none">
           <?php if ($news_query->have_posts()) : ?>

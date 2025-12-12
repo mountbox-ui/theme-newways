@@ -2409,6 +2409,7 @@ nav a:hover {
   color: rgb(36 33 99 / var(--tw-text-opacity, 1));
   position: relative;
   cursor: pointer;
+  white-space: nowrap;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   text-decoration-line: none;
@@ -4111,6 +4112,16 @@ nav a:hover {
   padding-bottom: 2rem;
 }
 
+.px-\[12px\] {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.px-0 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 .pb-12 {
   padding-bottom: 3rem;
 }
@@ -5628,6 +5639,11 @@ nav a:hover {
     padding-bottom: 2rem;
   }
 
+  .sm\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
   .sm\:pb-16 {
     padding-bottom: 4rem;
   }
@@ -5790,6 +5806,11 @@ nav a:hover {
   .md\:py-16 {
     padding-top: 4rem;
     padding-bottom: 4rem;
+  }
+
+  .md\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
   .md\:pb-8 {
