@@ -3733,6 +3733,11 @@ nav a:hover {
   border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
 }
 
+.border-gray-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(156 163 175 / var(--tw-border-opacity, 1));
+}
+
 .border-gray-900\/5 {
   border-color: rgb(17 24 39 / 0.05);
 }
@@ -3768,11 +3773,6 @@ nav a:hover {
 .border-yellow-400 {
   --tw-border-opacity: 1;
   border-color: rgb(250 204 21 / var(--tw-border-opacity, 1));
-}
-
-.border-gray-400 {
-  --tw-border-opacity: 1;
-  border-color: rgb(156 163 175 / var(--tw-border-opacity, 1));
 }
 
 .border-opacity-20 {
@@ -4634,10 +4634,6 @@ nav a:hover {
 
 .no-underline {
   text-decoration-line: none;
-}
-
-.opacity-10 {
-  opacity: 0.1;
 }
 
 .opacity-20 {

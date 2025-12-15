@@ -54,7 +54,7 @@ function manual_height_meta_box_callback($post) {
             // If no awards from ACF, try individual fields
             if (empty($awards)) {
                 $awards = array();
-                for ($i = 1; $i <= 3; $i++) {
+                for ($i = 1; $i <= 10; $i++) {
                     $award_field = get_field('award' . $i, $post->ID);
                     if (!empty($award_field)) {
                         $awards[] = $award_field;
