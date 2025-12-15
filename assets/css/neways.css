@@ -2410,9 +2410,26 @@ nav a:hover {
   position: relative;
   cursor: pointer;
   white-space: nowrap;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   text-decoration-line: none;
+}
+
+@media (min-width: 640px) {
+  .btn-view {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .btn-view {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+.btn-view {
   transition-property: all;
   transition-duration: 300ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -3406,6 +3423,10 @@ nav a:hover {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.flex-row {
+  flex-direction: row;
+}
+
 .flex-col {
   flex-direction: column;
 }
@@ -4007,6 +4028,11 @@ nav a:hover {
   padding: 2rem;
 }
 
+.px-0 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -4040,6 +4066,11 @@ nav a:hover {
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
+}
+
+.px-\[12px\] {
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 .py-0\.5 {
@@ -4110,16 +4141,6 @@ nav a:hover {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
-}
-
-.px-\[12px\] {
-  padding-left: 12px;
-  padding-right: 12px;
-}
-
-.px-0 {
-  padding-left: 0px;
-  padding-right: 0px;
 }
 
 .pb-12 {
@@ -5514,6 +5535,10 @@ nav a:hover {
     flex-direction: row;
   }
 
+  .sm\:flex-nowrap {
+    flex-wrap: nowrap;
+  }
+
   .sm\:items-start {
     align-items: flex-start;
   }
@@ -5572,6 +5597,11 @@ nav a:hover {
 
   .sm\:p-7 {
     padding: 1.75rem;
+  }
+
+  .sm\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   .sm\:px-3 {
@@ -5637,11 +5667,6 @@ nav a:hover {
   .sm\:py-8 {
     padding-top: 2rem;
     padding-bottom: 2rem;
-  }
-
-  .sm\:px-0 {
-    padding-left: 0px;
-    padding-right: 0px;
   }
 
   .sm\:pb-16 {
@@ -5779,6 +5804,10 @@ nav a:hover {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .md\:gap-6 {
+    gap: 1.5rem;
+  }
+
   .md\:gap-x-14 {
     -moz-column-gap: 3.5rem;
          column-gap: 3.5rem;
@@ -5791,6 +5820,11 @@ nav a:hover {
   .md\:px-10 {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
+  }
+
+  .md\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
   .md\:px-8 {
@@ -5806,11 +5840,6 @@ nav a:hover {
   .md\:py-16 {
     padding-top: 4rem;
     padding-bottom: 4rem;
-  }
-
-  .md\:px-6 {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
   }
 
   .md\:pb-8 {
@@ -6236,8 +6265,8 @@ nav a:hover {
     height: 116px;
   }
 
-  .xl\:h-\[650px\] {
-    height: 650px;
+  .xl\:h-\[625px\] {
+    height: 625px;
   }
 
   .xl\:w-\[104px\] {

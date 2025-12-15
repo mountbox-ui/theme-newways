@@ -171,7 +171,7 @@ function neways_news_section_shortcode($atts) {
 
     <div class="bg-white py-8 sm:py-12 lg:py-20">
       <div class="mx-auto max-w-7xl px-0 sm:px-0 md:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6 pb-6 sm:pb-8 px-[12px]">
+        <div class="flex flex-row sm:flex-row sm:items-center sm:justify-between gap-12 sm:gap-12 md:gap-6 pb-6 sm:pb-8 px-[12px]">
           <div class="text-center sm:text-left">
             <h2 class="text-balance text-3xl sm:text-4xl md:text-5xl lg:text-4xl font-normal font-marcellus tracking-tight text-gray-900">Latest news</h2>
           </div>
