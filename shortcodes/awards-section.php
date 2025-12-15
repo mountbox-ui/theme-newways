@@ -66,7 +66,8 @@ function neways_awards_shortcode($atts) {
 
             <h4 class="text-center text-[#273A29]/70 text-sm sm:text-base md:text-[20px] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-6 sm:mb-[24px] px-2 break-words">AWARDS/RECOGNITIONS/ PARTNERSHIPS</h4>
 
-            <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-6 sm:gap-x-8 sm:gap-y-8 md:gap-x-14 md:gap-y-10">
+            <div class="awards-scroll-container" data-awards-count="<?php echo count($awards); ?>">
+                <div class="awards-scroll-wrapper flex flex-wrap items-center justify-center gap-x-4 gap-y-6 sm:gap-x-8 sm:gap-y-8 md:gap-x-14 md:gap-y-10">
                 <?php
                 if (!empty($awards) && is_array($awards)):
                     $award_index = 0;
@@ -185,6 +186,7 @@ function neways_awards_shortcode($atts) {
                     <?php
                 endif;
                 ?>
+                </div>
             </div>
 
         </div>
@@ -203,7 +205,102 @@ function neways_awards_shortcode($atts) {
             height: var(--desktop-h) !important;
         }
     }
+    
+    /* Awards Auto-Scroll Styles */
+    .awards-scroll-container {
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+    }
+    
+    .awards-scroll-wrapper {
+        transition: transform 0.5s ease-in-out;
+    }
+    
+    .awards-scroll-container.auto-scroll-enabled .awards-scroll-wrapper {
+        display: flex;
+        flex-wrap: nowrap;
+        animation: autoScrollAwards 20s linear infinite;
+    }
+    
+    .awards-scroll-container.auto-scroll-enabled:hover .awards-scroll-wrapper {
+        animation-play-state: paused;
+    }
+    
+    @keyframes autoScrollAwards {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+    
+    /* Ensure awards stay in a row when auto-scrolling */
+    .awards-scroll-container.auto-scroll-enabled .awards-scroll-wrapper img {
+        flex-shrink: 0;
+    }
     </style>
+    
+    <script>
+    (function() {
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initAwardsAutoScroll);
+        } else {
+            initAwardsAutoScroll();
+        }
+        
+        function initAwardsAutoScroll() {
+            const scrollContainers = document.querySelectorAll('.awards-scroll-container');
+            
+            scrollContainers.forEach(container => {
+                const awardsCount = parseInt(container.getAttribute('data-awards-count') || '0');
+                const wrapper = container.querySelector('.awards-scroll-wrapper');
+                
+                if (!wrapper) return;
+                
+                function checkAndEnableScroll() {
+                    const isMobile = window.innerWidth < 768; // Tailwind's md breakpoint
+                    const threshold = isMobile ? 2 : 3;
+                    
+                    if (awardsCount > threshold) {
+                        // Clone awards for seamless loop
+                        if (!container.classList.contains('auto-scroll-enabled')) {
+                            const awards = Array.from(wrapper.children);
+                            awards.forEach(award => {
+                                const clone = award.cloneNode(true);
+                                wrapper.appendChild(clone);
+                            });
+                            container.classList.add('auto-scroll-enabled');
+                        }
+                    } else {
+                        // Remove auto-scroll if not needed
+                        if (container.classList.contains('auto-scroll-enabled')) {
+                            container.classList.remove('auto-scroll-enabled');
+                            // Remove clones
+                            const awards = Array.from(wrapper.children);
+                            const halfLength = Math.floor(awards.length / 2);
+                            for (let i = awards.length - 1; i >= halfLength; i--) {
+                                wrapper.removeChild(awards[i]);
+                            }
+                        }
+                    }
+                }
+                
+                // Initial check
+                checkAndEnableScroll();
+                
+                // Re-check on window resize
+                let resizeTimeout;
+                window.addEventListener('resize', function() {
+                    clearTimeout(resizeTimeout);
+                    resizeTimeout = setTimeout(checkAndEnableScroll, 250);
+                });
+            });
+        }
+    })();
+    </script>
     <?php
     
     // Return the buffered content
