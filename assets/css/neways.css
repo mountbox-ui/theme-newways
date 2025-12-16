@@ -3784,6 +3784,11 @@ nav a:hover {
   background-color: rgb(15 23 43 / var(--tw-bg-opacity, 1));
 }
 
+.bg-\[\#140B2A\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(20 11 42 / var(--tw-bg-opacity, 1));
+}
+
 .bg-\[\#1C1A1D\] {
   --tw-bg-opacity: 1;
   background-color: rgb(28 26 29 / var(--tw-bg-opacity, 1));
@@ -4106,11 +4111,6 @@ nav a:hover {
 .py-1\.5 {
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
-}
-
-.py-10 {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
 }
 
 .py-12 {
@@ -6184,6 +6184,11 @@ nav a:hover {
     padding-bottom: 4rem;
   }
 
+  .lg\:py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
   .lg\:py-20 {
     padding-top: 5rem;
     padding-bottom: 5rem;
@@ -6207,11 +6212,6 @@ nav a:hover {
   .lg\:py-\[200px\] {
     padding-top: 200px;
     padding-bottom: 200px;
-  }
-
-  .lg\:py-2 {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
   }
 
   .lg\:pb-10 {

@@ -26,7 +26,7 @@ if (is_front_page() || is_home()) {
     $logo_classes = 'w-20 h-24 object-contain';
 } else {
     // All other pages - solid background with fixed height
-    $header_classes = 'site-header z-50 w-full bg-[#0F172B] h-20';
+    $header_classes = 'site-header z-50 w-full bg-[#140B2A] h-20';
     $container_classes = 'mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 h-full md:px-10';
     $logo_classes = 'h-16 w-auto object-contain';
     
