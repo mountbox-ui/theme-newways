@@ -3779,11 +3779,6 @@ nav a:hover {
   background-color: rgb(7 20 58 / 0.95);
 }
 
-.bg-\[\#0F172B\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(15 23 43 / var(--tw-bg-opacity, 1));
-}
-
 .bg-\[\#140B2A\] {
   --tw-bg-opacity: 1;
   background-color: rgb(20 11 42 / var(--tw-bg-opacity, 1));
@@ -4161,6 +4156,11 @@ nav a:hover {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
 .pb-12 {
