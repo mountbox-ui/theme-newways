@@ -90,4 +90,4 @@ if (is_front_page() || is_home()) {
         </nav>
     </header>
 
-    <div id="content" class="site-content flex-grow">
+    <div id="content" class="site-content flex-grow min-h-screen">

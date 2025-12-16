@@ -11,7 +11,7 @@
 
 get_header(); ?>
 
-<div class="min-h-screen py-10 lg:py-16">
+<div class="min-h-screen py-2 lg:py-2">
     <div class="max-w-[1280px] mx-auto px-4 py-16 sm:px-6 relative z-10">
         <div class="text-left mb-14 mx-auto max-w-2xl lg:mx-0">
                 <h2>
