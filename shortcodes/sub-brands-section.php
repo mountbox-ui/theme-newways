@@ -46,7 +46,7 @@ function neways_sub_brands_section_shortcode($atts) {
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-10">
                 <!-- Sub-brand 1: Neways at Home -->
-                <a href="#" class="sub-brand-card bg-[#F8DDE2] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10 flex flex-col lg:flex-row items-start sm:items-start lg:items-center gap-4 sm:gap-6 lg:gap-10 transition-all duration-300 hover:shadow-lg  hover:-translate-y-2 cursor-pointer block">
+                <a href="https://olivedrab-antelope-547540.hostingersite.com/neways-at-home/" class="sub-brand-card bg-[#F8DDE2] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10 flex flex-col lg:flex-row items-start sm:items-start lg:items-center gap-4 sm:gap-6 lg:gap-10 transition-all duration-300 hover:shadow-lg  hover:-translate-y-2 cursor-pointer block">
                     <div class="flex-shrink-0 flex items-center justify-start lg:justify-end w-full lg:w-auto order-1 lg:order-2">
                         <div class="text-center">
                        
@@ -105,7 +105,7 @@ function neways_sub_brands_section_shortcode($atts) {
                 </a>
 
                 <!-- Sub-brand 2: Neways Residential -->
-                <a href="#" class="sub-brand-card bg-[#DEECE0] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10 flex flex-col lg:flex-row items-start sm:items-start lg:items-center gap-4 sm:gap-6 lg:gap-10 transition-all duration-300 hover:shadow-lg hover:-translate-y-2 cursor-pointer block">
+                <a href="https://olivedrab-antelope-547540.hostingersite.com/neways-residential/" class="sub-brand-card bg-[#DEECE0] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10 flex flex-col lg:flex-row items-start sm:items-start lg:items-center gap-4 sm:gap-6 lg:gap-10 transition-all duration-300 hover:shadow-lg hover:-translate-y-2 cursor-pointer block">
                     <div class="flex-shrink-0 flex items-center justify-start lg:justify-end w-full lg:w-auto order-1 lg:order-2">
                         <div class="text-center">
                        
@@ -168,7 +168,7 @@ function neways_sub_brands_section_shortcode($atts) {
                 </a>
 
                 <!-- Sub-brand 3: Neways Recruitment -->
-                <a href="#" class="sub-brand-card bg-[#D4E7E5] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10 flex flex-col lg:flex-row items-start sm:items-start lg:items-center gap-4 sm:gap-6 lg:gap-10 transition-all duration-300 hover:shadow-lg hover:-translate-y-2 cursor-pointer block">
+                <a href="https://olivedrab-antelope-547540.hostingersite.com/neways-recruitment/" class="sub-brand-card bg-[#D4E7E5] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10 flex flex-col lg:flex-row items-start sm:items-start lg:items-center gap-4 sm:gap-6 lg:gap-10 transition-all duration-300 hover:shadow-lg hover:-translate-y-2 cursor-pointer block">
                     <div class="flex-shrink-0 flex items-center justify-start lg:justify-end w-full lg:w-auto order-1 lg:order-2">
                         <div class="text-center">
                        
@@ -231,7 +231,7 @@ function neways_sub_brands_section_shortcode($atts) {
 
                 <!-- Sub-brand 4: Neways Consulting -->
                 
-                <a href="#" class="sub-brand-card bg-[#C7D6EE] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10 flex flex-col lg:flex-row items-start sm:items-start lg:items-center gap-4 sm:gap-6 lg:gap-10 transition-all duration-300 hover:shadow-lg hover:-translate-y-2 cursor-pointer block">
+                <a href="https://olivedrab-antelope-547540.hostingersite.com/neways-consulting/" class="sub-brand-card bg-[#C7D6EE] rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 lg:py-9 xl:p-10 flex flex-col lg:flex-row items-start sm:items-start lg:items-center gap-4 sm:gap-6 lg:gap-10 transition-all duration-300 hover:shadow-lg hover:-translate-y-2 cursor-pointer block">
                     <div class="flex-shrink-0 flex items-center justify-start lg:justify-end w-full lg:w-auto order-1 lg:order-2">
                         <div class="text-center">
                        
