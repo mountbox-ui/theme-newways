@@ -82,15 +82,8 @@ function neways_news_section_shortcode($atts) {
             );
         }
         
-        // Filter past news if show_past is false (show only recent news)
-        if (!$show_past) {
-            $latest_args['date_query'] = array(
-                array(
-                    'after' => date('Y-m-d', strtotime('-30 days')), // Show news from last 30 days
-                    'inclusive' => true,
-                )
-            );
-        }
+        // Note: We don't apply date_query here to ensure we always fill up to 3 posts
+        // The goal is to always show exactly 3 news items, using latest available news if needed
         
         $latest_news = new WP_Query($latest_args);
         if ($latest_news->have_posts()) {
